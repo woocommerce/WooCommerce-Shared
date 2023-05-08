@@ -4,4 +4,4 @@ dev:
 
 build:
 	yarn
-	npx expo export
+	npx expo export --dump-sourcemap

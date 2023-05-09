@@ -5,13 +5,21 @@ dist/
 npm-debug.*
 *.orig.*
 web-build/
+yarn-error.log
 
-# Swift
+# iOS
+xcuserdata/
 .swiftpm/
 .build/
+libraries/ios/build
+Pods/
+
 
 # macOS
 .DS_Store
+
+# Ruby
+vendor/
 
 # Code Signing
 *.jks

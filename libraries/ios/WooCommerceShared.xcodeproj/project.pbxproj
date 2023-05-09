@@ -1,0 +1,815 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2478B04D2A0ACA6600E91CDF /* WooCommerceShared.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2478B04C2A0ACA6600E91CDF /* WooCommerceShared.docc */; };
+		2478B0532A0ACA6600E91CDF /* WooCommerceShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */; };
+		2478B0582A0ACA6600E91CDF /* WooCommerceSharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478B0572A0ACA6600E91CDF /* WooCommerceSharedTests.swift */; };
+		2478B0592A0ACA6600E91CDF /* WooCommerceShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 2478B04B2A0ACA6600E91CDF /* WooCommerceShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2478B0662A0ACEC000E91CDF /* WCReactNativeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2478B0642A0ACEC000E91CDF /* WCReactNativeViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2478B0672A0ACEC000E91CDF /* WCReactNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2478B0652A0ACEC000E91CDF /* WCReactNativeViewController.m */; };
+		2478B0A62A0AD84700E91CDF /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478B0A52A0AD84700E91CDF /* DemoApp.swift */; };
+		2478B0AA2A0AD84800E91CDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2478B0A92A0AD84800E91CDF /* Assets.xcassets */; };
+		2478B0AD2A0AD84800E91CDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2478B0AC2A0AD84800E91CDF /* Preview Assets.xcassets */; };
+		2478B0B12A0AD85900E91CDF /* WooCommerceShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */; };
+		2478B0B22A0AD85900E91CDF /* WooCommerceShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2478B0C02A0AED7700E91CDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */; };
+		2478B0E22A0B01CB00E91CDF /* bundle-ios.js in Resources */ = {isa = PBXBuildFile; fileRef = 2478B0E12A0B01CB00E91CDF /* bundle-ios.js */; };
+		DA27D9F570F33985E7E43E40 /* Pods_WooCommerceShared_WooCommerceSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */; };
+		E8E437A2259ABB6D74143413 /* Pods_WooCommerceShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3DE3FD68E0CD0385BE226A5 /* Pods_WooCommerceShared.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2478B0542A0ACA6600E91CDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2478B03F2A0ACA6600E91CDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2478B0472A0ACA6600E91CDF;
+			remoteInfo = WooCommerceShared;
+		};
+		2478B0B32A0AD85900E91CDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2478B03F2A0ACA6600E91CDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2478B0472A0ACA6600E91CDF;
+			remoteInfo = WooCommerceShared;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2478B0B52A0AD85900E91CDF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2478B0B22A0AD85900E91CDF /* WooCommerceShared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WooCommerceShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2478B04B2A0ACA6600E91CDF /* WooCommerceShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WooCommerceShared.h; sourceTree = "<group>"; };
+		2478B04C2A0ACA6600E91CDF /* WooCommerceShared.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WooCommerceShared.docc; sourceTree = "<group>"; };
+		2478B0522A0ACA6600E91CDF /* WooCommerceSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WooCommerceSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2478B0572A0ACA6600E91CDF /* WooCommerceSharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WooCommerceSharedTests.swift; sourceTree = "<group>"; };
+		2478B0642A0ACEC000E91CDF /* WCReactNativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCReactNativeViewController.h; sourceTree = "<group>"; };
+		2478B0652A0ACEC000E91CDF /* WCReactNativeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCReactNativeViewController.m; sourceTree = "<group>"; };
+		2478B0A32A0AD84700E91CDF /* Demo App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2478B0A52A0AD84700E91CDF /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
+		2478B0A92A0AD84800E91CDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2478B0AC2A0AD84800E91CDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2478B0B62A0ADB2400E91CDF /* Demo-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Demo-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2478B0E12A0B01CB00E91CDF /* bundle-ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "bundle-ios.js"; path = "../../../dist/bundles/bundle-ios.js"; sourceTree = "<group>"; };
+		24C4BDA02A0BF09E00276FCB /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
+		310F006D69BC062205EDD9A4 /* Pods-WooCommerceShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared.release.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared.release.xcconfig"; sourceTree = "<group>"; };
+		339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WooCommerceShared_WooCommerceSharedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840EBAB6F5991FF94DBE2653 /* Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AE810665B4C349134950905B /* Pods-WooCommerceShared.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared.debug.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared.debug.xcconfig"; sourceTree = "<group>"; };
+		B3FACE34EE7D33211B5F1B31 /* Pods-WooCommerceShared-WooCommerceSharedTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared-WooCommerceSharedTests.release.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests.release.xcconfig"; sourceTree = "<group>"; };
+		C3DE3FD68E0CD0385BE226A5 /* Pods_WooCommerceShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WooCommerceShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2478B0452A0ACA6600E91CDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8E437A2259ABB6D74143413 /* Pods_WooCommerceShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2478B04F2A0ACA6600E91CDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0532A0ACA6600E91CDF /* WooCommerceShared.framework in Frameworks */,
+				DA27D9F570F33985E7E43E40 /* Pods_WooCommerceShared_WooCommerceSharedTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2478B0A02A0AD84700E91CDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0B12A0AD85900E91CDF /* WooCommerceShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2441502D07CE9C9BE5EDC145 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE810665B4C349134950905B /* Pods-WooCommerceShared.debug.xcconfig */,
+				310F006D69BC062205EDD9A4 /* Pods-WooCommerceShared.release.xcconfig */,
+				840EBAB6F5991FF94DBE2653 /* Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig */,
+				B3FACE34EE7D33211B5F1B31 /* Pods-WooCommerceShared-WooCommerceSharedTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2478B03E2A0ACA6600E91CDF = {
+			isa = PBXGroup;
+			children = (
+				2478B04A2A0ACA6600E91CDF /* WooCommerceShared */,
+				2478B0562A0ACA6600E91CDF /* WooCommerceSharedTests */,
+				2478B0A42A0AD84700E91CDF /* Demo App */,
+				2478B0492A0ACA6600E91CDF /* Products */,
+				2441502D07CE9C9BE5EDC145 /* Pods */,
+				37E6C0EA6F3F8FF45977AE4A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2478B0492A0ACA6600E91CDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */,
+				2478B0522A0ACA6600E91CDF /* WooCommerceSharedTests.xctest */,
+				2478B0A32A0AD84700E91CDF /* Demo App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2478B04A2A0ACA6600E91CDF /* WooCommerceShared */ = {
+			isa = PBXGroup;
+			children = (
+				2478B04B2A0ACA6600E91CDF /* WooCommerceShared.h */,
+				2478B04C2A0ACA6600E91CDF /* WooCommerceShared.docc */,
+				2478B0642A0ACEC000E91CDF /* WCReactNativeViewController.h */,
+				2478B0652A0ACEC000E91CDF /* WCReactNativeViewController.m */,
+				2478B0E12A0B01CB00E91CDF /* bundle-ios.js */,
+			);
+			path = WooCommerceShared;
+			sourceTree = "<group>";
+		};
+		2478B0562A0ACA6600E91CDF /* WooCommerceSharedTests */ = {
+			isa = PBXGroup;
+			children = (
+				2478B0572A0ACA6600E91CDF /* WooCommerceSharedTests.swift */,
+			);
+			path = WooCommerceSharedTests;
+			sourceTree = "<group>";
+		};
+		2478B0A42A0AD84700E91CDF /* Demo App */ = {
+			isa = PBXGroup;
+			children = (
+				2478B0B62A0ADB2400E91CDF /* Demo-App-Info.plist */,
+				2478B0A52A0AD84700E91CDF /* DemoApp.swift */,
+				2478B0A92A0AD84800E91CDF /* Assets.xcassets */,
+				2478B0AB2A0AD84800E91CDF /* Preview Content */,
+				2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */,
+			);
+			path = "Demo App";
+			sourceTree = "<group>";
+		};
+		2478B0AB2A0AD84800E91CDF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2478B0AC2A0AD84800E91CDF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		37E6C0EA6F3F8FF45977AE4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24C4BDA02A0BF09E00276FCB /* OpenSSL.xcframework */,
+				C3DE3FD68E0CD0385BE226A5 /* Pods_WooCommerceShared.framework */,
+				339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2478B0432A0ACA6600E91CDF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0592A0ACA6600E91CDF /* WooCommerceShared.h in Headers */,
+				2478B0662A0ACEC000E91CDF /* WCReactNativeViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2478B0472A0ACA6600E91CDF /* WooCommerceShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2478B05C2A0ACA6600E91CDF /* Build configuration list for PBXNativeTarget "WooCommerceShared" */;
+			buildPhases = (
+				701879123F9AB76E1D77D272 /* [CP] Check Pods Manifest.lock */,
+				2478B0432A0ACA6600E91CDF /* Headers */,
+				2478B0442A0ACA6600E91CDF /* Sources */,
+				2478B0452A0ACA6600E91CDF /* Frameworks */,
+				2478B0462A0ACA6600E91CDF /* Resources */,
+				A7B2D7E46666848D5E32383F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WooCommerceShared;
+			productName = WooCommerceShared;
+			productReference = 2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2478B0512A0ACA6600E91CDF /* WooCommerceSharedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2478B05F2A0ACA6600E91CDF /* Build configuration list for PBXNativeTarget "WooCommerceSharedTests" */;
+			buildPhases = (
+				C6491C3DDED103B6299FFCEA /* [CP] Check Pods Manifest.lock */,
+				2478B04E2A0ACA6600E91CDF /* Sources */,
+				2478B04F2A0ACA6600E91CDF /* Frameworks */,
+				2478B0502A0ACA6600E91CDF /* Resources */,
+				8CCBBE18A15385C24D076531 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2478B0552A0ACA6600E91CDF /* PBXTargetDependency */,
+			);
+			name = WooCommerceSharedTests;
+			productName = WooCommerceSharedTests;
+			productReference = 2478B0522A0ACA6600E91CDF /* WooCommerceSharedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2478B0A22A0AD84700E91CDF /* Demo App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2478B0AE2A0AD84800E91CDF /* Build configuration list for PBXNativeTarget "Demo App" */;
+			buildPhases = (
+				2478B09F2A0AD84700E91CDF /* Sources */,
+				2478B0A02A0AD84700E91CDF /* Frameworks */,
+				2478B0A12A0AD84700E91CDF /* Resources */,
+				2478B0B52A0AD85900E91CDF /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2478B0B42A0AD85900E91CDF /* PBXTargetDependency */,
+			);
+			name = "Demo App";
+			productName = "Demo App";
+			productReference = 2478B0A32A0AD84700E91CDF /* Demo App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2478B03F2A0ACA6600E91CDF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					2478B0472A0ACA6600E91CDF = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
+					};
+					2478B0512A0ACA6600E91CDF = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					2478B0A22A0AD84700E91CDF = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 2478B0422A0ACA6600E91CDF /* Build configuration list for PBXProject "WooCommerceShared" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2478B03E2A0ACA6600E91CDF;
+			productRefGroup = 2478B0492A0ACA6600E91CDF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2478B0472A0ACA6600E91CDF /* WooCommerceShared */,
+				2478B0512A0ACA6600E91CDF /* WooCommerceSharedTests */,
+				2478B0A22A0AD84700E91CDF /* Demo App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2478B0462A0ACA6600E91CDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0E22A0B01CB00E91CDF /* bundle-ios.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2478B0502A0ACA6600E91CDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2478B0A12A0AD84700E91CDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0AD2A0AD84800E91CDF /* Preview Assets.xcassets in Resources */,
+				2478B0AA2A0AD84800E91CDF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		701879123F9AB76E1D77D272 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WooCommerceShared-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CCBBE18A15385C24D076531 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7B2D7E46666848D5E32383F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6491C3DDED103B6299FFCEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WooCommerceShared-WooCommerceSharedTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2478B0442A0ACA6600E91CDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0672A0ACEC000E91CDF /* WCReactNativeViewController.m in Sources */,
+				2478B04D2A0ACA6600E91CDF /* WooCommerceShared.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2478B04E2A0ACA6600E91CDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0582A0ACA6600E91CDF /* WooCommerceSharedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2478B09F2A0AD84700E91CDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2478B0A62A0AD84700E91CDF /* DemoApp.swift in Sources */,
+				2478B0C02A0AED7700E91CDF /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2478B0552A0ACA6600E91CDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2478B0472A0ACA6600E91CDF /* WooCommerceShared */;
+			targetProxy = 2478B0542A0ACA6600E91CDF /* PBXContainerItemProxy */;
+		};
+		2478B0B42A0AD85900E91CDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2478B0472A0ACA6600E91CDF /* WooCommerceShared */;
+			targetProxy = 2478B0B32A0AD85900E91CDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2478B05A2A0ACA6600E91CDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../node_modules/react-native";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2478B05B2A0ACA6600E91CDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../node_modules/react-native";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2478B05D2A0ACA6600E91CDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE810665B4C349134950905B /* Pods-WooCommerceShared.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = PZYM8XX95Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.woocommerce.WooCommerceShared;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2478B05E2A0ACA6600E91CDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 310F006D69BC062205EDD9A4 /* Pods-WooCommerceShared.release.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = PZYM8XX95Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.woocommerce.WooCommerceShared;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2478B0602A0ACA6600E91CDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 840EBAB6F5991FF94DBE2653 /* Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PZYM8XX95Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.woocommerce.WooCommerceSharedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2478B0612A0ACA6600E91CDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3FACE34EE7D33211B5F1B31 /* Pods-WooCommerceShared-WooCommerceSharedTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PZYM8XX95Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.woocommerce.WooCommerceSharedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2478B0AF2A0AD84800E91CDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Demo App/Preview Content\"";
+				DEVELOPMENT_TEAM = PZYM8XX95Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Demo-App-Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-D EXPO_CONFIGURATION_RELEASE -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.woocommerce.Demo-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2478B0B02A0AD84800E91CDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Demo App/Preview Content\"";
+				DEVELOPMENT_TEAM = PZYM8XX95Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Demo-App-Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.woocommerce.Demo-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2478B0422A0ACA6600E91CDF /* Build configuration list for PBXProject "WooCommerceShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2478B05A2A0ACA6600E91CDF /* Debug */,
+				2478B05B2A0ACA6600E91CDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2478B05C2A0ACA6600E91CDF /* Build configuration list for PBXNativeTarget "WooCommerceShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2478B05D2A0ACA6600E91CDF /* Debug */,
+				2478B05E2A0ACA6600E91CDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2478B05F2A0ACA6600E91CDF /* Build configuration list for PBXNativeTarget "WooCommerceSharedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2478B0602A0ACA6600E91CDF /* Debug */,
+				2478B0612A0ACA6600E91CDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2478B0AE2A0AD84800E91CDF /* Build configuration list for PBXNativeTarget "Demo App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2478B0AF2A0AD84800E91CDF /* Debug */,
+				2478B0B02A0AD84800E91CDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2478B03F2A0ACA6600E91CDF /* Project object */;
+}

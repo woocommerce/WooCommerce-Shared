@@ -107,6 +107,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  ruby
 
 DEPENDENCIES
   cocoapods (~> 1.12.1)

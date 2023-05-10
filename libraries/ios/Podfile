@@ -1,33 +1,33 @@
-PROJECT_ROOT = `git rev-parse --show-toplevel`.strip!
+# frozen_string_literal: true
 
-require_relative File.join(PROJECT_ROOT, 'node_modules', 'react-native', 'scripts', 'react_native_pods')
-require_relative File.join(PROJECT_ROOT, 'node_modules', '@react-native-community', 'cli-platform-ios', 'native_modules')
+PROJECT_ROOT = `git rev-parse --show-toplevel`.strip!
+NPM_ROOT = File.join(PROJECT_ROOT, 'node_modules')
+
+require_relative File.join(NPM_ROOT, 'react-native', 'scripts', 'react_native_pods')
+require_relative File.join(NPM_ROOT, '@react-native-community', 'cli-platform-ios', 'native_modules')
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
-use_frameworks! :linkage => :static
+use_frameworks! linkage: :static
 
 target 'WooCommerceShared' do
   config = use_native_modules!
 
-  # Flags change depending on the env values.
-  flags = get_default_flags()
-
   use_react_native!(
-    :path => config[:reactNativePath],
+    path: config[:reactNativePath],
 
     # Disable Hermes to keep the build smaller and faster – it doesn't give us many benefits because the app
     # isn't React Native on launch, so we have control over preloading and don't need the trade-off of faster
     # startup for slower runtime performance.
-    :hermes_enabled => false,
+    hermes_enabled: false,
 
     # Fabric is the newer React Native renderer – this can be enabled later but it's disabled from the start
-    # to try to avoid bugs while we MVP. 
-    :fabric_enabled => false,
+    # to try to avoid bugs while we MVP.
+    fabric_enabled: false,
 
     # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
+    app_path: "#{Pod::Config.instance.installation_root}/.."
   )
 
   target 'WooCommerceSharedTests' do
@@ -38,10 +38,10 @@ target 'WooCommerceShared' do
   post_install do |installer|
     react_native_post_install(
       installer,
-       "../../node_modules/react-native",
+      '../../node_modules/react-native',
       # Set `mac_catalyst_enabled` to `true` in order to apply patches
       # necessary for Mac Catalyst builds
-      :mac_catalyst_enabled => false
+      mac_catalyst_enabled: false
     )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end

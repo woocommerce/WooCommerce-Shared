@@ -1,0 +1,50 @@
+# Nodes with values to reuse in the pipeline.
+common_params:
+  # Common plugin settings to use with the `plugins` key.
+  - &common_plugins
+    - automattic/bash-cache#2.15.1
+  # Common environment values to use with the `env` key.
+  - &common_env
+    # Be sure to also update the `.xcode-version` file when updating the Xcode image/version here
+    IMAGE_ID: xcode-14.2
+
+steps:
+
+  ######################
+  # Build JS
+  ######################
+  - label: "🧪 Build JS"
+    command: make bundle-ci
+
+  ######################
+  # Build iOS
+  ######################
+  - label: "🧪 Build iOS"
+    command: |
+      echo "--- Installing NVM"
+      brew install nvm --verbose
+
+      echo "--- Loading NVM"
+      export NVM_DIR="/usr/local/opt/nvm"
+      source /usr/local/opt/nvm/nvm.sh --no-use
+      nvm install
+
+      echo "--- Installing yarn"
+      npm install -g yarn
+
+      echo "--- Installing xcbeautify"
+      brew install xcbeautify
+
+
+      echo "--- Building"
+      make yarn bundle pods xcframework
+    env: *common_env
+    plugins: *common_plugins
+    agents:
+      queue: "mac"
+
+  #################
+  # Lint
+  #################
+  - label: "🧹 Lint (Rubocop)"
+    command: make lint-ruby

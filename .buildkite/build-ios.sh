@@ -1,37 +1,41 @@
- echo "--- :nodejs: Installing NVM"
- brew install nvm --verbose
- export NVM_DIR="/usr/local/opt/nvm"
- source /usr/local/opt/nvm/nvm.sh --no-use
+echo "--- :nodejs: Installing NVM"
+brew install nvm --verbose
+export NVM_DIR="/usr/local/opt/nvm"
+source /usr/local/opt/nvm/nvm.sh --no-use
 
- echo "--- :nodejs: Installing Node"
- nvm install
+# Set up the .bashrc for any sub-shells
+echo 'export NVM_DIR="/usr/local/opt/nvm"' >> ~/.bashrc
+echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ~/.bashrc
 
- echo "--- :rubygems: Download Gems"
- install_gems
+echo "--- :nodejs: Installing Node"
+nvm install
 
- echo "--- :yarnpkg: Installing yarn"
- npm install -g yarn
+echo "--- :rubygems: Download Gems"
+install_gems
 
- echo "--- :yarnpkg: Download JS Dependencies"
+echo "--- :yarnpkg: Installing yarn"
+npm install -g yarn
 
- ARCHITECTURE=$(uname -m)
- JS_VERSION=$(cat .nvmrc)
- PACKAGE_LOCK_HASH=$(hash_file yarn.lock)
- CACHEKEY="$BUILDKITE_PIPELINE_SLUG-$ARCHITECTURE-js$JS_VERSION-$PACKAGE_LOCK_HASH"
+echo "--- :yarnpkg: Download JS Dependencies"
 
- restore_cache "$CACHEKEY"
- yarn install
+ARCHITECTURE=$(uname -m)
+JS_VERSION=$(cat .nvmrc)
+PACKAGE_LOCK_HASH=$(hash_file yarn.lock)
+CACHEKEY="$BUILDKITE_PIPELINE_SLUG-$ARCHITECTURE-js$JS_VERSION-$PACKAGE_LOCK_HASH"
 
- # If this is the first time we've seen this particular cache key, save it for the future
- save_cache node_modules "$CACHEKEY"
+restore_cache "$CACHEKEY"
+yarn install
 
- echo "--- :cocoapods: Download CocoaPods Dependencies"
- pushd libraries/ios
- install_cocoapods
- popd
+# If this is the first time we've seen this particular cache key, save it for the future
+save_cache node_modules "$CACHEKEY"
 
- echo "--- :xcode: Installing xcbeautify"
- brew install xcbeautify
+echo "--- :cocoapods: Download CocoaPods Dependencies"
+pushd libraries/ios
+install_cocoapods
+popd
 
- echo "--- :xcode: Building"
- make xcframework
+echo "--- :xcode: Installing xcbeautify"
+brew install xcbeautify
+
+echo "--- :xcode: Building"
+make xcframework

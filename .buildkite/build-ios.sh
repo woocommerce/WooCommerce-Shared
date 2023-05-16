@@ -40,4 +40,4 @@ echo "--- :xcode: Installing xcbeautify"
 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_CLEANUP=1 brew install xcbeautify
 
 echo "--- :xcode: Building"
-make xcframework
+make bundle-ios xcframework

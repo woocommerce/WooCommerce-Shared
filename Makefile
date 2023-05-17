@@ -1,9 +1,11 @@
+SHELL := /bin/bash -eo pipefail
+
 #######
 # Build Tasks
 #######
 
 # Make `all` the default task when running `make`, and include every task needed to fully build the project
-# 
+#
 # This may not be possible on non-Macs (because there are Xcode requirements), so it's mostly just useful locally.
 .PHONY: all
 all: yarn gems pods bundle xcframework

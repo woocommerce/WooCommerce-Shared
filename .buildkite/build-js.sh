@@ -15,7 +15,13 @@ BASHRC="$HOME/.bashrc"
 echo "export NVM_DIR='$NVM_DIR'" >> "$BASHRC"
 echo "[ -s '$NVM_SETUP_SCRIPT' ] && \. '$NVM_SETUP_SCRIPT' --install" >> "$BASHRC"
 
+# Unset the unbound var failure because there might be unbounds in the rc.
+#
+# See how CI fails here:
+# https://buildkite.com/automattic/woocommerce-shared/builds/89#01882eb5-9a3f-42c4-9849-1d46ae5b3e29/162-185
+set +u
 source "$BASHRC"
+set -u
 
 echo "--- :nodejs: Installing Node"
 nvm install

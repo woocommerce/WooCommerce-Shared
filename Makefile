@@ -77,6 +77,11 @@ xcframework:
 	    -framework dist/ios-simulator.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-simulator.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
 	    -output dist/WooCommerceShared.xcframework
 
+	@echo "--- :compression: Packaging XCFramework"
+
+	rm -rf dist/WooCommerceShared.xcframework.tar.gz
+	tar -czf dist/WooCommerceShared.xcframework.tar.gz -C dist/ WooCommerceShared.xcframework
+
 # Remove all downloaded dependencies and compiled code
 #
 clean:

@@ -26,7 +26,7 @@ steps:
     agents:
       queue: "mac"
     artifact_paths:
-      - "dist/**/*"
+      - "dist/*.tar.gz"
       - "logs/**/*"
 
   #################

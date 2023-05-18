@@ -1,5 +1,8 @@
 #!/bin/bash -eu
 
+echo "--- :bug: Debug"
+cat "$HOME/.bashrc"
+
 echo "--- :nodejs: Installing NVM"
 
 export NVM_DIR="$HOME/.nvm"

@@ -10,18 +10,21 @@ NVM_SETUP_SCRIPT="$NVM_DIR/nvm.sh"
 # Set up the .bashrc for any sub-shells
 #
 # This is not the standard way of doing it, see
-# https://github.com/nvm-sh/nvm/issues/1985#issuecomment-813189002
 BASHRC="$HOME/.bashrc"
 echo "export NVM_DIR='$NVM_DIR'" >> "$BASHRC"
-echo "[ -s '$NVM_SETUP_SCRIPT' ] && \. '$NVM_SETUP_SCRIPT' --install" >> "$BASHRC"
+echo "[ -s '$NVM_SETUP_SCRIPT' ] && \. '$NVM_SETUP_SCRIPT'" >> "$BASHRC"
 
 # Unset the unbound var failure because there might be unbounds in the rc.
 #
 # See how CI fails here:
 # https://buildkite.com/automattic/woocommerce-shared/builds/89#01882eb5-9a3f-42c4-9849-1d46ae5b3e29/162-185
-set +u
-source "$BASHRC"
-set -u
+# set +u
+# source "$BASHRC"
+# set -u
+
+# See https://github.com/nvm-sh/nvm/issues/1985#issuecomment-813189002 for
+# why we use the --install flag
+source "$NVM_SETUP_SCRIPT" --install
 
 echo "--- :nodejs: Installing Node"
 nvm install

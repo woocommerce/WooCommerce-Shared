@@ -45,7 +45,7 @@ pods: gems
 #
 xcframework:
 	mkdir -p dist logs
-	@echo "--- Creating iOS Framework"
+	@echo "--- :xcode: Creating iOS Framework"
 
 	xcodebuild archive \
 	-workspace libraries/ios/WooCommerceShared.xcworkspace \
@@ -57,7 +57,7 @@ xcframework:
 	| tee logs/ios-platform-build.log \
 	| xcbeautify
 
-	@echo "--- Creating iOS Simulator Framework"
+	@echo "--- :xcode: Creating iOS Simulator Framework"
 
 	xcodebuild archive \
 	-workspace libraries/ios/WooCommerceShared.xcworkspace \
@@ -69,7 +69,8 @@ xcframework:
 	| tee logs/ios-simulator-build.log \
 	| xcbeautify
 
-	@echo "--- Compiling XCFramework"
+	@echo "--- :package: Compiling XCFramework"
+
 	rm -rf dist/WooCommerceShared.xcframework
 	xcodebuild -create-xcframework \
 	    -framework dist/ios-platform.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-platform.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \

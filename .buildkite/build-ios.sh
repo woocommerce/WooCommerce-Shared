@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+# Make Homebrew run a bit faster
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
 echo "--- :nodejs: Installing NVM"
 brew install nvm --verbose
 # Brew installs NVM in its default location but at some point our setup expects it in the recommended location in $HOME.
@@ -45,7 +49,7 @@ install_cocoapods
 popd
 
 echo "--- :xcode: Installing xcbeautify"
-HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_CLEANUP=1 brew install xcbeautify
+brew install xcbeautify
 
 echo "--- :xcode: Building"
 make bundle-ios xcframework

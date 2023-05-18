@@ -44,7 +44,7 @@ pods: gems
 # Build an XCFramework of this project – this is the primary distribution artifact for iOS
 #
 xcframework:
-	mkdir -p dist
+	mkdir -p dist logs
 	@echo "--- Creating iOS Framework"
 
 	xcodebuild archive \
@@ -53,6 +53,8 @@ xcframework:
 	-configuration Release \
     -destination "generic/platform=iOS" \
 	-archivePath dist/ios-platform \
+	-verbose \
+	| tee logs/ios-platform-build.log \
 	| xcbeautify
 
 	@echo "--- Creating iOS Simulator Framework"
@@ -63,6 +65,8 @@ xcframework:
 	-configuration Release \
     -destination "generic/platform=iOS Simulator" \
 	-archivePath dist/ios-simulator \
+	-verbose \
+	| tee logs/ios-simulator-build.log \
 	| xcbeautify
 
 	@echo "--- Compiling XCFramework"

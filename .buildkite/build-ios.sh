@@ -1,10 +1,12 @@
+#!/bin/bash -e
+
 echo "--- :nodejs: Installing NVM"
 brew install nvm --verbose
 export NVM_DIR="/usr/local/opt/nvm"
-source /usr/local/opt/nvm/nvm.sh --no-use
+source "$NVM_DIR/nvm.sh" --no-use
 
 # Set up the .bashrc for any sub-shells
-echo 'export NVM_DIR="/usr/local/opt/nvm"' >> ~/.bashrc
+echo "export NVM_DIR='$NVM_DIR'" >> ~/.bashrc
 echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ~/.bashrc
 
 echo "--- :nodejs: Installing Node"

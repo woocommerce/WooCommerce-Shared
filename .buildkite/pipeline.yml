@@ -20,7 +20,7 @@ steps:
   # Build iOS
   ######################
   - label: "🧪 Build iOS"
-    command: build-ios.sh
+    command: .buildkite/build-ios.sh
     env: *common_env
     plugins: *common_plugins
     agents:

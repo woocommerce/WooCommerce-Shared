@@ -1,22 +1,21 @@
 #!/bin/bash -eu
 
-echo "--- :bug: Debug"
-cat "$HOME/.bashrc"
-
 echo "--- :nodejs: Installing NVM"
 
-export NVM_DIR="$HOME/.nvm"
-mkdir -p "$NVM_DIR"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
+NVM_DIR="$HOME/.nvm"
 NVM_SETUP_SCRIPT="$NVM_DIR/nvm.sh"
 
-source "$NVM_SETUP_SCRIPT"
-
 # Set up the .bashrc for any sub-shells
+#
+# This is not the standard way of doing it, see
+# https://github.com/nvm-sh/nvm/issues/1985#issuecomment-813189002
 BASHRC="$HOME/.bashrc"
 echo "export NVM_DIR='$NVM_DIR'" >> "$BASHRC"
-echo "[ -s '$NVM_SETUP_SCRIPT' ] && \. '$NVM_SETUP_SCRIPT'" >> "$BASHRC"
+echo "[ -s '$NVM_SETUP_SCRIPT' ] && \. '$NVM_SETUP_SCRIPT' --install" >> "$BASHRC"
+
+source "$BASHRC"
 
 echo "--- :nodejs: Installing Node"
 nvm install

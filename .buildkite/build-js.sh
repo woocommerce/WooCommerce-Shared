@@ -21,6 +21,11 @@ source "$NVM_SETUP_SCRIPT" --install
 echo "--- :nodejs: Installing Node"
 nvm install
 
+echo "+++ :bug: Debug info"
+echo "Node version: $(node -v)"
+# See https://bobbyhadz.com/blog/node-glibc-not-found-required-by-node
+echo "GLIBC versin: $(ldd --version)"
+
 echo "--- :yarnpkg: Installing yarn"
 npm install -g yarn
 

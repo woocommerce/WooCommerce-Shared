@@ -24,7 +24,12 @@ nvm install
 echo "+++ :bug: Debug info"
 echo "Node version: $(node -v)"
 # See https://bobbyhadz.com/blog/node-glibc-not-found-required-by-node
-echo "GLIBC versin: $(ldd --version)"
+echo "GLIBC version: $(ldd --version)"
+
+echo "+++ :up: Upgrade ldd"
+yum update
+yum install elfutils-libelf-devel
+echo "GLIBC version: $(ldd --version)"
 
 echo "--- :yarnpkg: Installing yarn"
 npm install -g yarn

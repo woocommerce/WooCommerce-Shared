@@ -27,8 +27,8 @@ echo "Node version: $(node -v)"
 echo "GLIBC version: $(ldd --version)"
 
 echo "+++ :up: Upgrade ldd"
-yum update
-yum install elfutils-libelf-devel
+sudo yum update
+sudo yum install elfutils-libelf-devel
 echo "GLIBC version: $(ldd --version)"
 
 echo "--- :yarnpkg: Installing yarn"

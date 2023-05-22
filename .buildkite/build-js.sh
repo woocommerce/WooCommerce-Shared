@@ -38,4 +38,4 @@ yarn install
 save_cache node_modules "$CACHEKEY"
 
 echo "--- :hammer: Building"
-make bundle
+make bundle-ci

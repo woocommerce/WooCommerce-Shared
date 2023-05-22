@@ -29,7 +29,7 @@ bundle-android:
 
 bundle-ci:
 	mkdir -p dist/bundles
-	docker run --rm -v $(shell pwd):/app -w /app node:18.16.0 yarn
+	docker run --rm -v $(shell pwd):/app -w /app node:18.16.0 bundle
 
 # Install Ruby Gems needed for iOS (and publishing)
 #

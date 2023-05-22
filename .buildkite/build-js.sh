@@ -6,14 +6,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 NVM_DIR="$HOME/.nvm"
 NVM_SETUP_SCRIPT="$NVM_DIR/nvm.sh"
-
-# Set up the .bashrc for any sub-shells
-#
-# This is not the standard way of doing it, see
-BASHRC="$HOME/.bashrc"
-echo "export NVM_DIR='$NVM_DIR'" >> "$BASHRC"
-echo "[ -s '$NVM_SETUP_SCRIPT' ] && \. '$NVM_SETUP_SCRIPT'" >> "$BASHRC"
-
 # See https://github.com/nvm-sh/nvm/issues/1985#issuecomment-813189002 for
 # why we use the --install flag
 source "$NVM_SETUP_SCRIPT" --install

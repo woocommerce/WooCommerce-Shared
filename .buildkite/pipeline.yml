@@ -2,11 +2,11 @@
 common_params:
   # Common plugin settings to use with the `plugins` key.
   - &common_plugins
-    - automattic/bash-cache#2.15.1
+    - automattic/bash-cache#2.16.0
   # Common environment values to use with the `env` key.
   - &common_env
     # Be sure to also update the `.xcode-version` file when updating the Xcode image/version here
-    IMAGE_ID: xcode-14.2
+    IMAGE_ID: xcode-14.3
 
 steps:
 
@@ -20,11 +20,14 @@ steps:
   # Build iOS
   ######################
   - label: "🧪 Build iOS"
-    command: build-ios.sh
+    command: .buildkite/build-ios.sh
     env: *common_env
     plugins: *common_plugins
     agents:
       queue: "mac"
+    artifact_paths:
+      - "dist/*.tar.gz"
+      - "logs/**/*"
 
   #################
   # Lint

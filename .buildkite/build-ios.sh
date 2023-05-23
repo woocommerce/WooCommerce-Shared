@@ -1,11 +1,25 @@
+#!/bin/bash -e
+
+# Make Homebrew run a bit faster
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
 echo "--- :nodejs: Installing NVM"
 brew install nvm --verbose
-export NVM_DIR="/usr/local/opt/nvm"
-source /usr/local/opt/nvm/nvm.sh --no-use
+# Brew installs NVM in its default location but at some point our setup expects it in the recommended location in $HOME.
+# So, let's put it there.
+#
+# Notice the $HOMEBREW_PREFIX usage to make the script chipset-agnostic.
+NVM_DIR_IN_HOMEBREW="$HOMEBREW_PREFIX/opt/nvm"
+NVM_DIR_IN_HOME="$HOME/.nvm"
+mkdir -p "$NVM_DIR_IN_HOME"
+export NVM_DIR="$NVM_DIR_IN_HOME"
+source "$NVM_DIR_IN_HOMEBREW/nvm.sh" --no-use
 
 # Set up the .bashrc for any sub-shells
-echo 'export NVM_DIR="/usr/local/opt/nvm"' >> ~/.bashrc
-echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ~/.bashrc
+BASHRC="$HOME/.bashrc"
+echo "export NVM_DIR='$NVM_DIR'" >> "$BASHRC"
+echo "[ -s '$NVM_DIR_IN_HOMEBREW/nvm.sh' ] && \. '$NVM_DIR_IN_HOMEBREW/nvm.sh'" >> "$BASHRC"
 
 echo "--- :nodejs: Installing Node"
 nvm install
@@ -38,4 +52,4 @@ echo "--- :xcode: Installing xcbeautify"
 brew install xcbeautify
 
 echo "--- :xcode: Building"
-make xcframework
+make bundle-ios xcframework

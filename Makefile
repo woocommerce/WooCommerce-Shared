@@ -1,9 +1,11 @@
+SHELL := /bin/bash -eo pipefail
+
 #######
 # Build Tasks
 #######
 
 # Make `all` the default task when running `make`, and include every task needed to fully build the project
-# 
+#
 # This may not be possible on non-Macs (because there are Xcode requirements), so it's mostly just useful locally.
 .PHONY: all
 all: yarn gems pods bundle xcframework
@@ -15,14 +17,19 @@ yarn:
 
 # Build production JS bundles
 #
-bundle: yarn
+bundle: bundle-ios bundle-android
+
+bundle-ios:
 	mkdir -p dist/bundles
 	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.js
+
+bundle-android:
+	mkdir -p dist/bundles
 	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.js
 
 bundle-ci:
 	mkdir -p dist/bundles
-	docker run --rm -v $(shell pwd):/app -w /app node:18.16.0 make bundle
+	docker run --rm -v $(shell pwd):/app -w /app node:18.16.0 yarn
 
 # Install Ruby Gems needed for iOS (and publishing)
 #
@@ -37,8 +44,8 @@ pods: gems
 # Build an XCFramework of this project – this is the primary distribution artifact for iOS
 #
 xcframework:
-	mkdir -p dist
-	@echo "--- Creating iOS Framework"
+	mkdir -p dist logs
+	@echo "--- :xcode: Creating iOS Framework"
 
 	xcodebuild archive \
 	-workspace libraries/ios/WooCommerceShared.xcworkspace \
@@ -46,9 +53,11 @@ xcframework:
 	-configuration Release \
     -destination "generic/platform=iOS" \
 	-archivePath dist/ios-platform \
+	-verbose \
+	| tee logs/ios-platform-build.log \
 	| xcbeautify
 
-	@echo "--- Creating iOS Simulator Framework"
+	@echo "--- :xcode: Creating iOS Simulator Framework"
 
 	xcodebuild archive \
 	-workspace libraries/ios/WooCommerceShared.xcworkspace \
@@ -56,14 +65,22 @@ xcframework:
 	-configuration Release \
     -destination "generic/platform=iOS Simulator" \
 	-archivePath dist/ios-simulator \
+	-verbose \
+	| tee logs/ios-simulator-build.log \
 	| xcbeautify
 
-	@echo "--- Compiling XCFramework"
+	@echo "--- :package: Compiling XCFramework"
+
 	rm -rf dist/WooCommerceShared.xcframework
 	xcodebuild -create-xcframework \
 	    -framework dist/ios-platform.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-platform.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
 	    -framework dist/ios-simulator.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-simulator.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
 	    -output dist/WooCommerceShared.xcframework
+
+	@echo "--- :compression: Packaging XCFramework"
+
+	rm -rf dist/WooCommerceShared.xcframework.tar.gz
+	tar -czf dist/WooCommerceShared.xcframework.tar.gz -C dist/ WooCommerceShared.xcframework
 
 # Remove all downloaded dependencies and compiled code
 #

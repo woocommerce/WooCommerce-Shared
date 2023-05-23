@@ -17,7 +17,7 @@ yarn:
 
 # Build production JS bundles
 #
-bundle: bundle-ios bundle-android
+bundle: yarn bundle-ios bundle-android
 
 bundle-ios:
 	mkdir -p dist/bundles
@@ -28,8 +28,15 @@ bundle-android:
 	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.js
 
 bundle-ci:
-	mkdir -p dist/bundles
-	docker run --rm -v $(shell pwd):/app -w /app node:18.16.0 bundle
+	docker run \
+		--rm \
+		--volume $(shell pwd):/app \
+		--workdir /app \
+		--env AWS_ACCESS_KEY_ID \
+		--env AWS_SECRET_ACCESS_KEY \
+		--env AWS_SESSION_TOKEN \
+		node:18.16.0 \
+		make bundle
 
 # Install Ruby Gems needed for iOS (and publishing)
 #

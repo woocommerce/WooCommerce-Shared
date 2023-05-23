@@ -27,6 +27,7 @@ steps:
       queue: "mac"
     artifact_paths:
       - "dist/*.tar.gz"
+      - "dist/*.zip"
       - "logs/**/*"
 
   #################

@@ -4,6 +4,24 @@ A React Native project used to share code between WooCommerce iOS and Android.
 
 ## Quickstart
 
+### iOS – CocoaPods
+
+#### Production Builds
+```ruby
+pod 'woocommerce-shared', '~> 0.0.1'
+```
+
+#### Development Builds
+```ruby
+# Reference a commit hash
+pod 'WooCommerceShared', git: 'https://github.com/woocommerce/WooCommerce-Shared.git', commit: '6cba1e9'
+
+# Reference a branch
+pod 'WooCommerceShared', git: 'https://github.com/woocommerce/WooCommerce-Shared.git', branch: 'trunk'
+
+# Reference a local copy
+pod 'WooCommerceShared', path: '../WooCommerce-Shared'
+```
 
 ### iOS – SwiftPM
 
@@ -16,7 +34,6 @@ dependencies: [
 
 #### Development Builds
 ```swift
-
 // Development Builds require two entries – one for the binary target:
 targets: [
     .binaryTarget(
@@ -28,9 +45,9 @@ targets: [
 ]
  
 // And a second to make the target depend on it:
-    .executable(name: "MyApp", targets: [
-    	"WooCommerceShared"
-    ])
+.executable(name: "MyApp", targets: [
+	"WooCommerceShared",
+])
 
 ```
 

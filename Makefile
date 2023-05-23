@@ -41,6 +41,9 @@ gems: bundle
 pods: gems
 	bundle exec pod install --project-directory=libraries/ios
 
+validate-pod:
+	bundle exec pod spec lint
+
 # Build an XCFramework of this project – this is the primary distribution artifact for iOS
 #
 xcframework:

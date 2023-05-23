@@ -1,0 +1,20 @@
+# Top-most EditorConfig file
+root = true
+
+# Set the default charset
+[*]
+charset = utf-8
+
+# Makefile-specific settings
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+# Ensure trailing whitespace is removed
+trim_trailing_whitespace = true
+
+# Set the end-of-line character as Unix-style (LF)
+end_of_line = lf
+
+# Ensure a new line at the end of the file
+insert_final_newline = true

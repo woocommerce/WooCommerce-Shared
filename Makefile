@@ -48,34 +48,34 @@ xcframework:
 	@echo "--- :xcode: Creating iOS Framework"
 
 	xcodebuild archive \
-	-workspace libraries/ios/WooCommerceShared.xcworkspace \
-	-scheme "WooCommerceShared" \
-	-configuration Release \
-    -destination "generic/platform=iOS" \
-	-archivePath dist/ios-platform \
-	-verbose \
-	| tee logs/ios-platform-build.log \
-	| xcbeautify
+		-workspace libraries/ios/WooCommerceShared.xcworkspace \
+		-scheme "WooCommerceShared" \
+		-configuration Release \
+		-destination "generic/platform=iOS" \
+		-archivePath dist/ios-platform \
+		-verbose \
+		| tee logs/ios-platform-build.log \
+		| xcbeautify
 
 	@echo "--- :xcode: Creating iOS Simulator Framework"
 
 	xcodebuild archive \
-	-workspace libraries/ios/WooCommerceShared.xcworkspace \
-	-scheme "WooCommerceShared" \
-	-configuration Release \
-    -destination "generic/platform=iOS Simulator" \
-	-archivePath dist/ios-simulator \
-	-verbose \
-	| tee logs/ios-simulator-build.log \
-	| xcbeautify
+		-workspace libraries/ios/WooCommerceShared.xcworkspace \
+		-scheme "WooCommerceShared" \
+		-configuration Release \
+		-destination "generic/platform=iOS Simulator" \
+		-archivePath dist/ios-simulator \
+		-verbose \
+		| tee logs/ios-simulator-build.log \
+		| xcbeautify
 
 	@echo "--- :package: Compiling XCFramework"
 
 	rm -rf dist/WooCommerceShared.xcframework
 	xcodebuild -create-xcframework \
-	    -framework dist/ios-platform.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-platform.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
-	    -framework dist/ios-simulator.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-simulator.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
-	    -output dist/WooCommerceShared.xcframework
+		-framework dist/ios-platform.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-platform.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
+		-framework dist/ios-simulator.xcarchive/Products/Library/Frameworks/WooCommerceShared.framework -debug-symbols $(shell pwd)/dist/ios-simulator.xcarchive/dSYMs/WooCommerceShared.framework.dSYM \
+		-output dist/WooCommerceShared.xcframework
 
 	@echo "--- :compression: Packaging XCFramework"
 

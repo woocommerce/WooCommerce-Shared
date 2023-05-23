@@ -35,7 +35,7 @@ bundle-ci:
 		--env AWS_ACCESS_KEY_ID \
 		--env AWS_SECRET_ACCESS_KEY \
 		--env AWS_SESSION_TOKEN \
-		node:18.16.0 \
+		node:$(shell cat .nvmrc | sed -e 's/v//') \
 		make bundle
 
 # Install Ruby Gems needed for iOS (and publishing)

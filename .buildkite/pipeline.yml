@@ -14,7 +14,7 @@ steps:
   # Build JS
   ######################
   - label: "🧪 Build JS"
-    command: .buildkite/build-js.sh
+    command: .buildkite/build-js-docker.sh
     plugins: *common_plugins
     artifact_paths:
       - "dist/**/*"

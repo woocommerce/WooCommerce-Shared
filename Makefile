@@ -17,7 +17,7 @@ yarn:
 
 # Build production JS bundles
 #
-bundle: bundle-ios bundle-android
+bundle: yarn bundle-ios bundle-android
 
 bundle-ios:
 	mkdir -p dist/bundles

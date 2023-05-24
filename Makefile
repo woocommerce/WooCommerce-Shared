@@ -28,8 +28,12 @@ bundle-android:
 	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.js
 
 bundle-ci:
-	mkdir -p dist/bundles
-	docker run --rm -v $(shell pwd):/app -w /app node:18.16.0 yarn
+	docker run \
+		--rm \
+		--volume $(shell pwd):/app \
+		--workdir /app \
+		node:$(shell cat .nvmrc | sed -e 's/v//') \
+		make bundle
 
 # Install Ruby Gems needed for iOS (and publishing)
 #

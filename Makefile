@@ -28,11 +28,12 @@ bundle-android:
 	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.js
 
 bundle-ci:
+	# Notice we're using the AWS Public ECR image to avoid being rate limited by Docker Hub.
 	docker run \
 		--rm \
 		--volume $(shell pwd):/app \
 		--workdir /app \
-		node:$(shell cat .nvmrc | sed -e 's/v//') \
+		public.ecr.aws/docker/library/node:$(shell sed -e 's/v//' < .nvmrc) \
 		make bundle
 
 # Install Ruby Gems needed for iOS (and publishing)

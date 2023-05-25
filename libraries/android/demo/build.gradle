@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
 }
 
 repositories {
@@ -8,15 +8,17 @@ repositories {
 }
 
 android {
-    namespace 'com.woocommerce.shared.library'
+    namespace 'com.woocommerce.shared.demo'
     compileSdk 33
 
     defaultConfig {
+        applicationId "com.woocommerce.shared.demo"
         minSdk 24
         targetSdk 33
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -25,12 +27,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+
     testImplementation "junit:junit:$jUnitVersion"
 }

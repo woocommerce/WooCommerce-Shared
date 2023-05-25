@@ -20,6 +20,7 @@ Pods/
 .idea/
 local.properties
 build/
+gradle.properties
 
 # macOS
 .DS_Store

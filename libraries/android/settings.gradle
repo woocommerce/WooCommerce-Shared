@@ -8,7 +8,9 @@ pluginManagement {
 
     plugins {
         id 'com.android.library' version gradle.ext.agpVersion
+        id 'com.android.application' version gradle.ext.agpVersion
     }
 }
 
 include(":library")
+include(":demo")

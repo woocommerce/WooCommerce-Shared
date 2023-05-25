@@ -1,0 +1,14 @@
+pluginManagement {
+    gradle.ext.agpVersion = '8.0.2'
+
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+
+    plugins {
+        id 'com.android.library' version gradle.ext.agpVersion
+    }
+}
+
+include(":library")

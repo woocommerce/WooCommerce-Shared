@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-CURRENT_SHORTHASH=`git rev-parse --short HEAD`
+CURRENT_SHORTHASH = `git rev-parse --short HEAD`.freeze
 
 Pod::Spec.new do |s|
   s.name          = 'WooCommerceShared'
@@ -19,11 +19,14 @@ Pod::Spec.new do |s|
   s.source_files = 'WooCommerceShared.xcframework'
 
   s.source = {
-    http: "https://cdn.a8c-ci.services/woocommerce-shared/1b84526/WooCommerceShared.xcframework.zip",
+    http: 'https://cdn.a8c-ci.services/woocommerce-shared/1b84526/WooCommerceShared.xcframework.zip',
     sha256: '22a81b12c36d643d059e61f45a44101308a2b74c'
   }
 
-  s.prepare_command = 'curl https://cdn.a8c-ci.services/woocommerce-shared/1b84526/WooCommerceShared.xcframework.zip -o WooCommerceShared.xcframework.zip && unzip WooCommerceShared.xcframework.zip'
+  s.prepare_command = <<-CMD
+    curl https://cdn.a8c-ci.services/woocommerce-shared/1b84526/WooCommerceShared.xcframework.zip -o WooCommerceShared.xcframework.zip
+    unzip WooCommerceShared.xcframework.zip
+  CMD
 
   s.vendored_frameworks = 'WooCommerceShared.xcframework'
 end

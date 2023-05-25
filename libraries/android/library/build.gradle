@@ -32,5 +32,8 @@ android {
 }
 
 dependencies {
+    implementation "com.facebook.react:react-android:$reactNativeVersion"
+    implementation "com.facebook.react:hermes-android:$reactNativeVersion"
+
     testImplementation "junit:junit:$jUnitVersion"
 }

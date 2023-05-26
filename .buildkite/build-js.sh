@@ -12,4 +12,4 @@ echo '--- :react: Generate JS bundles'
 make bundle-ci
 
 echo '--- :yarn: Upload yarn cache'
-restore_cache node_modules "$CACHEKEY"
+save_cache node_modules "$CACHEKEY"

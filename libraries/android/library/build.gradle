@@ -8,6 +8,8 @@ repositories {
 }
 
 android {
+    ndkVersion rootProject.ext.ndkVersion
+
     namespace 'com.woocommerce.shared.library'
     compileSdk 33
 

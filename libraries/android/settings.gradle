@@ -1,5 +1,6 @@
 pluginManagement {
     gradle.ext.agpVersion = '8.0.2'
+    gradle.ext.kotlinVersion = '1.8.10'
 
     repositories {
         gradlePluginPortal()
@@ -9,6 +10,7 @@ pluginManagement {
     plugins {
         id 'com.android.library' version gradle.ext.agpVersion
         id 'com.android.application' version gradle.ext.agpVersion
+        id 'org.jetbrains.kotlin.android' version gradle.ext.kotlinVersion
     }
 }
 

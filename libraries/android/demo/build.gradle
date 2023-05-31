@@ -8,6 +8,8 @@ repositories {
 }
 
 android {
+    ndkVersion rootProject.ext.ndkVersion
+
     namespace 'com.woocommerce.shared.demo'
     compileSdk 33
 
@@ -27,9 +29,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        // Avoid React Native's JNI duplicated classes
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libfbjni.so'
+    }
 }
 
 dependencies {
+    implementation project(":library")
+
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
     testImplementation "junit:junit:$jUnitVersion"

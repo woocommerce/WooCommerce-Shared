@@ -44,6 +44,7 @@ android {
 dependencies {
     implementation "com.facebook.react:react-android:$reactNativeVersion"
     implementation "com.facebook.react:hermes-android:$reactNativeVersion"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
 }

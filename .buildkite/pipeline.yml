@@ -15,9 +15,9 @@ steps:
   ######################
   - label: "🧪 Build JS"
     key: "bundle-js"
-    command: make bundle-ci
-    artifact_paths:
-      - "dist/bundles/*"
+    command: |
+      make bundle-ci
+      buildkite-agent artifact upload dist/bundles/bundle-android.js
 
   ######################
   # Build iOS

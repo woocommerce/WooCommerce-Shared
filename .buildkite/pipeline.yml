@@ -14,6 +14,7 @@ steps:
   # Build JS
   ######################
   - label: "🧪 Build JS"
+    key: "bundle-js"
     command: make bundle-ci
 
   ######################
@@ -28,6 +29,15 @@ steps:
     artifact_paths:
       - "dist/*.tar.gz"
       - "logs/**/*"
+
+  ######################
+  # Publish Android Artifacts
+  ######################
+  - label: "🧪 Build and upload Android Library to S3"
+    depends_on:
+      - "bundle-js"
+    plugins: *common_plugins
+    command: .buildkite/publish-android.sh
 
   #################
   # Lint

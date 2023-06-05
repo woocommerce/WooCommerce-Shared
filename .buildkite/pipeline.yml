@@ -16,6 +16,8 @@ steps:
   - label: "🧪 Build JS"
     key: "bundle-js"
     command: make bundle-ci
+    artifact_paths:
+      - "dist/bundles/*"
 
   ######################
   # Build iOS

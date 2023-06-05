@@ -26,3 +26,7 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 
 include(":library")
 include(":demo")
+
+if (hasProperty("willPublishBinary") && willPublishBinary.toBoolean() == true) {
+    assert file("./library/build/assets/index.android.bundle").exists() : "index.android.bundle is necessary to publish a new version!"
+}

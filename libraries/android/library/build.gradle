@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id "maven-publish"
+    id "com.automattic.android.publish-to-s3"
 }
 
 repositories {
@@ -50,3 +52,18 @@ dependencies {
 }
 
 apply from: file("../../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            WooCommerceSharedLibraryPublication(MavenPublication) {
+                from components.release
+
+                groupId "com.woocommerce.shared"
+                artifactId "library"
+                artifact tasks.named("androidSourcesJar")
+                // version is set by 'publish-to-s3' plugin
+            }
+        }
+   }
+}

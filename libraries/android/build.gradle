@@ -1,3 +1,9 @@
+plugins {
+    id 'com.android.application' apply false
+    id 'com.android.library' apply false
+    id "org.jetbrains.kotlin.android" apply false
+}
+
 ext {
     appCompatVersion = '1.4.2'
     activityComposeVersion = '1.7.2'
@@ -10,4 +16,6 @@ ext {
     jUnitVersion = '4.13.2'
 
     ndkVersion = "25.2.9519653"
+
+    willPublishBinary = findProperty("willPublishBinary")?.toBoolean() ?: false
 }

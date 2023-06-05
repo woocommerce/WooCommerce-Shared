@@ -34,10 +34,12 @@ steps:
   # Publish Android Artifacts
   ######################
   - label: "🧪 Build and upload Android Library to S3"
+    command: .buildkite/publish-android.sh
     depends_on:
       - "bundle-js"
     plugins: *common_plugins
-    command: .buildkite/publish-android.sh
+    agents:
+      queue: "android"
     if: "build.tag != null || build.pull_request.id != null || build.branch == 'trunk'"
 
   #################

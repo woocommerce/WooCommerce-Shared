@@ -2,7 +2,6 @@ package com.woocommerce.shared.library
 
 import android.app.Activity
 import android.os.Bundle
-import com.facebook.react.PackageList
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactPackage
 import com.facebook.react.ReactRootView
@@ -18,16 +17,11 @@ class ReactActivity : Activity(), DefaultHardwareBackBtnHandler {
         SoLoader.init(this, false)
         reactRootView = ReactRootView(this)
 
-        val packages: List<ReactPackage> = PackageList(application).packages
-        // Packages that cannot be autolinked yet can be added manually here, for example:
-        // packages.add(MyReactNativePackage())
-        // Remember to include them in `settings.gradle` and `app/build.gradle` too.
         reactInstanceManager = ReactInstanceManager.builder()
             .setApplication(application)
             .setCurrentActivity(this)
             .setBundleAssetName("index.android.bundle")
             .setJSMainModulePath("index")
-            .addPackages(packages)
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build()

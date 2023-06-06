@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# Install `react-native` dependencies because we need access to
+# `node_modules/@react-native-community/cli-platform-android/native_modules.gradle` file
+# to enable native modules autolinking from Gradle
+# https://reactnative.dev/docs/integration-with-existing-apps?language=kotlin#enable-native-modules-autolinking
+make yarn
+
 # Copy the JavaScript bundle
 buildkite-agent artifact download dist/bundles/bundle-android.js .
 

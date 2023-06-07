@@ -1,10 +1,25 @@
 #!/bin/bash -e
 
+echo "--- :nodejs: Installing NVM"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --install
+
+echo "--- :nodejs: Installing Node"
+nvm install
+
+echo "--- :rubygems: Download Gems"
+install_gems
+
+echo "--- :yarnpkg: Installing yarn"
+npm install -g yarn
+
 # Install `react-native` dependencies because we need access to
 # `node_modules/@react-native-community/cli-platform-android/native_modules.gradle` file
 # to enable native modules autolinking from Gradle
 # https://reactnative.dev/docs/integration-with-existing-apps?language=kotlin#enable-native-modules-autolinking
-make yarn
+echo "--- :yarnpkg: Download JS Dependencies"
+yarn install
 
 # Copy the JavaScript bundle
 buildkite-agent artifact download dist/bundles/bundle-android.js .

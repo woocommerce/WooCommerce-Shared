@@ -8,7 +8,7 @@ Since binary dependency works with a packaged JS bundle, it's not possible to us
 
 ### Included Build
 
-This integration uses Gradle's [composite builds feature](https://docs.gradle.org/current/userguide/composite_builds.html) and it's only available in the local environment for testing purposes. To enable this feature from `WooCommerce-Android`:
+This integration uses Gradle's [composite builds feature](https://docs.gradle.org/current/userguide/composite_builds.html) and is only available in local environment for testing purposes. To enable this feature from `WooCommerce-Android`:
 
 * Open your `WooCommerce-Android` local folder in your terminal
 * Copy the `local-builds.gradle-example` file as `local-builds.gradle`: `cp local-builds.gradle-example local-builds.gradle`
@@ -16,13 +16,13 @@ This integration uses Gradle's [composite builds feature](https://docs.gradle.or
 
 Once these steps are complete, when you build the `WooCommerce-Android` project, you'll be building the `WooCommerce-Shared` project as part of it. If you open the `WooCommerce-Android` project in Android Studio, `WooCommerce-Shared` project will also be available, so you can work on them together. If you don't see the `WooCommerce-Shared` project in Android Studio, make sure to run Gradle Sync from Android Studio.
 
-*Using Metro Server*
+**Using Metro Server**
 
 `react-native` defaults to using the Metro server, so to use it, you just need to run it from the root of `WooCommerce-Shared` project with `make dev`.
 
-*Using Bundled JS file*
+**Using Bundled JS file**
 
-Using Bundled JS file is usually reserved to publishing the library and adding it as a Binary Dependency. However, there might be cases that requires verifying that the bundled js file works as expected from the local environment. Here are the steps to get this working:
+Using Bundled JS file is usually reserved to publishing the library and adding it as a [Binary Dependency](#Binary-Dependency). However, there might be cases that requires verifying that the bundled JS file works as expected from the local environment. Here are the steps to get this working:
 
 * Make sure the metro server is NOT running. This is important because `react-native` defaults to using the Metro server.
 * Open your `WooCommerce-Shared` local folder in your terminal

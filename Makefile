@@ -20,10 +20,12 @@ yarn:
 bundle: yarn bundle-ios bundle-android
 
 bundle-ios:
+	yarn
 	mkdir -p dist/bundles
 	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.js
 
 bundle-android:
+	yarn
 	mkdir -p dist/bundles
 	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.js
 

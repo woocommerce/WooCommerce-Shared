@@ -8,9 +8,6 @@ export NVM_DIR="$HOME/.nvm"
 echo "--- :nodejs: Installing Node"
 nvm install
 
-echo "--- :rubygems: Download Gems"
-install_gems
-
 echo "--- :yarnpkg: Installing yarn"
 npm install -g yarn
 

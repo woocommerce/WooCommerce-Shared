@@ -8,6 +8,8 @@ repositories {
     google()
 }
 
+def buildAssetsFolder = 'build/assets'
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -32,11 +34,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            assets.srcDirs += buildAssetsFolder
+        }
+    }
 }
 
 dependencies {
     implementation "com.facebook.react:react-android:$reactNativeVersion"
     implementation "com.facebook.react:hermes-android:$reactNativeVersion"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
 }

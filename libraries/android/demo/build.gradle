@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
 repositories {
@@ -8,6 +9,8 @@ repositories {
 }
 
 android {
+    ndkVersion rootProject.ext.ndkVersion
+
     namespace 'com.woocommerce.shared.demo'
     compileSdk 33
 
@@ -21,16 +24,39 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = androidxComposeCompilerVersion
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        // Avoid React Native's JNI duplicated classes
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libfbjni.so'
+    }
 }
 
 dependencies {
+    implementation project(":library")
+
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
+
+    // Jetpack Compose
+    implementation "androidx.activity:activity-compose:$activityComposeVersion"
+    implementation platform("androidx.compose:compose-bom:$androidxComposeBomVersion")
+    // Dependencies managed by BOM
+    implementation 'androidx.compose.material3:material3'
 
     testImplementation "junit:junit:$jUnitVersion"
 }

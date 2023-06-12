@@ -1,10 +1,13 @@
 ext {
     appCompatVersion = '1.4.2'
+    activityComposeVersion = '1.7.2'
+    androidxCoreVersion = '1.10.1'
+    androidxComposeBomVersion = '2022.12.00'
+    androidxComposeCompilerVersion = '1.4.4'
     reactNativeVersion = '0.71.8'
 
     // Testing
     jUnitVersion = '4.13.2'
 
-    // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
-    ndkVersion = "23.1.7779620"
+    ndkVersion = "25.2.9519653"
 }

@@ -13,6 +13,12 @@ import com.facebook.soloader.SoLoader
 class ReactActivity : Activity(), DefaultHardwareBackBtnHandler {
     private lateinit var reactRootView: ReactRootView
     private lateinit var reactInstanceManager: ReactInstanceManager
+
+    companion object{
+        const val PROPERTY_BLOG_ID = "blogId"
+        const val PROPERTY_TOKEN = "token"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SoLoader.init(this, false)
@@ -32,8 +38,14 @@ class ReactActivity : Activity(), DefaultHardwareBackBtnHandler {
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build()
         // The string here (e.g. "MyReactNativeApp") has to match
-        // the string in AppRegistry.registerComponent() in index.js
-        reactRootView.startReactApplication(reactInstanceManager, "main", null)
+        // the string in AppRegistry.registerComponent() in index.ts
+        val token = intent.getStringExtra(PROPERTY_TOKEN)
+        val blogId = intent.getStringExtra(PROPERTY_BLOG_ID)
+        val initialProperties = Bundle().apply {
+            putString(PROPERTY_TOKEN, token)
+            putString(PROPERTY_BLOG_ID, blogId)
+        }
+        reactRootView.startReactApplication(reactInstanceManager, "main", initialProperties)
         setContentView(reactRootView)
     }
 

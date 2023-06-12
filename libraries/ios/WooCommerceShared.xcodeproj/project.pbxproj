@@ -20,7 +20,7 @@
 		2478B0B22A0AD85900E91CDF /* WooCommerceShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2478B0482A0ACA6600E91CDF /* WooCommerceShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2478B0C02A0AED7700E91CDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */; };
 		2478B0E22A0B01CB00E91CDF /* bundle-ios.js in Resources */ = {isa = PBXBuildFile; fileRef = 2478B0E12A0B01CB00E91CDF /* bundle-ios.js */; };
-		24D35CDA2A37D2E60072EAFA /* WCReactNativeViewController+LocalDevelopment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+LocalDevelopment.swift */; };
+		24D35CDA2A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */; };
 		DA27D9F570F33985E7E43E40 /* Pods_WooCommerceShared_WooCommerceSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */; };
 		E8E437A2259ABB6D74143413 /* Pods_WooCommerceShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3DE3FD68E0CD0385BE226A5 /* Pods_WooCommerceShared.framework */; };
 /* End PBXBuildFile section */
@@ -72,7 +72,7 @@
 		2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2478B0E12A0B01CB00E91CDF /* bundle-ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "bundle-ios.js"; path = "../../../dist/bundles/bundle-ios.js"; sourceTree = "<group>"; };
 		24C4BDA02A0BF09E00276FCB /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
-		24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+LocalDevelopment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WCReactNativeViewController+LocalDevelopment.swift"; sourceTree = "<group>"; };
+		24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WCReactNativeViewController+MetroServer.swift"; sourceTree = "<group>"; };
 		310F006D69BC062205EDD9A4 /* Pods-WooCommerceShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared.release.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared.release.xcconfig"; sourceTree = "<group>"; };
 		339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WooCommerceShared_WooCommerceSharedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840EBAB6F5991FF94DBE2653 /* Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 				2478B0A92A0AD84800E91CDF /* Assets.xcassets */,
 				2478B0AB2A0AD84800E91CDF /* Preview Content */,
 				2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */,
-				24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+LocalDevelopment.swift */,
+				24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */,
 			);
 			path = "Demo App";
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2478B0A62A0AD84700E91CDF /* DemoApp.swift in Sources */,
-				24D35CDA2A37D2E60072EAFA /* WCReactNativeViewController+LocalDevelopment.swift in Sources */,
+				24D35CDA2A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift in Sources */,
 				2478B0C02A0AED7700E91CDF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

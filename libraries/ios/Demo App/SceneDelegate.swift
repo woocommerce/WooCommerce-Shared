@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = WCReactNativeViewController()
 
         /// But you might want to reference a running metro server (which can be used from a simulator):
-        /// let viewController = WCReactNativeViewController.forLocalDevelopment
+        /// let viewController = WCReactNativeViewController.forLocalDevelopment()
 
         /// Or perhaps you run Metro on a non-standard port:
         /// let viewController = WCReactNativeViewController.forLocalDevelopment(onPort: 8443)

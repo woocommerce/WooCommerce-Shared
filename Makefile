@@ -21,11 +21,11 @@ bundle: yarn bundle-ios bundle-android
 
 bundle-ios:
 	mkdir -p dist/bundles
-	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.ts
+	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.tsx
 
 bundle-android:
 	mkdir -p dist/bundles
-	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.ts
+	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.tsx
 
 bundle-ci:
 	# Notice we're using the AWS Public ECR image to avoid being rate limited by Docker Hub.

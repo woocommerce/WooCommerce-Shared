@@ -13,7 +13,7 @@ all: yarn gems pods bundle xcframework
 # Install JS dependencies
 #
 yarn:
-	yarn
+	yarn install
 
 # Build production JS bundles
 #
@@ -111,7 +111,7 @@ lint-ruby-fix:
 
 # Start local React Native development
 #
-dev: yarn
+dev: yarn pods
 	yarn react-native start
 
 # Start local iOS development

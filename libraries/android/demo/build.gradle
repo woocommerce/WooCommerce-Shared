@@ -1,11 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.facebook.react'
 }
 
 repositories {
     mavenCentral()
     google()
+}
+
+react {
+    root = file("../../../")
+    entryFile = file("../../../index.tsx")
 }
 
 android {

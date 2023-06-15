@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.facebook.react'
 }
 
 repositories {
@@ -42,8 +43,8 @@ android {
 }
 
 dependencies {
-    implementation "com.facebook.react:react-android:$reactNativeVersion"
-    implementation "com.facebook.react:hermes-android:$reactNativeVersion"
+    implementation "com.facebook.react:react-android"
+    implementation "com.facebook.react:hermes-android"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
 
     testImplementation "junit:junit:$jUnitVersion"

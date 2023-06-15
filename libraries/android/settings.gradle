@@ -18,3 +18,5 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 
 include(":library")
 include(":demo")
+
+includeBuild('../../node_modules/react-native-gradle-plugin')

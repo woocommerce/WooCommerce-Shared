@@ -1,3 +1,15 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+        google()
+    }
+
+    dependencies {
+        classpath("com.android.library:com.android.library.gradle.plugin:7.2.1")
+    }
+}
+
 ext {
     appCompatVersion = '1.4.2'
     activityComposeVersion = '1.7.2'

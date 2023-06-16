@@ -1,13 +1,6 @@
-buildscript {
-
-    repositories {
-        mavenCentral()
-        google()
-    }
-
-    dependencies {
-        classpath("com.android.library:com.android.library.gradle.plugin:7.2.1")
-    }
+plugins {
+    id 'com.android.library' apply false
+    id 'com.android.application' apply false
 }
 
 ext {

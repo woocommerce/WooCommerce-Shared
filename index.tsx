@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
+import tracker from '@automattic/node-tracks';
 
 type RowProps = {
   title: string;
@@ -27,6 +28,7 @@ function Row(props: RowProps): JSX.Element {
 }
 
 const App = (props) => {
+  const trackEvent = tracker( 'woocommerceandroid', { _ut: 'mobile' } ).trackEvent;
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 

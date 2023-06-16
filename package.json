@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@automattic/node-tracks": "^0.4.0",
+    "node-libs-react-native": "^1.2.1",
     "react": "18.2.0",
     "react-native": "0.71.10"
   },

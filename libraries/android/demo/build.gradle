@@ -12,6 +12,8 @@ repositories {
 react {
     root = file("../../../")
     entryFile = file("../../../index.tsx")
+    reactNativeDir = file("../../../node_modules/react-native")
+    codegenDir = file("../../../node_modules/react-native-codegen")
 }
 
 android {

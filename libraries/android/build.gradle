@@ -4,6 +4,10 @@ plugins {
 }
 
 ext {
+    compileSdkVersion = 33
+    targetSdkVersion = 33
+    minSdkVersion = 24
+
     appCompatVersion = '1.4.2'
     activityComposeVersion = '1.7.2'
     androidxCoreVersion = '1.10.1'

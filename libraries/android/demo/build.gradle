@@ -18,12 +18,12 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     namespace 'com.woocommerce.shared.demo'
-    compileSdk 33
+    compileSdk project.compileSdkVersion
 
     defaultConfig {
         applicationId "com.woocommerce.shared.demo"
-        minSdk 24
-        targetSdk 33
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

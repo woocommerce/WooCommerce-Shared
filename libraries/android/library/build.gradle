@@ -15,11 +15,11 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     namespace 'com.woocommerce.shared.library'
-    compileSdk 33
+    compileSdk project.compileSdkVersion
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

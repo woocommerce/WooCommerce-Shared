@@ -32,14 +32,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures {
-        compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = androidxComposeCompilerVersion
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -59,12 +51,6 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
-
-    // Jetpack Compose
-    implementation "androidx.activity:activity-compose:$activityComposeVersion"
-    implementation platform("androidx.compose:compose-bom:$androidxComposeBomVersion")
-    // Dependencies managed by BOM
-    implementation 'androidx.compose.material3:material3'
 
     testImplementation "junit:junit:$jUnitVersion"
 }

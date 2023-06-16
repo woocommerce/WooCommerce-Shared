@@ -9,10 +9,7 @@ ext {
     minSdkVersion = 24
 
     appCompatVersion = '1.4.2'
-    activityComposeVersion = '1.7.2'
     androidxCoreVersion = '1.10.1'
-    androidxComposeBomVersion = '2022.12.00'
-    androidxComposeCompilerVersion = '1.4.4'
     reactNativeVersion = '0.71.8'
 
     // Testing

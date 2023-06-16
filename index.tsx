@@ -8,24 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-
-type ShippingZone = {
-  id: number;
-  title: string;
-  locations: ShippingZoneLocation[];
-  methods: ShippingZoneMethod[];
-};
-
-type ShippingZoneLocation = {
-  code: string;
-  type: string;
-};
-
-type ShippingZoneMethod = {
-  id: number;
-  title: string;
-  description: string;
-};
+import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
 
 type RowProps = {
   title: string;
@@ -50,83 +33,10 @@ const App = (props) => {
   const fetchData = async () => {
     setLoading(true);
 
-    const zones = await getShippingZones();
-    const locations = await getShippingZoneLocations();
-    const methods = await getShippingZoneMethods();
-
-    const fullZones = zones.map((zone) => {
-      return {
-        ...zone,
-        locations: locations,
-        methods: methods,
-      };
-    });
+    const zones = await fetchShippingZones(props["blogId"], props["token"]);
 
     setLoading(false);
-    setData(fullZones);
-  };
-
-  const getShippingZones = async () => {
-    try {
-      const url = `https://public-api.wordpress.com/rest/v1.1/jetpack-blogs/${props["blogId"]}/rest-api/?path=/wc/v3/shipping/zones`;
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${props["token"]}`,
-        },
-      });
-      const json = await response.json();
-      const zones: ShippingZone[] = json.data.map((obj) => {
-        return {
-          id: obj.id,
-          title: obj.name,
-          locations: [],
-          methods: [],
-        };
-      });
-      return zones;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  };
-
-  const getShippingZoneLocations = async () => {
-    try {
-      const response = await fetch(
-        "https://my-json-server.typicode.com/wzieba/FakeShipping/zone_locations"
-      );
-      const json = await response.json();
-      const locations: ShippingZoneLocation[] = json.map((obj) => {
-        return {
-          code: obj.code,
-          type: obj.type,
-        };
-      });
-      return locations;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  };
-
-  const getShippingZoneMethods = async () => {
-    try {
-      const response = await fetch(
-        "https://my-json-server.typicode.com/wzieba/FakeShipping/zone_methods"
-      );
-      const json = await response.json();
-      const methods: ShippingZoneMethod[] = json.map((obj) => {
-        return {
-          id: obj.method_id,
-          title: obj.method_title,
-          description: obj.method_description,
-        };
-      });
-      return methods;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
+    setData(zones);
   };
 
   useEffect(() => {

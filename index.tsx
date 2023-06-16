@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
+import { recordTracksEvent } from "@automattic/calypso-analytics";
 
 type RowProps = {
   title: string;
@@ -27,6 +28,7 @@ function Row(props: RowProps): JSX.Element {
 }
 
 const App = (props) => {
+  recordTracksEvent("woocommerceandroid_test_from_reactnative");
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 

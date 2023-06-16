@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@automattic/calypso-analytics": "file:///Users/wzieba/wp-calypso/packages/calypso-analytics",
+    "events": "1.0.2",
     "react": "18.2.0",
-    "react-native": "0.71.10"
+    "react-native": "0.71.10",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "prettier": "2.8.8"

@@ -320,11 +320,11 @@ PODS:
     - React-jsi (= 0.71.10)
     - React-logger (= 0.71.10)
     - React-perflogger (= 0.71.10)
-  - RNScreens (3.21.0):
-    - React-Core
-    - React-RCTImage
   - RNCAsyncStorage (1.18.2):
     - React-Core
+  - RNScreens (3.21.1):
+    - React-Core
+    - React-RCTImage
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -362,8 +362,8 @@ DEPENDENCIES:
   - React-RCTVibration (from `../../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../../node_modules/react-native/ReactCommon`)
-  - RNScreens (from `../../node_modules/react-native-screens`)
   - "RNCAsyncStorage (from `../../node_modules/@react-native-async-storage/async-storage`)"
+  - RNScreens (from `../../node_modules/react-native-screens`)
   - Yoga (from `../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -480,7 +480,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: a9a1cd79996c9a0846e3232ecb25c64e1cc0172e
   ReactCommon: bf28ee5aa027ee426a0610ff5eaaec41e171f1c7
   RNCAsyncStorage: ddc4ee162bfd41b0d2c68bf2d95acd81dd7f1f93
-  RNScreens: d037903436160a4b039d32606668350d2a808806
+  RNScreens: d3675ab2878704de70c9dae57fa5d024802404cc
   Yoga: e7ea9e590e27460d28911403b894722354d73479
 
 PODFILE CHECKSUM: a5aaae04645b4bc402e00d472a6809482d3ae8ae

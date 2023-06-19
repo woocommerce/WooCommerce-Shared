@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.facebook.react'
 }
 
 repositories {
@@ -14,11 +15,11 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     namespace 'com.woocommerce.shared.library'
-    compileSdk 33
+    compileSdk project.compileSdkVersion
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -42,8 +43,8 @@ android {
 }
 
 dependencies {
-    implementation "com.facebook.react:react-android:$reactNativeVersion"
-    implementation "com.facebook.react:hermes-android:$reactNativeVersion"
+    implementation "com.facebook.react:react-android"
+    implementation "com.facebook.react:hermes-android"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
 
     testImplementation "junit:junit:$jUnitVersion"

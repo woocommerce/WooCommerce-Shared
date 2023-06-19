@@ -32,7 +32,7 @@ class ReactActivity : Activity(), DefaultHardwareBackBtnHandler {
             .setApplication(application)
             .setCurrentActivity(this)
             .setBundleAssetName("index.android.bundle")
-            .setJSMainModulePath("index")
+            .setJSMainModulePath("index.tsx")
             .addPackages(packages)
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)

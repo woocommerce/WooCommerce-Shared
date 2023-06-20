@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /*
- * Depenencies Key definitions
+ * Depenencies Key definitions.
  */
 export enum Dependency {
   apiToken = "api-token",
@@ -9,7 +9,7 @@ export enum Dependency {
 }
 
 /*
- * Stores a dependency into the local storage
+ * Stores a dependency into the local storage.
  */
 export async function storeDependency(key: Dependency, value: string) {
   try {

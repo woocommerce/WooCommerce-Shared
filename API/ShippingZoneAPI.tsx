@@ -32,14 +32,9 @@ export type ShippingZoneMethod = {
  * Fetches shipping zones using the WPCom API.
  * Internally fetches the necessary locations and methods too as they live in a separate API.
  */
-export async function fetchShippingZones(blogId: string, token: string) {
+export async function fetchShippingZones() {
   try {
-    const response = await jetpackFetch(
-      WPComAPIVersion.wcV3,
-      "shipping/zones",
-      blogId,
-      token
-    );
+    const response = await jetpackFetch(WPComAPIVersion.wcV3, "shipping/zones");
 
     const json = await response.json();
     const zones: ShippingZone[] = await Promise.all(
@@ -47,8 +42,8 @@ export async function fetchShippingZones(blogId: string, token: string) {
         return {
           id: obj.id,
           title: obj.name,
-          locations: await fetchShippingZoneLocations(obj.id, blogId, token),
-          methods: await fetchShippingZoneMethods(obj.id, blogId, token),
+          locations: await fetchShippingZoneLocations(obj.id),
+          methods: await fetchShippingZoneMethods(obj.id),
         };
       })
     );
@@ -63,19 +58,10 @@ export async function fetchShippingZones(blogId: string, token: string) {
 /*
  * Fetches shipping zones locations for a given zone id, using the WPCom API.
  */
-export async function fetchShippingZoneLocations(
-  zoneID: number,
-  blogId: string,
-  token: string
-) {
+export async function fetchShippingZoneLocations(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/locations`;
-    const response = await jetpackFetch(
-      WPComAPIVersion.wcV3,
-      path,
-      blogId,
-      token
-    );
+    const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
 
     const json = await response.json();
     const locations: ShippingZoneLocation[] = json.data.map((obj) => {
@@ -95,19 +81,10 @@ export async function fetchShippingZoneLocations(
 /*
  * Fetches shipping zones methods for a given zone id, using the WPCom API.
  */
-export async function fetchShippingZoneMethods(
-  zoneID: number,
-  blogId: string,
-  token: string
-) {
+export async function fetchShippingZoneMethods(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/methods`;
-    const response = await jetpackFetch(
-      WPComAPIVersion.wcV3,
-      path,
-      blogId,
-      token
-    );
+    const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
 
     const json = await response.json();
     const methods: ShippingZoneMethod[] = json.data.map((obj) => {

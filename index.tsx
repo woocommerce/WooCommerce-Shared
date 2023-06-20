@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
+import { Dependency, storeDependency } from "./Storage/AppDependencies";
 
 type RowProps = {
   title: string;
@@ -30,17 +31,37 @@ const App = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 
+  /*
+   * Makes sure dependencies(especially the blogId and APIToken) are stored before fetching the data for the shipping zones list.
+   */
+  const storePropsAndFetchData = async () => {
+    await storeDependencies();
+    await fetchData();
+  };
+
+  /*
+   * Store properties passed from the native app.
+   * Currenty only `blogID` and `token`
+   */
+  const storeDependencies = async () => {
+    await storeDependency(Dependency.apiToken, props["token"]);
+    await storeDependency(Dependency.blogId, props["blogId"]);
+  };
+
+  /*
+   * Fetches the neccessary data for the shipping zones list.
+   */
   const fetchData = async () => {
     setLoading(true);
 
-    const zones = await fetchShippingZones(props["blogId"], props["token"]);
+    const zones = await fetchShippingZones();
 
     setLoading(false);
     setData(zones);
   };
 
   useEffect(() => {
-    fetchData();
+    storePropsAndFetchData();
   }, []);
 
   return (

@@ -47,6 +47,9 @@ dependencies {
     implementation "com.facebook.react:hermes-android"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
 
+    debugImplementation "com.facebook.flipper:flipper:$flipperVersion"
+    debugImplementation "com.facebook.flipper:flipper-network-plugin:$flipperVersion"
+
     testImplementation "junit:junit:$jUnitVersion"
 }
 

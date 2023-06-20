@@ -28,28 +28,11 @@ function Row(props: RowProps): JSX.Element {
   );
 }
 
-const ShippingZonesList = (props) => {
+const ShippingZonesList = () => {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 
   const navigate = useNavigate();
-
-  /*
-   * Makes sure dependencies(especially the blogId and APIToken) are stored before fetching the data for the shipping zones list.
-   */
-  const storePropsAndFetchData = async () => {
-    await storeDependencies();
-    await fetchData();
-  };
-
-  /*
-   * Store properties passed from the native app.
-   * Currenty only `blogID` and `token`
-   */
-  const storeDependencies = async () => {
-    await storeDependency(Dependency.apiToken, props["token"]);
-    await storeDependency(Dependency.blogId, props["blogId"]);
-  };
 
   /*
    * Fetches the neccessary data for the shipping zones list.
@@ -64,7 +47,7 @@ const ShippingZonesList = (props) => {
   };
 
   useEffect(() => {
-    storePropsAndFetchData();
+    fetchData();
   }, []);
 
   return (
@@ -89,10 +72,10 @@ const ShippingZonesList = (props) => {
         />
       )}
       <SafeAreaView>
-      <Button
-        title="+ Add new Shipping Zone"
-        onPress={() => navigate("/addShippingZone")}
-      />
+        <Button
+          title="+ Add new Shipping Zone"
+          onPress={() => navigate("/addShippingZone")}
+        />
       </SafeAreaView>
     </View>
   );

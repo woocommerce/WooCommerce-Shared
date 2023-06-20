@@ -39,6 +39,8 @@ android {
         main {
             assets.srcDirs += buildAssetsFolder
         }
+        release.kotlin.srcDirs += 'src/release/kotlin'
+        debug.kotlin.srcDirs += 'src/debug/kotlin'
     }
 }
 

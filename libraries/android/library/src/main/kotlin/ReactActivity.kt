@@ -25,6 +25,8 @@ class ReactActivity : Activity(), DefaultHardwareBackBtnHandler {
         reactRootView = ReactRootView(this)
 
         val packages: List<ReactPackage> = PackageList(application).packages
+
+        SetupBuildSpecificDependencies(application)
         // Packages that cannot be autolinked yet can be added manually here, for example:
         // packages.add(MyReactNativePackage())
         // Remember to include them in `settings.gradle` and `app/build.gradle` too.

@@ -88,10 +88,12 @@ const ShippingZonesList = (props) => {
           keyExtractor={(item) => item.id}
         />
       )}
+      <SafeAreaView>
       <Button
         title="+ Add new Shipping Zone"
         onPress={() => navigate("/addShippingZone")}
       />
+      </SafeAreaView>
     </View>
   );
 };

@@ -4,6 +4,7 @@ import ShippingZonesList from "./ShippingZones";
 import AddShippingZone from "./AddShippingZone";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,11 +49,14 @@ const NavigationStack = (props) => {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
-            name="ShippingZonesList"
-            component={ShippingZonesList}
-          />
-          <Stack.Screen name="AddShippingZone" component={AddShippingZone} />
+            <Stack.Screen
+                name={NavigationRoutes.ShippingZonesList}
+                component={ShippingZonesList}
+            />
+            <Stack.Screen
+                name={NavigationRoutes.AddShippingZone}
+                component={AddShippingZone}
+            />
         </Stack.Navigator>
       </NavigationContainer>
     );

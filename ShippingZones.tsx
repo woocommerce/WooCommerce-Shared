@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
 import { useNavigation } from "@react-navigation/native";
+import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 
 type RowProps = {
   title: string;
@@ -73,7 +74,7 @@ const ShippingZonesList = () => {
       <SafeAreaView>
         <Button
           title="+ Add new Shipping Zone"
-          onPress={() => navigation.navigate("AddShippingZone")}
+          onPress={() => navigation.navigate(NavigationRoutes.AddShippingZone)}
         />
       </SafeAreaView>
     </View>

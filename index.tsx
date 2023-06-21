@@ -52,10 +52,16 @@ const NavigationStack = (props) => {
           <Stack.Screen
             name={NavigationRoutes.ShippingZonesList}
             component={ShippingZonesList}
+            options={{
+                title: "Shipping Zones",
+            }}
           />
           <Stack.Screen
             name={NavigationRoutes.AddShippingZone}
             component={AddShippingZone}
+            options={{
+                title: "Add Shipping Zone",
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

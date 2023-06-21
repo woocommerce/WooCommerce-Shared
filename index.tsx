@@ -49,18 +49,19 @@ const NavigationStack = (props) => {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-            <Stack.Screen
-                name={NavigationRoutes.ShippingZonesList}
-                component={ShippingZonesList}
-            />
-            <Stack.Screen
-                name={NavigationRoutes.AddShippingZone}
-                component={AddShippingZone}
-            />
+          <Stack.Screen
+            name={NavigationRoutes.ShippingZonesList}
+            component={ShippingZonesList}
+          />
+          <Stack.Screen
+            name={NavigationRoutes.AddShippingZone}
+            component={AddShippingZone}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
   };
+  return <Router />;
 };
 
 AppRegistry.registerComponent("main", () => NavigationStack);

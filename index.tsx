@@ -1,8 +1,11 @@
 import React from "react";
 import { AppRegistry } from "react-native";
-import { NativeRouter, Route, Routes } from "react-router-native";
 import ShippingZonesList from "./ShippingZones";
 import AddShippingZone from "./AddShippingZone";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 import { useEffect, useState } from "react";
 import { Dependency, storeDependency } from "./Storage/AppDependencies";
@@ -43,16 +46,17 @@ const NavigationStack = (props) => {
     }
 
     return (
-      <NativeRouter>
-        <Routes>
-          <Route path="/" element={<ShippingZonesList />} />
-          <Route path="/addShippingZone" element={<AddShippingZone />} />
-        </Routes>
-      </NativeRouter>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="ShippingZonesList"
+            component={ShippingZonesList}
+          />
+          <Stack.Screen name="AddShippingZone" component={AddShippingZone} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   };
-
-  return <Router />;
 };
 
 AppRegistry.registerComponent("main", () => NavigationStack);

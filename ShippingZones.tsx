@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
-import { Dependency, storeDependency } from "./Storage/AppDependencies";
-import { useNavigate } from "react-router";
+import { useNavigation } from "@react-navigation/native";
 
 type RowProps = {
   title: string;
@@ -32,8 +31,6 @@ const ShippingZonesList = () => {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 
-  const navigate = useNavigate();
-
   /*
    * Fetches the neccessary data for the shipping zones list.
    */
@@ -49,6 +46,8 @@ const ShippingZonesList = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -74,7 +73,7 @@ const ShippingZonesList = () => {
       <SafeAreaView>
         <Button
           title="+ Add new Shipping Zone"
-          onPress={() => navigate("/addShippingZone")}
+          onPress={() => navigation.navigate("AddShippingZone")}
         />
       </SafeAreaView>
     </View>

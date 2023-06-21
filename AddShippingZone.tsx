@@ -1,15 +1,15 @@
 import React from "react";
 import { Button, SafeAreaView, Text, View } from "react-native";
-import { useNavigate } from "react-router";
+import { useNavigation } from "@react-navigation/native";
 
 const AddShippingZone = () => {
-  const navigate = useNavigate();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView>
       <View>
         <Text>Add shipping zone</Text>
-        <Button title="Go back" onPress={() => navigate(-1)} />
+        <Button title="Go back" onPress={() => navigation.goBack()} />
       </View>
     </SafeAreaView>
   );

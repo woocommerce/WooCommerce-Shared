@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
 import { Dependency, storeDependency } from "./Storage/AppDependencies";
 import { useNavigate } from "react-router";
+import {Tracks} from "./tracks/TracksClient";
 
 type RowProps = {
   title: string;
@@ -64,7 +65,13 @@ const ShippingZonesList = (props) => {
   };
 
   useEffect(() => {
-    storePropsAndFetchData();
+    (async () => {
+      await fetchData();
+    })().then(() =>
+        Tracks.client.trackEvent(
+        "show_list_of_shipping_zones"
+      )
+    );
   }, []);
 
   return (

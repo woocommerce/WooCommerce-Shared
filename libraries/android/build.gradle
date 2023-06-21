@@ -16,4 +16,5 @@ ext {
     jUnitVersion = '4.13.2'
 
     ndkVersion = "25.2.9519653"
+    flipperVersion = '0.176.1'
 }

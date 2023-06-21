@@ -1,126 +1,73 @@
-import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  AppRegistry,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
+import React from "react";
+import { AppRegistry } from "react-native";
+import ShippingZonesList from "./ShippingZones";
+import AddShippingZone from "./AddShippingZone";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationRoutes } from "./Navigation/NavigationRoutes";
+
+const Stack = createNativeStackNavigator();
+
+import { useEffect, useState } from "react";
 import { Dependency, storeDependency } from "./Storage/AppDependencies";
 
-type RowProps = {
-  title: string;
-  body: string;
-  caption: string;
-};
-
-function Row(props: RowProps): JSX.Element {
-  return (
-    <View style={styles.row}>
-      <Text style={styles.row.title}> {props.title} </Text>
-      <Text style={styles.row.body}> {props.body} </Text>
-      <Text style={styles.row.caption}> {props.caption} </Text>
-    </View>
-  );
-}
-
-const App = (props) => {
-  const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState<ShippingZone[]>([]);
-
+const NavigationStack = (props) => {
   /*
-   * Makes sure dependencies(especially the blogId and APIToken) are stored before fetching the data for the shipping zones list.
+   * State needed to make sure that dependencies from the main app are stored before presenting the view.
    */
-  const storePropsAndFetchData = async () => {
-    await storeDependencies();
-    await fetchData();
-  };
+  const [savingDependencies, setSavingDependencies] = useState(true);
 
   /*
    * Store properties passed from the native app.
    * Currenty only `blogID` and `token`
    */
   const storeDependencies = async () => {
+    setSavingDependencies(true);
+
     await storeDependency(Dependency.apiToken, props["token"]);
     await storeDependency(Dependency.blogId, props["blogId"]);
+
+    setSavingDependencies(false);
   };
 
   /*
-   * Fetches the neccessary data for the shipping zones list.
+   * Store dependencies as soon as the component is mounted.
    */
-  const fetchData = async () => {
-    setLoading(true);
-
-    const zones = await fetchShippingZones();
-
-    setLoading(false);
-    setData(zones);
-  };
-
   useEffect(() => {
-    storePropsAndFetchData();
+    storeDependencies();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      {isLoading ? (
-        <SafeAreaView>
-          <ActivityIndicator />
-        </SafeAreaView>
-      ) : (
-        <FlatList
-          contentInsetAdjustmentBehavior="always"
-          style={styles.list}
-          data={data}
-          renderItem={({ item }) => (
-            <Row
-              title={item.title}
-              body={item.locations.map((location) => location.code).join(" - ")}
-              caption={item.methods.map((method) => method.title).join(" - ")}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-        />
-      )}
-    </View>
-  );
+  /*
+   * Returns the `NativeRouter` component after the dependencies have been saved.
+   * We need to wait for them to be saved because `ShippingZonesList` will read that data.
+   */
+  const Router = () => {
+    if (savingDependencies) {
+      return null;
+    }
+
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name={NavigationRoutes.ShippingZonesList}
+            component={ShippingZonesList}
+            options={{
+                title: "Shipping Zones",
+            }}
+          />
+          <Stack.Screen
+            name={NavigationRoutes.AddShippingZone}
+            component={AddShippingZone}
+            options={{
+                title: "Add Shipping Zone",
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
+  return <Router />;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  list: {
-    backgroundColor: "rgb(246, 247, 247)",
-  },
-  row: {
-    padding: 16,
-    fontSize: 23,
-    borderRadius: 16,
-    backgroundColor: "white",
-    margin: 16,
-    marginTop: 0,
-    title: {
-      fontFamily: "System",
-      fontSize: 17,
-      marginBottom: 4,
-      color: "rgb(0, 0, 0)",
-    },
-    body: {
-      fontFamily: "System",
-      fontSize: 14,
-      color: "rgba(0, 0, 0, 0.6)",
-    },
-    caption: {
-      fontFamily: "System",
-      fontSize: 12,
-      color: "rgba(0, 0, 0, 0.6)",
-    },
-  },
-});
-
-export default App;
-AppRegistry.registerComponent("main", () => App);
+AppRegistry.registerComponent("main", () => NavigationStack);

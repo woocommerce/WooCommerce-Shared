@@ -1,6 +1,5 @@
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -11,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
+import ToolbarActionButton from "./ToolbarActionButton";
 
 type RowProps = {
   title: string;
@@ -50,6 +50,17 @@ const ShippingZonesList = () => {
 
   const navigation = useNavigation();
 
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <ToolbarActionButton
+          label={"Add"}
+          onPress={() => navigation.navigate(NavigationRoutes.AddShippingZone)}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -71,12 +82,6 @@ const ShippingZonesList = () => {
           keyExtractor={(item) => item.id}
         />
       )}
-      <SafeAreaView>
-        <Button
-          title="+ Add new Shipping Zone"
-          onPress={() => navigation.navigate(NavigationRoutes.AddShippingZone)}
-        />
-      </SafeAreaView>
     </View>
   );
 };

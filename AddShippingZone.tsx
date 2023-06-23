@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Platform,
   Pressable,
   SafeAreaView,
   StyleSheet,
@@ -29,7 +30,7 @@ const AddShippingZone = () => {
   const _renderPostCodes = function () {
     if (isLimitEnabled) {
       return (
-        <View>
+        <View style={{ marginTop: 10 }}>
           <Text style={styles.labelText}>Postcodes</Text>
           <TextInput
             selectionColor={"black"}
@@ -65,9 +66,23 @@ const AddShippingZone = () => {
             <CheckBox
               value={isLimitEnabled}
               onValueChange={(newValue) => setLimitEnabled(newValue)}
+              style={{
+                ...(Platform.OS === "ios" ? { height: 20, width: 20 } : {}),
+              }}
+              /*Android only*/
               tintColors={{ true: "#896bb8" }}
+              /*iOS only*/
+              onCheckColor={"#896bb8"}
+              onTintColor={"#896bb8"}
+              boxType={"square"}
             />
-            <Text>Limit to specific ZIP/postcodes</Text>
+            <Text
+              style={{
+                ...(Platform.OS === "ios" ? { marginLeft: 10 } : {}),
+              }}
+            >
+              Limit to specific ZIP/postcodes
+            </Text>
           </View>
         </Pressable>
         {_renderPostCodes()}
@@ -85,6 +100,7 @@ const styles = StyleSheet.create({
   textInput: {
     paddingStart: 10,
     borderColor: "#896bb8",
+    height: 50,
     borderWidth: 2,
     borderRadius: 10,
   },

@@ -5,7 +5,7 @@ export const ToolbarActionButton = ({
   label,
   onPress,
 }: ToolbarActionButtonProps) => {
-  const formattedLabel = Platform.OS === "ios" ? label.toUpperCase() : label;
+  const formattedLabel = Platform.OS === "android" ? label.toUpperCase() : label;
 
   return (
     <Pressable android_ripple={{ borderless: true }} onPress={onPress}>

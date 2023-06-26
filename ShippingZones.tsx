@@ -50,7 +50,7 @@ const ShippingZonesList = () => {
 
   const navigation = useNavigation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <ToolbarActionButton

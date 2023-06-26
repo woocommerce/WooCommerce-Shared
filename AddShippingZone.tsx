@@ -13,6 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "@react-native-community/checkbox";
 import { ToolbarActionButton } from "./ToolbarActionButton";
+import FocusableTextInput from "./UI/FocusableTextInput";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
@@ -76,14 +77,14 @@ const AddShippingZone = () => {
       <ScrollView>
         <View style={{ padding: 16, backgroundColor: "white" }}>
           <Text style={styles.labelText}>Zone name</Text>
-          <TextInput
+          <FocusableTextInput
             selectionColor={"black"}
             style={[styles.textInput, { marginTop: 10 }]}
             placeholder="Enter name"
           />
           <View style={{ margin: 10 }} />
           <Text style={styles.labelText}>Zone region</Text>
-          <TextInput
+          <FocusableTextInput
             selectionColor={"black"}
             style={[styles.textInput, { marginTop: 10 }]}
             placeholder="Type to search"
@@ -128,7 +129,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     paddingStart: 10,
-    borderColor: "#896bb8",
     minHeight: 50,
     borderWidth: 2,
     borderRadius: 10,

@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import {
   Linking,
-  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import CheckBox from "@react-native-community/checkbox";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
 
@@ -35,7 +32,7 @@ const AddShippingZone = () => {
       return (
         <View style={{ marginTop: 10 }}>
           <Text style={styles.labelText}>Postcodes</Text>
-          <TextInput
+          <FocusableTextInput
             selectionColor={"black"}
             style={[styles.textInput, { marginTop: 10 }]}
             multiline={true}
@@ -51,10 +48,7 @@ const AddShippingZone = () => {
             (e.g. 90210...99000) are also supported. Please see the shipping
             zones{" "}
             <Text
-              style={{
-                color: "#68a5df",
-                textDecorationLine: "underline",
-              }}
+              style={styles.clickableText}
               onPress={() =>
                 Linking.openURL(
                   "https://woocommerce.com/document/setting-up-shipping-zones/#section-3"
@@ -68,7 +62,11 @@ const AddShippingZone = () => {
         </View>
       );
     } else {
-      return null;
+      return <Pressable onPress={() => setLimitEnabled(true)}>
+        <Text style={styles.clickableText}>
+          Limit to specific ZIP/postcodes
+        </Text>
+      </Pressable>
     }
   };
 
@@ -90,30 +88,6 @@ const AddShippingZone = () => {
             placeholder="Type to search"
           />
           <View style={{ margin: 5 }} />
-          <Pressable onPress={() => setLimitEnabled(!isLimitEnabled)}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <CheckBox
-                value={isLimitEnabled}
-                onValueChange={(newValue) => setLimitEnabled(newValue)}
-                style={{
-                  ...(Platform.OS === "ios" ? { height: 20, width: 20 } : {}),
-                }}
-                /*Android only*/
-                tintColors={{ true: "#896bb8" }}
-                /*iOS only*/
-                onCheckColor={"#896bb8"}
-                onTintColor={"#896bb8"}
-                boxType={"square"}
-              />
-              <Text
-                style={{
-                  ...(Platform.OS === "ios" ? { marginLeft: 10 } : {}),
-                }}
-              >
-                Limit to specific ZIP/postcodes
-              </Text>
-            </View>
-          </Pressable>
           {_renderPostCodes()}
         </View>
       </ScrollView>
@@ -132,6 +106,10 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderWidth: 2,
     borderRadius: 10,
+  },
+  clickableText: {
+    color: "#68a5df",
+    textDecorationLine: "underline",
   },
 });
 

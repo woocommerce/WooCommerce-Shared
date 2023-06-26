@@ -1,5 +1,4 @@
 PODS:
-  - BEMCheckBox (1.4.1)
   - boost (1.76.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.71.10)
@@ -323,9 +322,6 @@ PODS:
     - React-perflogger (= 0.71.10)
   - RNCAsyncStorage (1.18.2):
     - React-Core
-  - RNCCheckbox (0.5.15):
-    - BEMCheckBox (~> 1.4)
-    - React-Core
   - RNScreens (3.22.0):
     - React-Core
     - React-RCTImage
@@ -367,13 +363,11 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../../node_modules/@react-native-async-storage/async-storage`)"
-  - "RNCCheckbox (from `../../node_modules/@react-native-community/checkbox`)"
   - RNScreens (from `../../node_modules/react-native-screens`)
   - Yoga (from `../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
-    - BEMCheckBox
     - fmt
 
 EXTERNAL SOURCES:
@@ -445,15 +439,12 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../../node_modules/@react-native-async-storage/async-storage"
-  RNCCheckbox:
-    :path: "../../node_modules/@react-native-community/checkbox"
   RNScreens:
     :path: "../../node_modules/react-native-screens"
   Yoga:
     :path: "../../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: ddb55c55295ea51ed98aa7e2e08add2f826309d5
@@ -489,7 +480,6 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: a9a1cd79996c9a0846e3232ecb25c64e1cc0172e
   ReactCommon: bf28ee5aa027ee426a0610ff5eaaec41e171f1c7
   RNCAsyncStorage: ddc4ee162bfd41b0d2c68bf2d95acd81dd7f1f93
-  RNCCheckbox: 43bcc6493611468af0e19f19f029dab3da8561c4
   RNScreens: 68fd1060f57dd1023880bf4c05d74784b5392789
   Yoga: e7ea9e590e27460d28911403b894722354d73479
 

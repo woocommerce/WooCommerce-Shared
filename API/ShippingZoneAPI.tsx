@@ -1,4 +1,4 @@
-import { WPComAPIVersion } from "./APIs";
+import { APIError, WPComAPIVersion } from "./APIs";
 import { jetpackFetch } from "./JetpackAPI";
 
 /*
@@ -34,9 +34,14 @@ export type ShippingZoneMethod = {
  */
 export async function fetchShippingZones() {
   try {
-    const response = await jetpackFetch(WPComAPIVersion.wcV3, "shipping/zones");
-
+    const path = "shipping/zones";
+    const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
     const json = await response.json();
+
+    if (!response.ok) {
+      throw new APIError(path, response.status, json);
+    }
+
     const zones: ShippingZone[] = await Promise.all(
       json.data.map(async (obj) => {
         return {
@@ -50,8 +55,7 @@ export async function fetchShippingZones() {
 
     return zones;
   } catch (error) {
-    console.error(error);
-    return [];
+    throw error;
   }
 }
 
@@ -62,8 +66,12 @@ export async function fetchShippingZoneLocations(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/locations`;
     const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
-
     const json = await response.json();
+
+    if (!response.ok) {
+      throw new APIError(path, response.status, json);
+    }
+
     const locations: ShippingZoneLocation[] = json.data.map((obj) => {
       return {
         code: obj.code,
@@ -73,8 +81,7 @@ export async function fetchShippingZoneLocations(zoneID: number) {
 
     return locations;
   } catch (error) {
-    console.error(error);
-    return [];
+    throw error;
   }
 }
 
@@ -85,8 +92,12 @@ export async function fetchShippingZoneMethods(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/methods`;
     const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
-
     const json = await response.json();
+
+    if (!response.ok) {
+      throw new APIError(path, response.status, json);
+    }
+
     const methods: ShippingZoneMethod[] = json.data.map((obj) => {
       return {
         id: obj.method_id,
@@ -97,7 +108,6 @@ export async function fetchShippingZoneMethods(zoneID: number) {
 
     return methods;
   } catch (error) {
-    console.error(error);
-    return [];
+    throw error;
   }
 }

@@ -97,7 +97,7 @@ const AddShippingZone = () => {
 
 const styles = StyleSheet.create({
   labelText: {
-    fontWeight: "bold",
+    fontWeight: "500",
     fontSize: 16.0,
     color: "black",
   },

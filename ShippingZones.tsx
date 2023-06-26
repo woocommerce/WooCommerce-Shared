@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
@@ -33,15 +34,38 @@ const ShippingZonesList = () => {
   const [data, setData] = useState<ShippingZone[]>([]);
 
   /*
+   * Shows an alert that allows the user to retry the fetch operation.
+   */
+  const showRetryAlert = () => {
+    Alert.alert(
+      "",
+      "There was an error loading shipping zones, pleae try again later.",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        { text: "Retry", onPress: () => fetchData() },
+      ]
+    );
+  };
+
+  /*
    * Fetches the neccessary data for the shipping zones list.
+   * If the operation fails, a retry alert is shown.
    */
   const fetchData = async () => {
     setLoading(true);
 
-    const zones = await fetchShippingZones();
+    try {
+      const zones = await fetchShippingZones();
+      setData(zones);
+    } catch (error) {
+      console.log(error);
+      showRetryAlert();
+    }
 
     setLoading(false);
-    setData(zones);
   };
 
   useEffect(() => {

@@ -71,7 +71,7 @@ const AddShippingZone = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View style={{ padding: 16, backgroundColor: "white" }}>
           <Text style={styles.labelText}>Zone name</Text>

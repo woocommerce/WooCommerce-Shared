@@ -30,10 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         /// If you want to run on physical hardware, you can do that too:
         /// let viewController = WCReactNativeViewController.forOnDeviceDevelopment(withServer: "192.168.5.149", onPort: 8443)
 
-        let navigation = UINavigationController(rootViewController: viewController)
-
         /// 4. Set the root view controller of the window with your view controller
-        window.rootViewController = navigation
+        window.rootViewController = viewController
 
         /// 5. Set the window and call makeKeyAndVisible()
         self.window = window

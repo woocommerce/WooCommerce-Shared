@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Linking,
   Pressable,
@@ -17,7 +17,7 @@ const AddShippingZone = () => {
 
   const [isLimitEnabled, setLimitEnabled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
         ToolbarActionButton({

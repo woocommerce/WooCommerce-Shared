@@ -12,6 +12,12 @@ import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
+import { NativeModules } from 'react-native';
+
+const sendAnalyticsEvent = (event) => {
+  NativeModules.MyReactNativeBridge.sendEvent(event);
+};
+
 
 type RowProps = {
   title: string;
@@ -60,6 +66,7 @@ const ShippingZonesList = () => {
     try {
       const zones = await fetchShippingZones();
       setData(zones);
+      sendAnalyticsEvent('shipping_zones_shown');
     } catch (error) {
       console.log(error);
       showRetryAlert();

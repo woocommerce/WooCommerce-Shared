@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AppRegistry } from "react-native";
 import ShippingZonesList from "./ShippingZones";
 import AddShippingZone from "./AddShippingZone";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
+import { Dependency, storeDependency } from "./Storage/AppDependencies";
 
 const Stack = createNativeStackNavigator();
-
-import { useEffect, useState } from "react";
-import { Dependency, storeDependency } from "./Storage/AppDependencies";
 
 const NavigationStack = (props) => {
   /*
@@ -48,19 +46,23 @@ const NavigationStack = (props) => {
 
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            animation: "slide_from_right",
+          }}
+        >
           <Stack.Screen
             name={NavigationRoutes.ShippingZonesList}
             component={ShippingZonesList}
             options={{
-                title: "Shipping Zones",
+              title: "Shipping Zones",
             }}
           />
           <Stack.Screen
             name={NavigationRoutes.AddShippingZone}
             component={AddShippingZone}
             options={{
-                title: "Add Shipping Zone",
+              title: "New Zone",
             }}
           />
         </Stack.Navigator>

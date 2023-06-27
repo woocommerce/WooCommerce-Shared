@@ -85,6 +85,16 @@ const ShippingZonesList = () => {
     });
   }, [navigation]);
 
+  const separator = () => (
+    <View
+      style={{
+        backgroundColor: "#CED0CE",
+        height: 0.5,
+        marginLeft: 16,
+      }}
+    />
+  );
+
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -93,14 +103,15 @@ const ShippingZonesList = () => {
         </SafeAreaView>
       ) : (
         <FlatList
+          ItemSeparatorComponent={separator}
           contentInsetAdjustmentBehavior="always"
           style={styles.list}
           data={data}
           renderItem={({ item }) => (
             <Row
               title={item.title}
-              body={item.locations.map((location) => location.code).join(" - ")}
-              caption={item.methods.map((method) => method.title).join(" - ")}
+              body={item.locations.map((location) => location.code).join(", ")}
+              caption={item.methods.map((method) => method.title).join(", ")}
             />
           )}
           keyExtractor={(item) => item.id}
@@ -114,15 +125,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   list: {
-    backgroundColor: "rgb(246, 247, 247)",
+    //backgroundColor: "rgb(246, 247, 247)",
+    backgroundColor: "white",
   },
   row: {
-    padding: 16,
+    padding: 0,
     fontSize: 23,
-    borderRadius: 16,
+    borderRadius: 0,
     backgroundColor: "white",
     margin: 16,
-    marginTop: 0,
     title: {
       fontFamily: "System",
       fontSize: 17,
@@ -131,12 +142,12 @@ const styles = StyleSheet.create({
     },
     body: {
       fontFamily: "System",
-      fontSize: 14,
+      fontSize: 15,
       color: "rgba(0, 0, 0, 0.6)",
     },
     caption: {
       fontFamily: "System",
-      fontSize: 12,
+      fontSize: 15,
       color: "rgba(0, 0, 0, 0.6)",
     },
   },

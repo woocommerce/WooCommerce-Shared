@@ -109,7 +109,7 @@ const ShippingZonesList = () => {
           renderItem={({ item }) => (
             <Row
               title={item.title}
-              body={item.locations.map((location) => location.code).join(", ")}
+              body={item.locations.map((location) => location.name).join(", ")}
               caption={item.methods.map((method) => method.title).join(", ")}
             />
           )}

@@ -1,3 +1,4 @@
+import { getZoneName } from "../Utils/Country";
 import { APIError, WPComAPIVersion } from "./APIs";
 import { jetpackFetch } from "./JetpackAPI";
 
@@ -16,6 +17,7 @@ export type ShippingZone = {
  */
 export type ShippingZoneLocation = {
   code: string;
+  name: string;
   type: string;
 };
 
@@ -75,6 +77,7 @@ export async function fetchShippingZoneLocations(zoneID: number) {
     const locations: ShippingZoneLocation[] = json.data.map((obj) => {
       return {
         code: obj.code,
+        name: getZoneName(obj.code),
         type: obj.type,
       };
     });

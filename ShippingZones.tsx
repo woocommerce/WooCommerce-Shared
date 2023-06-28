@@ -22,9 +22,19 @@ type RowProps = {
 function Row(props: RowProps): JSX.Element {
   return (
     <View style={styles.row}>
-      <Text style={styles.row.title}> {props.title} </Text>
-      <Text style={styles.row.body}> {props.body} </Text>
-      <Text style={styles.row.caption}> {props.caption} </Text>
+      <View style={styles.row.content}>
+        <View style={styles.row.textContainer}>
+          <Text style={styles.row.title}> {props.title} </Text>
+          {props.body.length > 0 && (
+            <Text style={styles.row.body}> {props.body} </Text>
+          )}
+          {props.caption.length > 0 && (
+            <Text style={styles.row.caption}> {props.caption} </Text>
+          )}
+        </View>
+        <Text style={styles.row.disclosureIndicator}>›</Text>
+      </View>
+      <View style={styles.row.separator} />
     </View>
   );
 }
@@ -85,25 +95,14 @@ const ShippingZonesList = () => {
     });
   }, [navigation]);
 
-  const separator = () => (
-    <View
-      style={{
-        backgroundColor: "#CED0CE",
-        height: 0.5,
-        marginLeft: 16,
-      }}
-    />
-  );
-
   return (
     <View style={styles.container}>
       {isLoading ? (
         <SafeAreaView>
-          <ActivityIndicator />
+          <ActivityIndicator style={styles.list.loadingIndicator} />
         </SafeAreaView>
       ) : (
         <FlatList
-          ItemSeparatorComponent={separator}
           contentInsetAdjustmentBehavior="always"
           style={styles.list}
           data={data}
@@ -120,35 +119,56 @@ const ShippingZonesList = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   list: {
-    //backgroundColor: "rgb(246, 247, 247)",
     backgroundColor: "white",
+    loadingIndicator: {
+      marginTop: 32,
+    },
   },
   row: {
-    padding: 0,
-    fontSize: 23,
-    borderRadius: 0,
-    backgroundColor: "white",
-    margin: 16,
+    flex: 1,
+    content: {
+      flexDirection: "row",
+      alignItems: "center",
+      padding: 0,
+      fontSize: 23,
+      borderRadius: 0,
+      backgroundColor: "white",
+      margin: 16,
+    },
+    textContainer: {
+      flex: 1,
+    },
     title: {
       fontFamily: "System",
       fontSize: 17,
-      marginBottom: 4,
+      marginBottom: 6,
       color: "rgb(0, 0, 0)",
     },
     body: {
       fontFamily: "System",
       fontSize: 15,
+      marginBottom: 6,
       color: "rgba(0, 0, 0, 0.6)",
     },
     caption: {
       fontFamily: "System",
       fontSize: 15,
       color: "rgba(0, 0, 0, 0.6)",
+    },
+    disclosureIndicator: {
+      fontSize: 32,
+      color: "rgb(103, 67, 153)",
+    },
+    separator: {
+      backgroundColor: "rgba(60, 60, 67, 0.29)",
+      height: 0.5,
+      marginLeft: 16,
     },
   },
 });

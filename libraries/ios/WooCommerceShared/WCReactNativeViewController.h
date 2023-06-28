@@ -4,7 +4,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WCReactNativeViewController : UIViewController
--(instancetype)init;
+
+-(instancetype)initWithAnalyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
+                                  blogID:(NSString *)blogId
+                                apiToken: (NSString*) apiToken;
+
 -(instancetype)initWithBundle:(NSURL *) url
             analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
                        blogID:(NSString *)blogId

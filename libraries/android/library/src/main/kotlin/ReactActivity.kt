@@ -18,6 +18,8 @@ class ReactActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     companion object{
         const val PROPERTY_BLOG_ID = "blogId"
         const val PROPERTY_TOKEN = "token"
+        const val PROPERTY_SITE_URL = "siteUrl"
+        const val PROPERTY_APP_PASSWORD = "appPassword"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +46,13 @@ class ReactActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         // the string in AppRegistry.registerComponent() in index.ts
         val token = intent.getStringExtra(PROPERTY_TOKEN)
         val blogId = intent.getStringExtra(PROPERTY_BLOG_ID)
+        val siteURL = intent.getStringExtra(PROPERTY_SITE_URL)
+        val appPassword = intent.getStringExtra(PROPERTY_APP_PASSWORD)
         val initialProperties = Bundle().apply {
             putString(PROPERTY_TOKEN, token)
             putString(PROPERTY_BLOG_ID, blogId)
+            putString(PROPERTY_SITE_URL, siteURL)
+            putString(PROPERTY_APP_PASSWORD, appPassword)
         }
         reactRootView.startReactApplication(reactInstanceManager, "main", initialProperties)
         setContentView(reactRootView)

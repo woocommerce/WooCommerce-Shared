@@ -1,6 +1,5 @@
 import { getZoneName } from "../Utils/Country";
-import { APIError, WPComAPIVersion } from "./APIs";
-import { jetpackFetch } from "./JetpackAPI";
+import { APIError, WPComAPIVersion, apiFetch, normalizeJSON } from "./APIs";
 
 /*
  * ShippingZone API defition
@@ -37,7 +36,7 @@ export type ShippingZoneMethod = {
 export async function fetchShippingZones() {
   try {
     const path = "shipping/zones";
-    const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
+    const response = await apiFetch(WPComAPIVersion.wcV3, path);
     const json = await response.json();
 
     if (!response.ok) {
@@ -45,7 +44,7 @@ export async function fetchShippingZones() {
     }
 
     const zones: ShippingZone[] = await Promise.all(
-      json.data.map(async (obj) => {
+      normalizeJSON(json).map(async (obj) => {
         return {
           id: obj.id,
           title: obj.name,
@@ -67,14 +66,14 @@ export async function fetchShippingZones() {
 export async function fetchShippingZoneLocations(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/locations`;
-    const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
+    const response = await apiFetch(WPComAPIVersion.wcV3, path);
     const json = await response.json();
 
     if (!response.ok) {
       throw new APIError(path, response.status, json);
     }
 
-    const locations: ShippingZoneLocation[] = json.data.map((obj) => {
+    const locations: ShippingZoneLocation[] = normalizeJSON(json).map((obj) => {
       return {
         code: obj.code,
         name: getZoneName(obj.code),
@@ -94,14 +93,14 @@ export async function fetchShippingZoneLocations(zoneID: number) {
 export async function fetchShippingZoneMethods(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/methods`;
-    const response = await jetpackFetch(WPComAPIVersion.wcV3, path);
+    const response = await apiFetch(WPComAPIVersion.wcV3, path);
     const json = await response.json();
 
     if (!response.ok) {
       throw new APIError(path, response.status, json);
     }
 
-    const methods: ShippingZoneMethod[] = json.data.map((obj) => {
+    const methods: ShippingZoneMethod[] = normalizeJSON(json).map((obj) => {
       return {
         id: obj.method_id,
         title: obj.method_title,

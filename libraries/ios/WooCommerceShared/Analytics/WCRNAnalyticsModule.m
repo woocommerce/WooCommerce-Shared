@@ -9,7 +9,7 @@
 
 @implementation WCRNAnalyticsModule
 
-RCT_EXPORT_MODULE(MyReactNativeBridge);
+RCT_EXPORT_MODULE(AnalyticsModule);
 
 -(instancetype)initWithProvider:(id<WCRNAnalyticsProvider>) provider {
     if (self = [super init]) {

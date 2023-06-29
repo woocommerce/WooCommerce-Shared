@@ -15,7 +15,7 @@ import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from 'react-native';
 
 const sendAnalyticsEvent = (event) => {
-  NativeModules.MyReactNativeBridge.sendEvent(event);
+  NativeModules.AnalyticsModule.sendEvent(event);
 };
 
 

@@ -3,13 +3,13 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.woocommerce.shared.library.AnalyticsBridge
 
-class WooReactNativeBridge(
-    private val reactContext: ReactApplicationContext,
+class ReactNativeAnalyticsModule(
+    reactContext: ReactApplicationContext,
     private val analyticsBridge: AnalyticsBridge,
 ) : ReactContextBaseJavaModule(reactContext) {
 
     override fun getName(): String {
-        return "WooReactNativeBridge"
+        return "AnalyticsModule"
     }
 
     @ReactMethod

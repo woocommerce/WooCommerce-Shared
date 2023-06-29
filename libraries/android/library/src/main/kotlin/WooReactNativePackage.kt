@@ -6,7 +6,7 @@ import com.woocommerce.shared.library.AnalyticsBridge
 
 class WooReactNativePackage(private val analyticsBridge: AnalyticsBridge) : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return listOf(WooReactNativeBridge(reactContext, analyticsBridge))
+        return listOf(ReactNativeAnalyticsModule(reactContext, analyticsBridge))
     }
 
     override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {

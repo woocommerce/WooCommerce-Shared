@@ -1,4 +1,9 @@
-import { Dependency, readDependency } from "../Storage/AppDependencies";
+import {
+  getApiToken,
+  getAppPassword,
+  getBlogId,
+  getSiteUrl,
+} from "../Storage/InMemoryDependencies";
 import { jetpackFetch } from "./JetpackAPI";
 import { restFetch } from "./RestAPI";
 
@@ -35,14 +40,21 @@ export class APIError extends Error {
  * It can use the `JetpackAPI` or the `RestAPI` depending on what credentials are available.
  */
 export async function apiFetch(apiVersion: WPComAPIVersion, path: string) {
-  const blogId = (await readDependency(Dependency.blogId)) ?? "";
-  const apiToken = (await readDependency(Dependency.apiToken)) ?? "";
+  const blogId = getBlogId() ?? "";
+  const apiToken = getApiToken() ?? "";
 
   if (blogId.length > 0 && apiToken.length > 0) {
     return jetpackFetch(apiVersion, path, blogId, apiToken);
   }
 
-  return restFetch(apiVersion, path);
+  const siteUrl = getSiteUrl() ?? "";
+  const appPassword = getAppPassword() ?? "";
+
+  if (siteUrl.length > 0 && appPassword.length > 0) {
+    return restFetch(apiVersion, path, siteUrl, appPassword);
+  }
+
+  throw Error("API credentials not found");
 }
 
 /*

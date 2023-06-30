@@ -55,7 +55,7 @@ echo "--- :xcode: Building"
 make bundle-ios xcframework
 
 echo "--- :amazon-s3: Uploading"
-GIT_HASH=$(git rev-parse --short HEAD)
+GIT_HASH=$(git rev-parse HEAD)
 aws s3 cp dist/WooCommerceShared.xcframework.zip "s3://a8c-apps-public-artifacts/woocommerce-shared/${GIT_HASH}/WooCommerceShared.xcframework.zip"
 
 echo "--- 🧮 Hashing"

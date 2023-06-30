@@ -1,5 +1,7 @@
 SHELL := /bin/bash -eo pipefail
 
+VERSION ?= 0.0.1
+
 #######
 # Build Tasks
 #######
@@ -89,6 +91,10 @@ xcframework:
 
 	rm -rf dist/WooCommerceShared.xcframework.zip
 	ditto -c -k --sequesterRsrc --keepParent dist/WooCommerceShared.xcframework dist/WooCommerceShared.xcframework.zip
+
+generate_podspec:
+	@echo "Generating podspec.rb..."
+	@ruby -rerb -e "version = \"$(VERSION)\"; id = \"`git rev-parse HEAD`\"; template = ERB.new(File.read('podspec.erb')); File.write('WooCommerceShared.podspec', template.result(binding))"
 
 # Remove all downloaded dependencies and compiled code
 #

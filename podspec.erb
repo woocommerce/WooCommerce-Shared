@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name          = 'WooCommerceShared'
-  s.version       = '0.0.1'
+  s.version       = '<%= version %>'
 
   s.summary       = 'Shared components used for the iOS and Android WooCommerce Apps.'
   s.description   = "#{s.summary} It's a React Native library project."
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.source_files = 'WooCommerceShared.xcframework'
 
   s.source = {
-    http: "https://cdn.a8c-ci.services/woocommerce-shared/4fb76dee105bfaf89d2671de73f8e7a52581b12d/WooCommerceShared.xcframework.zip"
+    http: "https://cdn.a8c-ci.services/woocommerce-shared/<%= id %>/WooCommerceShared.xcframework.zip"
   }
 
   s.vendored_frameworks = 'WooCommerceShared.xcframework'

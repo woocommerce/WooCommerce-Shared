@@ -36,24 +36,24 @@ steps:
   ######################
   # Publish Android Artifacts
   ######################
-  #
-  # Temporarily disable publishing Android artifacts because we need a more up to date 
-  # version of `glibc` in our Android agents. This should be available once Buildkite
-  # base image switches to Amazon Linux 2023:
-  # https://github.com/buildkite/elastic-ci-stack-for-aws/pull/1122
-  #
-  # If we get blocked by publishing Android artifacts, we can temporarily switch to using
-  # Docker in which case the `add/node` branch of 
-  # https://github.com/wordpress-mobile/docker-android-build-image might be useful.
-  #
-  #  - label: "🧪 Build and upload Android Library to S3"
-  #    command: .buildkite/publish-android.sh
-  #    depends_on:
-  #      - "bundle-js"
-  #    plugins: *common_plugins
-  #    agents:
-  #      queue: "android"
-  #    if: "build.tag != null || build.pull_request.id != null || build.branch == 'trunk'"
+  - label: "🧪 Build and upload Android Library to S3"
+    command: .buildkite/publish-android.sh
+    depends_on:
+      - "bundle-js"
+    plugins:
+      - docker#v3.8.0:
+          # Use a temporary Docker container that has both Android & Node setup
+          # We're looking to remove the Docker usage as soon as possible.
+          image: "public.ecr.aws/automattic/android-build-image:bc7c60a898d89d968aa8202c6b5bd08f91c1779e"
+          propagate-environment: true
+          environment:
+            # DO NOT MANUALLY SET THESE VALUES!
+            # They are passed from the Buildkite agent to the Docker container
+            - "AWS_ACCESS_KEY"
+            - "AWS_SECRET_KEY"
+    agents:
+      queue: "android"
+    if: "build.tag != null || build.pull_request.id != null || build.branch == 'trunk'"
 
   #################
   # Lint

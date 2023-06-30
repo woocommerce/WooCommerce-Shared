@@ -1,10 +1,5 @@
 #!/bin/bash -e
 
-echo "--- :nodejs: Installing NVM"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --install
-
 echo "--- :nodejs: Installing Node"
 nvm install
 
@@ -25,6 +20,5 @@ mkdir -p ./libraries/android/library/build/assets
 cp ./dist/bundles/bundle-android.js ./libraries/android/library/build/assets/index.android.bundle
 
 cd ./libraries/android/
-cp gradle.properties-example gradle.properties
 ./gradlew -PwillPublishBinary=true :library:prepareToPublishToS3 `prepare_to_publish_to_s3_params` :library:publish
 

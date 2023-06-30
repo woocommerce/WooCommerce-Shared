@@ -14,7 +14,10 @@ steps:
   # Build JS
   ######################
   - label: "🧪 Build JS"
-    command: make bundle-ci
+    command: .buildkite/build-js.sh
+    plugins: *common_plugins
+    artifact_paths:
+      - "dist/**/*"
 
   ######################
   # Build iOS

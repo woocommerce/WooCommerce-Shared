@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library' apply false
+    id 'com.android.application' apply false
+}
+
+ext {
+    compileSdkVersion = 33
+    targetSdkVersion = 33
+    minSdkVersion = 24
+
+    appCompatVersion = '1.4.2'
+    androidxCoreVersion = '1.10.1'
+    reactNativeVersion = '0.71.8'
+
+    // Testing
+    jUnitVersion = '4.13.2'
+
+    ndkVersion = "25.2.9519653"
+    flipperVersion = '0.176.1'
+}

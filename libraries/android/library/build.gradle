@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.facebook.react'
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+def buildAssetsFolder = 'build/assets'
+
+android {
+    ndkVersion rootProject.ext.ndkVersion
+
+    namespace 'com.woocommerce.shared.library'
+    compileSdk project.compileSdkVersion
+
+    defaultConfig {
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            assets.srcDirs += buildAssetsFolder
+        }
+        release.kotlin.srcDirs += 'src/release/kotlin'
+        debug.kotlin.srcDirs += 'src/debug/kotlin'
+    }
+}
+
+dependencies {
+    implementation "com.facebook.react:react-android"
+    implementation "com.facebook.react:hermes-android"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
+
+    debugImplementation "com.facebook.flipper:flipper:$flipperVersion"
+    debugImplementation "com.facebook.flipper:flipper-network-plugin:$flipperVersion"
+
+    testImplementation "junit:junit:$jUnitVersion"
+}
+
+apply from: file("../../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

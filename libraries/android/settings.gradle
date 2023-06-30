@@ -1,0 +1,22 @@
+pluginManagement {
+    gradle.ext.agpVersion = '7.4.2'
+    gradle.ext.kotlinVersion = '1.8.10'
+
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+
+    plugins {
+        id 'com.android.library' version gradle.ext.agpVersion
+        id 'com.android.application' version gradle.ext.agpVersion
+        id 'org.jetbrains.kotlin.android' version gradle.ext.kotlinVersion
+    }
+}
+
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+
+include(":library")
+include(":demo")
+
+includeBuild('../../node_modules/react-native-gradle-plugin')

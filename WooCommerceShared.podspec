@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.source_files = 'WooCommerceShared.xcframework'
 
   s.source = {
-    http: "https://cdn.a8c-ci.services/woocommerce-shared/4fb76dee105bfaf89d2671de73f8e7a52581b12d/WooCommerceShared.xcframework.zip"
+    http: 'https://cdn.a8c-ci.services/woocommerce-shared/376403148c39d452177120034e90795830027498/WooCommerceShared.xcframework.zip'
   }
 
   s.vendored_frameworks = 'WooCommerceShared.xcframework'

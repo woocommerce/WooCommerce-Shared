@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.facebook.react'
     id "maven-publish"
     id "com.automattic.android.publish-to-s3"
 }
@@ -16,11 +17,11 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     namespace 'com.woocommerce.shared.library'
-    compileSdk 33
+    compileSdk project.compileSdkVersion
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -40,13 +41,18 @@ android {
         main {
             assets.srcDirs += buildAssetsFolder
         }
+        release.kotlin.srcDirs += 'src/release/kotlin'
+        debug.kotlin.srcDirs += 'src/debug/kotlin'
     }
 }
 
 dependencies {
-    implementation "com.facebook.react:react-android:$reactNativeVersion"
-    implementation "com.facebook.react:hermes-android:$reactNativeVersion"
+    implementation "com.facebook.react:react-android"
+    implementation "com.facebook.react:hermes-android"
     implementation "androidx.core:core-ktx:$androidxCoreVersion"
+
+    debugImplementation "com.facebook.flipper:flipper:$flipperVersion"
+    debugImplementation "com.facebook.flipper:flipper-network-plugin:$flipperVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
 }

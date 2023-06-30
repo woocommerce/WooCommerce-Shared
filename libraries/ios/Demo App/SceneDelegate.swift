@@ -17,12 +17,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         /// 3. Create a view hierarchy programmatically
+        ///
+        /// By default, we'll use a pre-compiled bundle that's embedded in the demo app
         let viewController = WCReactNativeViewController()
 
-        let navigation = UINavigationController(rootViewController: viewController)
+        /// But you might want to reference a running metro server (which can be used from a simulator):
+        /// let viewController = WCReactNativeViewController.forLocalDevelopment()
+
+        /// Or perhaps you run Metro on a non-standard port:
+        /// let viewController = WCReactNativeViewController.forLocalDevelopment(onPort: 8443)
+
+        /// If you want to run on physical hardware, you can do that too:
+        /// let viewController = WCReactNativeViewController.forOnDeviceDevelopment(withServer: "192.168.5.149", onPort: 8443)
 
         /// 4. Set the root view controller of the window with your view controller
-        window.rootViewController = navigation
+        window.rootViewController = viewController
 
         /// 5. Set the window and call makeKeyAndVisible()
         self.window = window

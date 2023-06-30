@@ -3,5 +3,8 @@ module.exports = {
     android: {
       sourceDir: './libraries/android',
     },
+    ios: {
+      sourceDir: './libraries/ios',
+    }
   },
 };

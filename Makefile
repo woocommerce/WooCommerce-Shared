@@ -13,7 +13,7 @@ all: yarn gems pods bundle xcframework
 # Install JS dependencies
 #
 yarn:
-	yarn
+	yarn install
 
 # Build production JS bundles
 #
@@ -22,12 +22,12 @@ bundle: yarn bundle-ios bundle-android
 bundle-ios:
 	yarn
 	mkdir -p dist/bundles
-	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.js
+	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.tsx
 
 bundle-android:
 	yarn
 	mkdir -p dist/bundles
-	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.js
+	yarn react-native bundle --platform android --bundle-output dist/bundles/bundle-android.js --dev false --entry-file index.tsx
 
 bundle-ci:
 	# Notice we're using the AWS Public ECR image to avoid being rate limited by Docker Hub.
@@ -113,7 +113,7 @@ lint-ruby-fix:
 
 # Start local React Native development
 #
-dev: yarn
+dev: yarn pods
 	yarn react-native start
 
 # Start local iOS development

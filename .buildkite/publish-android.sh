@@ -23,5 +23,8 @@ mkdir -p ./libraries/android/library/build/assets
 cp ./dist/bundles/bundle-android.js ./libraries/android/library/build/assets/index.android.bundle
 
 cd ./libraries/android/
-./gradlew -PwillPublishBinary=true :library:prepareToPublishToS3 `prepare_to_publish_to_s3_params` :library:publish
+
+# :demo:preBuild is necessary because React Native Gradle Plugin only works if a `com.android.application`
+# module is part of the build. We don't need to build the demo app, so the `preBuild` task is enough for us
+./gradlew -PwillPublishBinary=true :demo:preBuild :library:prepareToPublishToS3 `prepare_to_publish_to_s3_params` :library:publish
 

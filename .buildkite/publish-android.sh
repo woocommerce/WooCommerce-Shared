@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# For Docker to have access to nvm
+source /root/.bashrc
+
 echo "--- :nodejs: Installing Node"
 nvm install
 

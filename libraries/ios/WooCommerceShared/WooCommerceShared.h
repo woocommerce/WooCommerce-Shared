@@ -9,3 +9,4 @@ FOUNDATION_EXPORT const unsigned char WooCommerceSharedVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <WooCommerceShared/PublicHeader.h>
 
 #import <WooCommerceShared/WCReactNativeViewController.h>
+#import <WooCommerceShared/WCRNAnalyticsProvider.h>

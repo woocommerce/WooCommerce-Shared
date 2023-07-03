@@ -25,13 +25,22 @@ struct DevServerURL {
     }
 }
 
+class FakeAnalyticsProvider: WCRNAnalyticsProvider {
+    func sendEvent(_ event: String) {
+        print("Sending fake event: \(event)")
+    }
+}
+
 extension WCReactNativeViewController {
 
     /// Returns a View Controller that allows running a simulator debug build that can connect to the metro server.
     ///
     ///
     static func forLocalDevelopment(onPort port: UInt16 = 8081) -> WCReactNativeViewController {
-        WCReactNativeViewController(bundle: DevServerURL.from(hostname: "localhost", port: port))
+        WCReactNativeViewController(bundle: DevServerURL.from(hostname: "localhost", port: port),
+                                    analyticsProvider: FakeAnalyticsProvider(),
+                                    blogID: <#blogid#>,
+                                    apiToken: <#token#>)
     }
 
     /// Create a View Controller that allows running an on-device debug build that can connect to the metro server.
@@ -41,7 +50,10 @@ extension WCReactNativeViewController {
         withServer ipAddress: IPv4Address,
         onPort port: UInt16 = 8081
     ) -> WCReactNativeViewController {
-        WCReactNativeViewController(bundle: DevServerURL.from(hostname: ipAddress.debugDescription, port: port))
+        WCReactNativeViewController(bundle: DevServerURL.from(hostname: ipAddress.debugDescription, port: port),
+                                    analyticsProvider: FakeAnalyticsProvider(),
+                                    blogID: <#blogid#>,
+                                    apiToken: <#token#>)
     }
 }
 

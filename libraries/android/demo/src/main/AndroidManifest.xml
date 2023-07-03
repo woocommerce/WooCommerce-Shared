@@ -6,6 +6,7 @@
 
     <application
         package="com.woocommerce.shared.demo"
+        android:name=".DemoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

@@ -1,3 +1,5 @@
+//**Do not** remove OR reorder this import: https://reactnavigation.org/docs/stack-navigator
+import 'react-native-gesture-handler';
 import React, { useEffect, useState } from "react";
 import { AppRegistry } from "react-native";
 import ShippingZonesList from "./ShippingZones";
@@ -11,8 +13,9 @@ import {
   setBlogId,
   setSiteUrl,
 } from "./Storage/InMemoryDependencies";
+import {createStackNavigator} from "@react-navigation/stack";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator()
 
 const NavigationStack = (props) => {
   /*

@@ -21,6 +21,11 @@
 		2478B0C02A0AED7700E91CDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478B0BF2A0AED7700E91CDF /* SceneDelegate.swift */; };
 		2478B0E22A0B01CB00E91CDF /* bundle-ios.js in Resources */ = {isa = PBXBuildFile; fileRef = 2478B0E12A0B01CB00E91CDF /* bundle-ios.js */; };
 		24D35CDA2A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */; };
+		2649E1CA2A4BF5F200C1D00C /* WCRNAnalyticsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649E1C92A4BF5F200C1D00C /* WCRNAnalyticsModule.m */; };
+		2690D6362A4C11A100D025DE /* WCRNAnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2649E1CC2A4C107000C1D00C /* WCRNAnalyticsProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2690D6372A4C11A400D025DE /* WCRNAnalyticsModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 2649E1C82A4BF57500C1D00C /* WCRNAnalyticsModule.h */; };
+		2690D63A2A4C170600D025DE /* WCRNBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2690D6392A4C170300D025DE /* WCRNBridge.h */; };
+		2690D63C2A4C178F00D025DE /* WCRNBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690D63B2A4C178F00D025DE /* WCRNBridge.m */; };
 		DA27D9F570F33985E7E43E40 /* Pods_WooCommerceShared_WooCommerceSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */; };
 		E8E437A2259ABB6D74143413 /* Pods_WooCommerceShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3DE3FD68E0CD0385BE226A5 /* Pods_WooCommerceShared.framework */; };
 /* End PBXBuildFile section */
@@ -73,6 +78,11 @@
 		2478B0E12A0B01CB00E91CDF /* bundle-ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "bundle-ios.js"; path = "../../../dist/bundles/bundle-ios.js"; sourceTree = "<group>"; };
 		24C4BDA02A0BF09E00276FCB /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WCReactNativeViewController+MetroServer.swift"; sourceTree = "<group>"; };
+		2649E1C82A4BF57500C1D00C /* WCRNAnalyticsModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNAnalyticsModule.h; sourceTree = "<group>"; };
+		2649E1C92A4BF5F200C1D00C /* WCRNAnalyticsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRNAnalyticsModule.m; sourceTree = "<group>"; };
+		2649E1CC2A4C107000C1D00C /* WCRNAnalyticsProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNAnalyticsProvider.h; sourceTree = "<group>"; };
+		2690D6392A4C170300D025DE /* WCRNBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNBridge.h; sourceTree = "<group>"; };
+		2690D63B2A4C178F00D025DE /* WCRNBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRNBridge.m; sourceTree = "<group>"; };
 		310F006D69BC062205EDD9A4 /* Pods-WooCommerceShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared.release.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared.release.xcconfig"; sourceTree = "<group>"; };
 		339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WooCommerceShared_WooCommerceSharedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840EBAB6F5991FF94DBE2653 /* Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +160,8 @@
 				2478B04C2A0ACA6600E91CDF /* WooCommerceShared.docc */,
 				2478B0642A0ACEC000E91CDF /* WCReactNativeViewController.h */,
 				2478B0652A0ACEC000E91CDF /* WCReactNativeViewController.m */,
+				2690D6382A4C16EF00D025DE /* Bridge */,
+				2649E1CB2A4C103200C1D00C /* Analytics */,
 				2478B0E12A0B01CB00E91CDF /* bundle-ios.js */,
 			);
 			path = WooCommerceShared;
@@ -184,6 +196,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2649E1CB2A4C103200C1D00C /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2649E1CC2A4C107000C1D00C /* WCRNAnalyticsProvider.h */,
+				2649E1C82A4BF57500C1D00C /* WCRNAnalyticsModule.h */,
+				2649E1C92A4BF5F200C1D00C /* WCRNAnalyticsModule.m */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		2690D6382A4C16EF00D025DE /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				2690D6392A4C170300D025DE /* WCRNBridge.h */,
+				2690D63B2A4C178F00D025DE /* WCRNBridge.m */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
 		37E6C0EA6F3F8FF45977AE4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +234,9 @@
 			files = (
 				2478B0592A0ACA6600E91CDF /* WooCommerceShared.h in Headers */,
 				2478B0662A0ACEC000E91CDF /* WCReactNativeViewController.h in Headers */,
+				2690D6362A4C11A100D025DE /* WCRNAnalyticsProvider.h in Headers */,
+				2690D6372A4C11A400D025DE /* WCRNAnalyticsModule.h in Headers */,
+				2690D63A2A4C170600D025DE /* WCRNBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +459,8 @@
 			files = (
 				2478B0672A0ACEC000E91CDF /* WCReactNativeViewController.m in Sources */,
 				2478B04D2A0ACA6600E91CDF /* WooCommerceShared.docc in Sources */,
+				2690D63C2A4C178F00D025DE /* WCRNBridge.m in Sources */,
+				2649E1CA2A4BF5F200C1D00C /* WCRNAnalyticsModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

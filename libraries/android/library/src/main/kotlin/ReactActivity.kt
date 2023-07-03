@@ -1,6 +1,6 @@
 package com.woocommerce.shared.library
 
-import android.app.Activity
+import WooReactNativePackage
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.react.PackageList
@@ -27,7 +27,10 @@ class ReactActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         SoLoader.init(this, false)
         reactRootView = ReactRootView(this)
 
-        val packages: List<ReactPackage> = PackageList(application).packages
+        val analyticsBridge = (application as LibraryDependencyProvider).provideAnalyticsBridge()
+        val analyticsPackage = WooReactNativePackage(analyticsBridge)
+
+        val packages: List<ReactPackage> = PackageList(application).packages + analyticsPackage
 
         SetupBuildSpecificDependencies(application)
         // Packages that cannot be autolinked yet can be added manually here, for example:

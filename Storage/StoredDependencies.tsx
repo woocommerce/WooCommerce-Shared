@@ -4,8 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
  * Depenencies Key definitions.
  */
 export enum Dependency {
-  apiToken = "api-token",
-  blogId = "blog-id",
+  _none = "", // Fill with values when needed
 }
 
 /*

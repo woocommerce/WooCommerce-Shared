@@ -1,9 +1,14 @@
 #import "WCReactNativeViewController.h"
 #import <React/React-Core-umbrella.h>
 #import <React/RCTRootView.h>
+#import "WCRNAnalyticsProvider.h"
+#import "WCRNBridge.h"
 
 @interface WCReactNativeViewController ()
-@property(atomic, retain) NSURL* bundleUrl;
+@property(atomic, strong) NSURL* bundleUrl;
+@property(atomic, strong) NSString* blogId;
+@property(atomic, strong) NSString* apiToken;
+@property(atomic, strong) id<WCRNAnalyticsProvider> analyticsProvider;
 @end
 
 @implementation WCReactNativeViewController
@@ -33,20 +38,36 @@
     return self;
 }
 
-- (instancetype)initWithBundle:(NSURL *)url {
-    if(self = [super init]) {
-        self.bundleUrl = url;
+-(instancetype)initWithAnalyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
+                                  blogID:(NSString *)blogId
+                                apiToken: (NSString*) apiToken {
+    if (self = [self init]) {
+        self.analyticsProvider = analyticsProvider;
+        self.blogId =  blogId;
+        self.apiToken = apiToken;
     }
+    return self;
 
+}
+
+-(instancetype)initWithBundle:(NSURL *) url
+            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
+                       blogID:(NSString *)blogId
+                     apiToken: (NSString*) apiToken {
+    if (self = [super init]) {
+        self.bundleUrl = url;
+        self.analyticsProvider = analyticsProvider;
+        self.blogId =  blogId;
+        self.apiToken = apiToken;
+    }
     return self;
 }
 
 - (void) loadView {
-    self.view = [[RCTRootView alloc] initWithBundleURL: self.bundleUrl
-                                            moduleName: @"main"
-                                     initialProperties: [NSDictionary new]
-                                         launchOptions: [NSDictionary new]
-    ];
+    NSDictionary * initialProps = @{@"blogId": self.blogId, @"token": self.apiToken};
+    WCRNBridge * delegate = [[WCRNBridge alloc] initWithBundleURL:self.bundleUrl analyticsProvider:self.analyticsProvider];
+    RCTBridge * bridge = [[RCTBridge alloc] initWithDelegate:delegate launchOptions:[NSDictionary new]];
+    self.view = [[RCTRootView alloc] initWithBridge:bridge moduleName:@"main" initialProperties:initialProps];
 }
 
 @end

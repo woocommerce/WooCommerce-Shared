@@ -1,4 +1,5 @@
 import { WPComAPIVersion } from "./APIs";
+import {Base64} from "js-base64";
 
 /*
  * Utility function to create a rest request using hitting the site url directly.
@@ -14,7 +15,7 @@ export async function restFetch(
 
   return fetch(url, {
     headers: {
-      Authorization: `Basic ${appPassword}`,
+      Authorization: `Basic ${Base64.encode(appPassword)}`,
     },
   });
 }

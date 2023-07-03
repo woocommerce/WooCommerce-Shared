@@ -22,6 +22,7 @@ ext {
     flipperVersion = '0.176.1'
 
     willPublishWooCommerceSharedLibrary = findProperty("willPublishWooCommerceSharedLibrary")?.toBoolean() ?: false
+    reactNativeLibrariesPublishedVersion = findProperty("reactNativeLibrariesPublishedVersion")
 }
 
 ext.reactNativeSubProjectsToPublish = [

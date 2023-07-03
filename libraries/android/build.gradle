@@ -3,6 +3,7 @@ plugins {
     id 'com.android.application' apply false
     id 'org.jetbrains.kotlin.android' apply false
     id 'com.facebook.react' apply false
+    id 'com.automattic.android.publish-to-s3' apply false
 }
 
 ext {
@@ -21,4 +22,32 @@ ext {
     flipperVersion = '0.176.1'
 
     willPublishWooCommerceSharedLibrary = findProperty("willPublishWooCommerceSharedLibrary")?.toBoolean() ?: false
+}
+
+ext.reactNativeSubProjectsToPublish = [
+    "react-native-async-storage_async-storage",
+    "react-native-safe-area-context",
+    "react-native-screens"
+]
+
+configure (subprojects.findAll { reactNativeSubProjectsToPublish.contains(it.name) }) { reactNativeLibrary ->
+    apply plugin: "maven-publish"
+    apply plugin: "com.automattic.android.publish-to-s3"
+
+    afterEvaluate {
+        afterEvaluate {
+            publishing {
+                publications {
+                    Maven(MavenPublication) {
+                        from components.release
+
+                        groupId "com.woocommerce.shared"
+                        artifactId reactNativeLibrary.name
+                        artifact tasks.named("androidSourcesJar")
+                        // version is set by 'publish-to-s3' plugin
+                    }
+                }
+           }
+        }
+    }
 }

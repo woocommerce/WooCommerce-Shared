@@ -26,5 +26,5 @@ cd ./libraries/android/
 
 # :demo:preBuild is necessary because React Native Gradle Plugin only works if a `com.android.application`
 # module is part of the build. We don't need to build the demo app, so the `preBuild` task is enough for us
-./gradlew -PwillPublishBinary=true :demo:preBuild :library:prepareToPublishToS3 `prepare_to_publish_to_s3_params` :library:publish
+./gradlew -PwillPublishWooCommerceSharedLibrary=true :demo:preBuild :library:prepareToPublishToS3 `prepare_to_publish_to_s3_params` :library:publish
 

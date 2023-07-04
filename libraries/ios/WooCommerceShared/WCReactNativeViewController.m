@@ -65,9 +65,21 @@
 
 - (void) loadView {
     NSDictionary * initialProps = @{@"blogId": self.blogId, @"token": self.apiToken};
-    WCRNBridge * delegate = [[WCRNBridge alloc] initWithBundleURL:self.bundleUrl analyticsProvider:self.analyticsProvider];
+    WCRNBridge * delegate = [[WCRNBridge alloc] initWithBundleURL:self.bundleUrl
+                                                analyticsProvider:self.analyticsProvider
+                                                   hostController:self];
     RCTBridge * bridge = [[RCTBridge alloc] initWithDelegate:delegate launchOptions:[NSDictionary new]];
     self.view = [[RCTRootView alloc] initWithBridge:bridge moduleName:@"main" initialProperties:initialProps];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:true];
+    [self.navigationController setNavigationBarHidden:true];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:true];
+    [self.navigationController setNavigationBarHidden:false];
 }
 
 @end

@@ -39,8 +39,9 @@ done
 
 echo "--- :android: Publishing WooCommerce Shared Library"
 
-VERSION_TO_PUBLISH=`./gradlew -q :library:calculateVersionName `prepare_to_publish_to_s3_params``
+PREPARE_TO_PUBLISH_T0_S3_PARAMS=`prepare_to_publish_to_s3_params`
+VERSION_TO_PUBLISH=`./gradlew -q :library:calculateVersionName $PREPARE_TO_PUBLISH_T0_S3_PARAMS`
 # :demo:preBuild is necessary because React Native Gradle Plugin only works if a `com.android.application`
 # module is part of the build. We don't need to build the demo app, so the `preBuild` task is enough for us
-./gradlew -PwillPublishWooCommerceSharedLibrary=true -PreactNativeLibrariesPublishedVersion=VERSION_TO_PUBLISH :demo:preBuild :library:prepareToPublishToS3 `prepare_to_publish_to_s3_params` :library:publish
+./gradlew -PwillPublishWooCommerceSharedLibrary=true -PreactNativeLibrariesPublishedVersion=$VERSION_TO_PUBLISH :demo:preBuild :library:prepareToPublishToS3 $PREPARE_TO_PUBLISH_T0_S3_PARAMS :library:publish
 

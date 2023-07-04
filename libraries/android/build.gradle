@@ -6,6 +6,8 @@ plugins {
     id 'com.automattic.android.publish-to-s3' apply false
 }
 
+import org.json.JSONObject
+
 ext {
     compileSdkVersion = 33
     targetSdkVersion = 33
@@ -20,8 +22,25 @@ ext {
     ndkVersion = "25.2.9519653"
     flipperVersion = '0.176.1'
 
+    reactNativeVersion = new JSONObject(file("$rootDir/../../package.json").getText()).optJSONObject('dependencies').optString('react-native')
+
     willPublishWooCommerceSharedLibrary = findProperty("willPublishWooCommerceSharedLibrary")?.toBoolean() ?: false
     reactNativeLibrariesPublishedVersion = findProperty("reactNativeLibrariesPublishedVersion")
+}
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute(module("com.facebook.react:react-native"))
+                    .with(module("com.facebook.react:react-android:$reactNativeVersion"))
+                substitute(module("com.facebook.react:react-android"))
+                    .with(module("com.facebook.react:react-android:$reactNativeVersion"))
+                substitute(module("com.facebook.react:hermes-android"))
+                    .with(module("com.facebook.react:hermes-android:$reactNativeVersion"))
+            }
+        }
+    }
 }
 
 ext.reactNativeSubProjectsToPublish = [

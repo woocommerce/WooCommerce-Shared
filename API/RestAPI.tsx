@@ -13,6 +13,7 @@ export async function restFetch(
   console.log(`-- About to fetch: ${url}`); // We can delete this but seems handy for the time being to seee what requests are being fired.
 
   return fetch(url, {
+    credentials: "omit", // Do not send any credential cookies left by the apps on the browser.
     headers: {
       Authorization: `Basic ${appPassword}`,
     },

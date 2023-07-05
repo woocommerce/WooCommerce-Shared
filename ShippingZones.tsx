@@ -6,18 +6,19 @@ import {
   Text,
   View,
   Alert,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
-import { NativeModules } from 'react-native';
+import { NativeModules } from "react-native";
+import { HeaderBackButton } from "@react-navigation/elements";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);
 };
-
 
 type RowProps = {
   title: string;
@@ -76,7 +77,7 @@ const ShippingZonesList = () => {
     try {
       const zones = await fetchShippingZones();
       setData(zones);
-      sendAnalyticsEvent('shipping_zones_shown');
+      sendAnalyticsEvent("shipping_zones_shown");
     } catch (error) {
       console.log(error);
       showRetryAlert();
@@ -93,6 +94,17 @@ const ShippingZonesList = () => {
 
   useEffect(() => {
     navigation.setOptions({
+      headerLeft: () => (
+        <HeaderBackButton
+          tintColor={Platform.OS === "ios" ? "rgb(103, 67, 153)" : undefined}
+          style={{ marginLeft: Platform.OS === "ios" ? -15 : -5 }}
+          label="Settings"
+          labelVisible={false}
+          onPress={() => {
+            NativeModules.ExitModule.exit();
+          }}
+        />
+      ),
       headerRight: () => (
         <ToolbarActionButton
           label={"Add"}

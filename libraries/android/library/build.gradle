@@ -69,7 +69,9 @@ if (willPublishWooCommerceSharedLibrary) {
     configurations.all {
         resolutionStrategy.dependencySubstitution {
             reactNativeSubProjectsToPublish.each { reactNativeLibraryToPublish ->
-                substitute project(":$reactNativeLibraryToPublish") using module("${rootProject.publicationGroupId}:$reactNativeLibraryToPublish:$reactNativeLibrariesPublishedVersion") because "we use published version of $reactNativeLibraryToPublish"
+                substitute project(":$reactNativeLibraryToPublish") \
+                  using module("${rootProject.publicationGroupId}:$reactNativeLibraryToPublish:$reactNativeLibrariesPublishedVersion") \
+                  because "we use published version of $reactNativeLibraryToPublish"
             }
         }
     }

@@ -7,6 +7,12 @@ plugins {
 }
 
 repositories {
+    maven {
+        url 'https://a8c-libs.s3.amazonaws.com/android'
+        content {
+            includeGroup "${rootProject.publicationGroupId}"
+        }
+    }
     mavenCentral()
     google()
 }
@@ -59,16 +65,34 @@ dependencies {
 
 apply from: file("../../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 
+if (willPublishWooCommerceSharedLibrary) {
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            reactNativeSubProjectsToPublish.each { reactNativeLibraryToPublish ->
+                substitute project(":$reactNativeLibraryToPublish") \
+                  using module("${rootProject.publicationGroupId}:$reactNativeLibraryToPublish:$reactNativeLibrariesPublishedVersion") \
+                  because "we use published version of $reactNativeLibraryToPublish"
+            }
+        }
+    }
+}
+
 project.afterEvaluate {
     publishing {
         publications {
             WooCommerceSharedLibraryPublication(MavenPublication) {
                 from components.release
 
-                groupId "com.woocommerce.shared"
+                groupId rootProject.publicationGroupId
                 artifactId "library"
                 artifact tasks.named("androidSourcesJar")
                 // version is set by 'publish-to-s3' plugin
+
+                versionMapping {
+                    allVariants {
+                        fromResolutionOf("releaseRuntimeClasspath")
+                    }
+                }
             }
         }
    }

@@ -24,8 +24,10 @@ ext {
 
     reactNativeVersion = new JSONObject(file("$rootDir/../../package.json").getText()).optJSONObject('dependencies').optString('react-native')
 
+    // Publishing
     willPublishWooCommerceSharedLibrary = findProperty("willPublishWooCommerceSharedLibrary")?.toBoolean() ?: false
     reactNativeLibrariesPublishedVersion = findProperty("reactNativeLibrariesPublishedVersion")
+    publicationGroupId = "com.woocommerce.shared"
 }
 
 allprojects {
@@ -60,7 +62,7 @@ configure (subprojects.findAll { reactNativeSubProjectsToPublish.contains(it.nam
                     Maven(MavenPublication) {
                         from components.release
 
-                        groupId "com.woocommerce.shared"
+                        groupId rootProject.publicationGroupId
                         artifactId reactNativeLibrary.name
                         artifact tasks.named("androidSourcesJar")
                         // version is set by 'publish-to-s3' plugin

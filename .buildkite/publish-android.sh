@@ -23,6 +23,7 @@ cd ./libraries/android/
 
 echo "--- :android: Publishing React Native Libraries"
 
+# Don't forget to add the project to `ext.reactNativeSubProjectsToPublish` in `libraries/android/build.gradle`
 REACT_NATIVE_PROJECTS_TO_PUBLISH=(
 react-native-async-storage_async-storage
 react-native-safe-area-context

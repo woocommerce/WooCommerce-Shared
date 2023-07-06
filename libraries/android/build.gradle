@@ -45,6 +45,7 @@ allprojects {
     }
 }
 
+// Don't forget to add the project to `REACT_NATIVE_PROJECTS_TO_PUBLISH` in `.buildkite/publish-android.sh`
 ext.reactNativeSubProjectsToPublish = [
     "react-native-async-storage_async-storage",
     "react-native-safe-area-context",

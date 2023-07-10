@@ -1,44 +1,41 @@
-// import { csc } from "country-state-city";
+import countries from "./country-states.json";
 
 /*
- * Returns the zone name for a country or region.
- * Returns an empty string for an unknown country, region or format.
+ * Returns the zone name for a country or state.
+ * Returns an empty string for an unknown country or state.
  * Supported formats:
  * - {CountryCode}
- * - {CountryCode:RegionCode}
- * - {CountryCode:CountryCode-RegionCode}
+ * - {CountryCode:StateCode}
  */
 export function getZoneName(countryOrRegion: string) {
+  const zoneComponents = countryOrRegion.split(":");
+
+  // Handles the {CountryCode} format
+  if (zoneComponents.length == 1) {
+    const country = getCountryByCode(zoneComponents[0]);
+    return country.name ?? countryOrRegion;
+  }
+
+  // Handles de {CountryCode:StateCode} format
+  if (zoneComponents.length == 2) {
+    const country = getCountryByCode(zoneComponents[0]);
+    const state = getStateByCode(country, zoneComponents[1]);
+    return state.name ?? countryOrRegion;
+  }
+
   return countryOrRegion;
-  // const zoneComponents = countryOrRegion.split(":");
+}
 
-  // // Handles the {CountryCode} format
-  // if (zoneComponents.length == 1) {
-  //   const country = ICountry.getCountryById(zoneComponents[0]);
-  //   return country?.name ?? "";
-  // }
+/*
+ * Finds a country from the list of countries using a country code.
+ */
+function getCountryByCode(countryCode: string): any {
+  return countries.find((country: any) => country.code === countryCode);
+}
 
-  // if (zoneComponents.length == 2) {
-  //   const stateComponents = zoneComponents[1].split("-");
-
-  //   // Handles de {CountryCode:RegionCode} format
-  //   if (stateComponents.length == 1) {
-  //     const state = State.getStateByCodeAndCountry(
-  //       stateComponents[0],
-  //       zoneComponents[0]
-  //     );
-  //     return state?.name ?? "";
-  //   }
-
-  //   // Handles the {CountryCode:CountryCode-RegionCode} format
-  //   if (stateComponents.length == 2) {
-  //     const state = State.getStateByCodeAndCountry(
-  //       stateComponents[1],
-  //       zoneComponents[0]
-  //     );
-  //     return state?.name ?? "";
-  //   }
-  // }
-
-  // return "";
+/*
+ * Finds a state from the list of states of a country using a state code.
+ */
+function getStateByCode(country: any, stateCode: string): any {
+  return country.states.find((state: any) => state.code === stateCode);
 }

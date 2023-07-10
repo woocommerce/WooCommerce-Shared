@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Alert,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
@@ -13,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from 'react-native';
+import {HeaderBackButton} from "@react-navigation/elements";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);
@@ -93,6 +95,13 @@ const ShippingZonesList = () => {
 
   useEffect(() => {
     navigation.setOptions({
+      headerLeft: () => <HeaderBackButton
+          style={{marginLeft: Platform.OS === "ios" ? -15 : -5}}
+          labelVisible={Platform.OS === "ios"}
+          label="Settings"
+          onPress={() => {
+            NativeModules.ExitModule.exit();
+          }}/>,
       headerRight: () => (
         <ToolbarActionButton
           label={"Add"}

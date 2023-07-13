@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - DerivedData/**/*
+    - Pods/**/*
+    - vendor/**/*
+    - node_modules/**/*
+  NewCops: enable
+
+Naming/FileName:
+  Exclude:
+    - '*.podspec'
+
+
+Metrics/BlockLength:
+  Exclude:
+    - '*.podspec'

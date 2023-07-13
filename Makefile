@@ -1,5 +1,7 @@
 SHELL := /bin/bash -eo pipefail
 
+VERSION ?= 0.0.1
+
 #######
 # Build Tasks
 #######
@@ -46,6 +48,9 @@ gems: bundle
 pods: gems
 	bundle exec pod install --project-directory=libraries/ios
 
+validate-pod:
+	bundle exec pod spec lint
+
 # Build an XCFramework of this project – this is the primary distribution artifact for iOS
 #
 xcframework:
@@ -84,8 +89,12 @@ xcframework:
 
 	@echo "--- :compression: Packaging XCFramework"
 
-	rm -rf dist/WooCommerceShared.xcframework.tar.gz
-	tar -czf dist/WooCommerceShared.xcframework.tar.gz -C dist/ WooCommerceShared.xcframework
+	rm -rf dist/WooCommerceShared.xcframework.zip
+	ditto -c -k --sequesterRsrc --keepParent dist/WooCommerceShared.xcframework dist/WooCommerceShared.xcframework.zip
+
+generate_podspec:
+	@echo "Generating podspec.rb..."
+	@ruby -rerb -e "version = \"$(VERSION)\"; id = \"`git rev-parse HEAD`\"; template = ERB.new(File.read('podspec.erb')); File.write('WooCommerceShared.podspec', template.result(binding))"
 
 # Remove all downloaded dependencies and compiled code
 #

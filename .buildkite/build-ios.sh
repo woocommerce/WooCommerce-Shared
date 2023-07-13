@@ -53,3 +53,16 @@ brew install xcbeautify
 
 echo "--- :xcode: Building"
 make bundle-ios xcframework
+
+echo "--- :amazon-s3: Uploading ZIP archive"
+GIT_HASH=$(git rev-parse HEAD)
+aws s3 cp dist/WooCommerceShared.xcframework.zip "s3://a8c-apps-public-artifacts/woocommerce-shared/${GIT_HASH}/WooCommerceShared.xcframework.zip"
+
+echo "--- 🧮 Hashing"
+ZIP_HASH=$(swift package compute-checksum dist/WooCommerceShared.xcframework.zip)
+echo "$ZIP_HASH" | tee dist/WooCommerceShared.xcframework.zip.checksum.txt
+aws s3 cp dist/WooCommerceShared.xcframework.zip.checksum.txt "s3://a8c-apps-public-artifacts/woocommerce-shared/${GIT_HASH}/WooCommerceShared.xcframework.zip.checksum.txt"
+
+echo "--- :amazon-s3: Uploading podspec"
+make generate_podspec
+aws s3 cp WooCommerceShared.podspec "s3://a8c-apps-public-artifacts/woocommerce-shared/${GIT_HASH}/WooCommerceShared.podspec"

@@ -3,6 +3,13 @@ pluginManagement {
     gradle.ext.kotlinVersion = '1.8.10'
 
     repositories {
+        maven {
+            url 'https://a8c-libs.s3.amazonaws.com/android'
+            content {
+                includeGroup "com.automattic.android"
+                includeGroup "com.automattic.android.publish-to-s3"
+            }
+        }
         gradlePluginPortal()
         google()
     }
@@ -11,6 +18,7 @@ pluginManagement {
         id 'com.android.library' version gradle.ext.agpVersion
         id 'com.android.application' version gradle.ext.agpVersion
         id 'org.jetbrains.kotlin.android' version gradle.ext.kotlinVersion
+        id "com.automattic.android.publish-to-s3" version "0.7.0"
     }
 }
 
@@ -20,3 +28,8 @@ include(":library")
 include(":demo")
 
 includeBuild('../../node_modules/react-native-gradle-plugin')
+
+if (hasProperty("willPublishWooCommerceSharedLibrary") && willPublishWooCommerceSharedLibrary.toBoolean() == true) {
+    assert file("./library/build/assets/index.android.bundle").exists() : "index.android.bundle is necessary to publish a new version!"
+}
+

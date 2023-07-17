@@ -68,3 +68,12 @@ Run `make dev` to start working on this project locally.
 
 Running `make` (with no other arguments) will build every component of the project (if possible on the current machine). See the `Makefile` for all of the individual build tasks involved in this.
 
+## Releases
+
+Because of various CocoaPods and SwiftPM idiosyncracies around `xcframework` distribution, releases are a bit tricky. To perform a release, you should:
+
+1. Create a `release/$VERSION` branch, and push it up to GitHub.com
+2. Wait for CI to publish the tip of your release branch, and note the commit shorthash.
+3. Update the URL in `Package.swift`, and update the `checksum` field with the hash printed in the build log (if you need it, it's also published to `https://cdn.a8c-ci.services/woocommerce-shared/{commit-hash}/WooCommerceShared.xcframework.zip.checksum.txt`.
+4. Commit your change as `Tag {$VERSION}`, then tag that commit with your version number.
+5. Publish the tag to GitHub.com

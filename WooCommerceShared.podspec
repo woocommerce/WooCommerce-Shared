@@ -4,7 +4,7 @@ CURRENT_SHORTHASH = `git rev-parse --short HEAD`.strip!.freeze
 
 Pod::Spec.new do |s|
   s.name          = 'WooCommerceShared'
-  s.version       = '0.1.0'
+  s.version       = '0.2.0'
 
   s.summary       = 'Shared components used for the iOS and Android WooCommerce Apps.'
   s.description   = "#{s.summary} It's a React Native library project."

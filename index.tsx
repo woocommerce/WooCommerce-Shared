@@ -5,7 +5,12 @@ import AddShippingZone from "./AddShippingZone";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
-import { Dependency, storeDependency } from "./Storage/AppDependencies";
+import {
+  setApiToken,
+  setAppPassword,
+  setBlogId,
+  setSiteUrl,
+} from "./Storage/InMemoryDependencies";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,13 +22,15 @@ const NavigationStack = (props) => {
 
   /*
    * Store properties passed from the native app.
-   * Currenty only `blogID` and `token`
+   * Currenty only `blogID`, `token`, `siteUrl`, and `appPassword`
    */
-  const storeDependencies = async () => {
+  const storeDependencies = () => {
     setSavingDependencies(true);
 
-    await storeDependency(Dependency.apiToken, props["token"]);
-    await storeDependency(Dependency.blogId, props["blogId"]);
+    setBlogId(props["blogId"]);
+    setApiToken(props["token"]);
+    setSiteUrl(props["siteUrl"]);
+    setAppPassword(props["appPassword"]);
 
     setSavingDependencies(false);
   };

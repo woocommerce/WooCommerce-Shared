@@ -21,7 +21,7 @@ bundle: yarn bundle-ios bundle-android
 
 bundle-ios:
 	mkdir -p dist/bundles
-	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.tsx
+	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.tsx --assets-dest dist/assets --asset-catalog-dest libraries/ios/WooCommerceShared
 
 bundle-android:
 	mkdir -p dist/bundles
@@ -45,6 +45,9 @@ gems: bundle
 #
 pods: gems
 	bundle exec pod install --project-directory=libraries/ios
+
+validate-pod:
+	bundle exec pod spec lint
 
 # Build an XCFramework of this project – this is the primary distribution artifact for iOS
 #
@@ -84,8 +87,8 @@ xcframework:
 
 	@echo "--- :compression: Packaging XCFramework"
 
-	rm -rf dist/WooCommerceShared.xcframework.tar.gz
-	tar -czf dist/WooCommerceShared.xcframework.tar.gz -C dist/ WooCommerceShared.xcframework
+	rm -rf dist/WooCommerceShared.xcframework.zip
+	ditto -c -k --sequesterRsrc --keepParent dist/WooCommerceShared.xcframework dist/WooCommerceShared.xcframework.zip
 
 # Remove all downloaded dependencies and compiled code
 #

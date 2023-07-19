@@ -23,6 +23,7 @@
 		24D35CDA2A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */; };
 		2629E3492A54AFD4000A7888 /* WCRNExitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2629E3462A54AFD4000A7888 /* WCRNExitModule.m */; };
 		2629E34B2A54AFD4000A7888 /* WCRNExitModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 2629E3482A54AFD4000A7888 /* WCRNExitModule.h */; };
+		24F4AB9F2A67319F00563422 /* RNAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24F4AB9E2A67319F00563422 /* RNAssets.xcassets */; };
 		2649E1CA2A4BF5F200C1D00C /* WCRNAnalyticsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649E1C92A4BF5F200C1D00C /* WCRNAnalyticsModule.m */; };
 		2690D6362A4C11A100D025DE /* WCRNAnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2649E1CC2A4C107000C1D00C /* WCRNAnalyticsProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2690D6372A4C11A400D025DE /* WCRNAnalyticsModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 2649E1C82A4BF57500C1D00C /* WCRNAnalyticsModule.h */; };
@@ -82,6 +83,7 @@
 		24D35CD92A37D2E60072EAFA /* WCReactNativeViewController+MetroServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WCReactNativeViewController+MetroServer.swift"; sourceTree = "<group>"; };
 		2629E3462A54AFD4000A7888 /* WCRNExitModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRNExitModule.m; sourceTree = "<group>"; };
 		2629E3482A54AFD4000A7888 /* WCRNExitModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRNExitModule.h; sourceTree = "<group>"; };
+		24F4AB9E2A67319F00563422 /* RNAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RNAssets.xcassets; sourceTree = "<group>"; };
 		2649E1C82A4BF57500C1D00C /* WCRNAnalyticsModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNAnalyticsModule.h; sourceTree = "<group>"; };
 		2649E1C92A4BF5F200C1D00C /* WCRNAnalyticsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRNAnalyticsModule.m; sourceTree = "<group>"; };
 		2649E1CC2A4C107000C1D00C /* WCRNAnalyticsProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNAnalyticsProvider.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				2478B04C2A0ACA6600E91CDF /* WooCommerceShared.docc */,
 				2478B0642A0ACEC000E91CDF /* WCReactNativeViewController.h */,
 				2478B0652A0ACEC000E91CDF /* WCReactNativeViewController.m */,
+				24F4AB9E2A67319F00563422 /* RNAssets.xcassets */,
 				2690D6382A4C16EF00D025DE /* Bridge */,
 				2649E1CB2A4C103200C1D00C /* Analytics */,
 				2629E3452A54AFD4000A7888 /* Exit */,
@@ -364,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F4AB9F2A67319F00563422 /* RNAssets.xcassets in Resources */,
 				2478B0E22A0B01CB00E91CDF /* bundle-ios.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

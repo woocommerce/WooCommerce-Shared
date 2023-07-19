@@ -11,5 +11,8 @@ restore_cache "$CACHEKEY"
 echo '--- :react: Generate JS bundles'
 make bundle-ci
 
+echo '--- :git: Ensure git repo is clean'
+[ -z "$(git status --porcelain)" ]
+
 echo '--- :yarn: Upload yarn cache'
 save_cache node_modules "$CACHEKEY"

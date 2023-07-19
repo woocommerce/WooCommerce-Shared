@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from "react-native";
-import { LocalFeatureFlag, isFeatureEnabled } from "./Storage/FeatureFlag";
+import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);

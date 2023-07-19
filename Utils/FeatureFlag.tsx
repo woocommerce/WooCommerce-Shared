@@ -1,6 +1,7 @@
 /*
  * Local feature flag definition.
  * Useful to hide development code from the production one.
+ * __DEV__ is true when running against the metro server.
  */
 
 export enum LocalFeatureFlag {

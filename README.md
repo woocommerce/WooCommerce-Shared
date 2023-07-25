@@ -65,9 +65,9 @@ To work on this project, you'll need a JS runtime. The current JS version is in 
 
 ### Credentials
 
-The demo app read user credentials from the environment.
+The demo app reads user credentials from the environment.
 
-- Create an `.env` in the root folder.
+- Create an `.env` file in the root folder.
 - Set (BLOG_ID and TOKEN) values for WPCom/Jetpack stores or (SITE_URL and APP_PASSWORD) for non WPCom/Jetpack values.
 
 **Example:**

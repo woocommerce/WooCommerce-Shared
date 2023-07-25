@@ -63,27 +63,10 @@
 }
 
 -(instancetype)initWithBundle:(NSURL *) url
-            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
-                       blogID:(NSString *)blogId
-                     apiToken: (NSString*) apiToken {
+            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider {
     if (self = [super init]) {
         self.bundleUrl = url;
         self.analyticsProvider = analyticsProvider;
-        self.blogId =  blogId;
-        self.apiToken = apiToken;
-    }
-    return self;
-}
-
--(instancetype)initWithBundle:(NSURL *) url
-            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
-                      siteUrl:(NSString *)siteUrl
-                  appPassword: (NSString*) appPassword {
-    if (self = [super init]) {
-        self.bundleUrl = url;
-        self.analyticsProvider = analyticsProvider;
-        self.siteUrl = siteUrl;
-        self.appPassword = appPassword;
     }
     return self;
 }

@@ -38,9 +38,7 @@ extension WCReactNativeViewController {
     ///
     static func forLocalDevelopment(onPort port: UInt16 = 8081) -> WCReactNativeViewController {
         WCReactNativeViewController(bundle: DevServerURL.from(hostname: "localhost", port: port),
-                                    analyticsProvider: FakeAnalyticsProvider(),
-                                    blogID: <#blogid#>,
-                                    apiToken: <#token#>)
+                                    analyticsProvider: FakeAnalyticsProvider())
     }
 
     /// Create a View Controller that allows running an on-device debug build that can connect to the metro server.
@@ -51,9 +49,7 @@ extension WCReactNativeViewController {
         onPort port: UInt16 = 8081
     ) -> WCReactNativeViewController {
         WCReactNativeViewController(bundle: DevServerURL.from(hostname: ipAddress.debugDescription, port: port),
-                                    analyticsProvider: FakeAnalyticsProvider(),
-                                    blogID: <#blogid#>,
-                                    apiToken: <#token#>)
+                                    analyticsProvider: FakeAnalyticsProvider())
     }
 }
 

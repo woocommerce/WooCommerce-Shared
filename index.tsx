@@ -12,6 +12,8 @@ import {
   setSiteUrl,
 } from "./Storage/InMemoryDependencies";
 
+import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
+
 const Stack = createNativeStackNavigator();
 
 const NavigationStack = (props) => {
@@ -27,10 +29,10 @@ const NavigationStack = (props) => {
   const storeDependencies = () => {
     setSavingDependencies(true);
 
-    setBlogId(props["blogId"]);
-    setApiToken(props["token"]);
-    setSiteUrl(props["siteUrl"]);
-    setAppPassword(props["appPassword"]);
+    setBlogId(props["blogId"] ?? BLOG_ID);
+    setApiToken(props["token"] ?? TOKEN);
+    setSiteUrl(props["siteUrl"] ?? SITE_URL);
+    setAppPassword(props["appPassword"] ?? APP_PASSWORD);
 
     setSavingDependencies(false);
   };

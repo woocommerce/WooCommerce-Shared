@@ -15,6 +15,7 @@ import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
+import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);
@@ -39,7 +40,9 @@ function Row(props: RowProps): JSX.Element {
             <Text style={styles.row.caption}> {props.caption} </Text>
           )}
         </View>
-        <Text style={styles.row.disclosureIndicator}>›</Text>
+        {isFeatureEnabled(LocalFeatureFlag.addShippingZones) && (
+          <Text style={styles.row.disclosureIndicator}>›</Text>
+        )}
       </View>
       <View style={styles.row.separator} />
     </View>
@@ -93,6 +96,10 @@ const ShippingZonesList = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    if (!isFeatureEnabled(LocalFeatureFlag.addShippingZones)) {
+      return;
+    }
+
     navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton

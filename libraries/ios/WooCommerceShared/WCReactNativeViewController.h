@@ -14,14 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
                              appPassword: (NSString*) appPassword;
 
 -(instancetype)initWithBundle:(NSURL *) url
-            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
-                       blogID:(NSString *)blogId
-                     apiToken: (NSString*) apiToken;
+            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider;
 
--(instancetype)initWithBundle:(NSURL *) url
-            analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
-                      siteUrl:(NSString *)siteUrl
-                  appPassword: (NSString*) appPassword;
 @end
 
 NS_ASSUME_NONNULL_END

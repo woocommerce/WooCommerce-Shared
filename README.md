@@ -7,11 +7,13 @@ A React Native project used to share code between WooCommerce iOS and Android.
 ### iOS – CocoaPods
 
 #### Production Builds
+
 ```ruby
 pod 'woocommerce-shared', '~> 0.0.1'
 ```
 
 #### Development Builds
+
 ```ruby
 # Reference a commit hash
 pod 'WooCommerceShared', git: 'https://github.com/woocommerce/WooCommerce-Shared.git', commit: '6cba1e9'
@@ -26,6 +28,7 @@ pod 'WooCommerceShared', path: '../WooCommerce-Shared'
 ### iOS – SwiftPM
 
 #### Production Builds
+
 ```swift
 dependencies: [
     .package(url: "https://github.com/woocommerce/woocommerce-shared.git", .upToNextMajor(from: "0.0.1"))
@@ -33,6 +36,7 @@ dependencies: [
 ```
 
 #### Development Builds
+
 ```swift
 // Development Builds require two entries – one for the binary target:
 targets: [
@@ -43,14 +47,13 @@ targets: [
     )
 
 ]
- 
+
 // And a second to make the target depend on it:
 .executable(name: "MyApp", targets: [
 	"WooCommerceShared",
 ])
 
 ```
-
 
 ## Development
 
@@ -59,6 +62,29 @@ This project uses `make` for most of its operations. You probably already have i
 ### Prerequisites
 
 To work on this project, you'll need a JS runtime. The current JS version is in the repo's `.nvmrc` file, so if you have `nvm` installed, it'l just work. Otherwise, you'll need that version of `node` installed. If you're doing iOS development, you'll need Ruby installed – we recommend using `rbenv`, which will ensure that you're running the correct version of the tooling. Lastly, this project uses `yarn` as its package manager, so once you have `node` installed, you'll need to run `npm install -g yarn` to ensure the package manager is available everywhere.
+
+### Credentials
+
+The demo app reads user credentials from the environment.
+
+- Create an `.env` file in the root folder.
+- Set (BLOG_ID and TOKEN) values for WPCom/Jetpack stores or (SITE_URL and APP_PASSWORD) for non WPCom/Jetpack values.
+
+**Example:**
+
+```
+BLOG_ID=12345678
+TOKEN='GH7J8K9WV#CF6798764DF5GHJK987'
+```
+
+or
+
+```
+SITE_URL='https://something.wordpress.com'
+APP_PASSWORD='DERFTGYHUJIKOIJUHYGTFR$%=='
+```
+
+**Note:** When adding or modifying a value we need to restart the metro server in order for changes to be picked up.
 
 ### Setup
 

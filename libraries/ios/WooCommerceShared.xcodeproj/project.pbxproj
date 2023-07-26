@@ -26,6 +26,7 @@
 		2690D6372A4C11A400D025DE /* WCRNAnalyticsModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 2649E1C82A4BF57500C1D00C /* WCRNAnalyticsModule.h */; };
 		2690D63A2A4C170600D025DE /* WCRNBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2690D6392A4C170300D025DE /* WCRNBridge.h */; };
 		2690D63C2A4C178F00D025DE /* WCRNBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690D63B2A4C178F00D025DE /* WCRNBridge.m */; };
+		26ADD82E2A71B0020085A6EB /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 26ADD82D2A71B0020085A6EB /* assets */; };
 		DA27D9F570F33985E7E43E40 /* Pods_WooCommerceShared_WooCommerceSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */; };
 		E8E437A2259ABB6D74143413 /* Pods_WooCommerceShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3DE3FD68E0CD0385BE226A5 /* Pods_WooCommerceShared.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		2649E1CC2A4C107000C1D00C /* WCRNAnalyticsProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNAnalyticsProvider.h; sourceTree = "<group>"; };
 		2690D6392A4C170300D025DE /* WCRNBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRNBridge.h; sourceTree = "<group>"; };
 		2690D63B2A4C178F00D025DE /* WCRNBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRNBridge.m; sourceTree = "<group>"; };
+		26ADD82D2A71B0020085A6EB /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		310F006D69BC062205EDD9A4 /* Pods-WooCommerceShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared.release.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared/Pods-WooCommerceShared.release.xcconfig"; sourceTree = "<group>"; };
 		339BD0CA04E906921968A56B /* Pods_WooCommerceShared_WooCommerceSharedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WooCommerceShared_WooCommerceSharedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840EBAB6F5991FF94DBE2653 /* Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; path = "Target Support Files/Pods-WooCommerceShared-WooCommerceSharedTests/Pods-WooCommerceShared-WooCommerceSharedTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				2690D6382A4C16EF00D025DE /* Bridge */,
 				2649E1CB2A4C103200C1D00C /* Analytics */,
 				2478B0E12A0B01CB00E91CDF /* bundle-ios.js */,
+				26ADD82D2A71B0020085A6EB /* assets */,
 			);
 			path = WooCommerceShared;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2478B0E22A0B01CB00E91CDF /* bundle-ios.js in Resources */,
+				26ADD82E2A71B0020085A6EB /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

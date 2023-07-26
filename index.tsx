@@ -14,6 +14,7 @@ import {
   setSiteUrl,
 } from "./Storage/InMemoryDependencies";
 import {createStackNavigator} from "@react-navigation/stack";
+import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
 
 const Stack = createStackNavigator()
 
@@ -30,10 +31,10 @@ const NavigationStack = (props) => {
   const storeDependencies = () => {
     setSavingDependencies(true);
 
-    setBlogId(props["blogId"]);
-    setApiToken(props["token"]);
-    setSiteUrl(props["siteUrl"]);
-    setAppPassword(props["appPassword"]);
+    setBlogId(props["blogId"] ?? BLOG_ID);
+    setApiToken(props["token"] ?? TOKEN);
+    setSiteUrl(props["siteUrl"] ?? SITE_URL);
+    setAppPassword(props["appPassword"] ?? APP_PASSWORD);
 
     setSavingDependencies(false);
   };

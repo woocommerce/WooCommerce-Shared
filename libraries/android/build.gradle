@@ -1,7 +1,12 @@
 plugins {
     id 'com.android.library' apply false
     id 'com.android.application' apply false
+    id 'org.jetbrains.kotlin.android' apply false
+    id 'com.facebook.react' apply false
+    id 'com.automattic.android.publish-to-s3' apply false
 }
+
+import org.json.JSONObject
 
 ext {
     compileSdkVersion = 33
@@ -10,11 +15,67 @@ ext {
 
     appCompatVersion = '1.4.2'
     androidxCoreVersion = '1.10.1'
-    reactNativeVersion = '0.71.8'
 
     // Testing
     jUnitVersion = '4.13.2'
 
     ndkVersion = "25.2.9519653"
     flipperVersion = '0.176.1'
+
+    reactNativeVersion = new JSONObject(file("$rootDir/../../package.json").getText()).optJSONObject('dependencies').optString('react-native')
+
+    // Publishing
+    willPublishWooCommerceSharedLibrary = findProperty("willPublishWooCommerceSharedLibrary")?.toBoolean() ?: false
+    reactNativeLibrariesPublishedVersion = findProperty("reactNativeLibrariesPublishedVersion")
+    publicationGroupId = "com.woocommerce.shared"
+}
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute(module("com.facebook.react:react-native"))
+                    .with(module("com.facebook.react:react-android:$reactNativeVersion"))
+                substitute(module("com.facebook.react:react-android"))
+                    .with(module("com.facebook.react:react-android:$reactNativeVersion"))
+                substitute(module("com.facebook.react:hermes-android"))
+                    .with(module("com.facebook.react:hermes-android:$reactNativeVersion"))
+            }
+        }
+    }
+}
+
+// Don't forget to add the project to `REACT_NATIVE_PROJECTS_TO_PUBLISH` in `.buildkite/publish-android.sh`
+ext.reactNativeSubProjectsToPublish = [
+    "react-native-async-storage_async-storage",
+    "react-native-safe-area-context",
+    "react-native-screens"
+]
+
+configure (subprojects.findAll { reactNativeSubProjectsToPublish.contains(it.name) }) { reactNativeLibrary ->
+    apply plugin: "maven-publish"
+    apply plugin: "com.automattic.android.publish-to-s3"
+
+    afterEvaluate {
+        afterEvaluate {
+            publishing {
+                publications {
+                    Maven(MavenPublication) {
+                        from components.release
+
+                        groupId rootProject.publicationGroupId
+                        artifactId reactNativeLibrary.name
+                        artifact tasks.named("androidSourcesJar")
+                        // version is set by 'publish-to-s3' plugin
+
+                        versionMapping {
+                            allVariants {
+                                fromResolutionOf("releaseRuntimeClasspath")
+                            }
+                        }
+                    }
+                }
+           }
+        }
+    }
 }

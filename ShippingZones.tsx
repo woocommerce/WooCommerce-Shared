@@ -16,7 +16,6 @@ import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
-import { HeaderBackButton } from "@react-navigation/elements";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);

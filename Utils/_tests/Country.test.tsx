@@ -15,4 +15,9 @@ describe("Country", () => {
     const zoneName = getZoneName("foobartest")
     expect(zoneName).toBe("foobartest");
   });
+
+  it("returns raw country/region if state is not found in countries list", () => {
+    const zoneName = getZoneName("GB:foobar")
+    expect(zoneName).toBe("GB:foobar");
+  });
 });

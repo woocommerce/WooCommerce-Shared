@@ -7,7 +7,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 @interface WCRNBridge : NSObject<RCTBridgeDelegate>
 
--(instancetype)initWithBundleURL:(NSURL *)bundleURL analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider;
+-(instancetype)initWithBundleURL:(NSURL *)bundleURL
+               analyticsProvider:(id<WCRNAnalyticsProvider>) analyticsProvider
+                  hostController:(UIViewController *) hostController;
 
 @end
 

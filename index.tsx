@@ -13,7 +13,10 @@ import {
   setBlogId,
   setSiteUrl,
 } from "./Storage/InMemoryDependencies";
-import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
 
 const Stack = createStackNavigator();
@@ -57,9 +60,7 @@ const NavigationStack = (props) => {
 
     return (
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={screenOptionStyle}
-        >
+        <Stack.Navigator screenOptions={screenOptionStyle}>
           <Stack.Screen
             name={NavigationRoutes.ShippingZonesList}
             component={ShippingZonesList}
@@ -83,6 +84,8 @@ const NavigationStack = (props) => {
 
 const screenOptionStyle = {
   ...TransitionPresets.SlideFromRightIOS,
+  headerTintColor: "#896bb8",
+  headerTitleStyle: { color: "black" },
 };
 
 AppRegistry.registerComponent("main", () => NavigationStack);

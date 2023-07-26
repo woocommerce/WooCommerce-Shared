@@ -102,13 +102,16 @@ const ShippingZonesList = () => {
     }
 
     navigation.setOptions({
-      headerLeft: () =>
-          <HeaderBackButton
+      headerLeft: () => (
+        <HeaderBackButton
+          tintColor="#896bb8"
           labelVisible={Platform.OS === "ios"}
           label="Settings"
           onPress={() => {
             NativeModules.ExitModule.exit();
-          }}/>,
+          }}
+        />
+      ),
       headerRight: () => (
         <ToolbarActionButton
           label={"Add"}

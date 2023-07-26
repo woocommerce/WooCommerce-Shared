@@ -101,8 +101,8 @@ const ShippingZonesList = () => {
     }
 
     navigation.setOptions({
-      headerLeft: () => <HeaderBackButton
-          style={{marginLeft: Platform.OS === "ios" ? -15 : -5}}
+      headerLeft: () =>
+          <HeaderBackButton
           labelVisible={Platform.OS === "ios"}
           label="Settings"
           onPress={() => {

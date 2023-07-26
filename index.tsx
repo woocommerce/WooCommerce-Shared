@@ -1,5 +1,5 @@
 //**Do not** remove OR reorder this import: https://reactnavigation.org/docs/stack-navigator
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
 import { AppRegistry } from "react-native";
 import ShippingZonesList from "./ShippingZones";
@@ -13,10 +13,10 @@ import {
   setBlogId,
   setSiteUrl,
 } from "./Storage/InMemoryDependencies";
-import {createStackNavigator} from "@react-navigation/stack";
+import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
 import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
 const NavigationStack = (props) => {
   /*
@@ -58,9 +58,7 @@ const NavigationStack = (props) => {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          screenOptions={{
-            animation: "slide_from_right",
-          }}
+          screenOptions={screenOptionStyle}
         >
           <Stack.Screen
             name={NavigationRoutes.ShippingZonesList}
@@ -81,6 +79,10 @@ const NavigationStack = (props) => {
     );
   };
   return <Router />;
+};
+
+const screenOptionStyle = {
+  ...TransitionPresets.SlideFromRightIOS,
 };
 
 AppRegistry.registerComponent("main", () => NavigationStack);

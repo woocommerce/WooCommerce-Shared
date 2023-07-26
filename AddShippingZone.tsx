@@ -19,11 +19,12 @@ const AddShippingZone = () => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () =>
-        ToolbarActionButton({
-          label: "Save",
-          onPress: () => console.log("Toolbar action button pressed"),
-        }),
+      headerRight: () => (
+        <ToolbarActionButton
+          label={"Save"}
+          onPress={() => console.log("Toolbar action button pressed")}
+        />
+      ),
     });
   }, [navigation]);
 
@@ -62,11 +63,13 @@ const AddShippingZone = () => {
         </View>
       );
     } else {
-      return <Pressable onPress={() => setLimitEnabled(true)}>
-        <Text style={styles.clickableText}>
-          Limit to specific ZIP/postcodes
-        </Text>
-      </Pressable>
+      return (
+        <Pressable onPress={() => setLimitEnabled(true)}>
+          <Text style={styles.clickableText}>
+            Limit to specific ZIP/postcodes
+          </Text>
+        </Pressable>
+      );
     }
   };
 

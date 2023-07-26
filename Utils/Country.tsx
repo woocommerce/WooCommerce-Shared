@@ -13,7 +13,11 @@ export function getZoneName(countryOrRegion: string) {
   // Handles the {CountryCode} format
   if (zoneComponents.length == 1) {
     const country = getCountryByCode(zoneComponents[0]);
-    return country.name ?? countryOrRegion;
+    if (country == null){
+      return countryOrRegion;
+    } else {
+      return country.name;
+    }
   }
 
   // Handles de {CountryCode:StateCode} format

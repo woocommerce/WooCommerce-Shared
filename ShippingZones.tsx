@@ -100,13 +100,28 @@ const ShippingZonesList = () => {
       return;
     }
 
+    let backButtonLabel = "Settings";
+
     navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton
           tintColor={Platform.OS === "ios" ? "rgb(103, 67, 153)" : undefined}
           style={{ marginLeft: Platform.OS === "ios" ? -15 : -5 }}
-          label="Settings"
-          labelVisible={false}
+          // For some reason, the back button image is not shown on iOS when running using the bundle as opposed to the metro server.
+          // As a temporary workaround, we are using explicitly showing the back button label and adding a < in that platform.
+          backImage={() => {
+            Platform.OS === "ios"
+              // This view won't get rendered (even if text is added) but is enough to get the customized chevron + label to align correctly.
+              ? <Text>{''}</Text>
+              // By returning undefined in non-iOS systems, we let the library do its thing.
+              : undefined
+          }}
+          label={
+            Platform.OS === 'ios'
+              ? `\u2329 ${backButtonLabel}`
+              : backButtonLabel
+          }
+          labelVisible={Platform.OS === 'ios' ? true : false}
           onPress={() => {
             NativeModules.ExitModule.exit();
           }}

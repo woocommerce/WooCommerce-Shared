@@ -1,5 +1,10 @@
 SHELL := /bin/bash -eo pipefail
 
+DEV_MODE=false
+ifdef DEV
+  DEV_MODE=true
+endif
+
 #######
 # Build Tasks
 #######
@@ -21,7 +26,7 @@ bundle: yarn bundle-ios bundle-android
 
 bundle-ios:
 	mkdir -p dist/bundles
-	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev false --entry-file index.tsx --assets-dest dist/assets --asset-catalog-dest libraries/ios/WooCommerceShared
+	yarn react-native bundle --platform ios --bundle-output dist/bundles/bundle-ios.js --dev ${DEV_MODE} --entry-file index.tsx --assets-dest dist/assets --asset-catalog-dest libraries/ios/WooCommerceShared
 
 bundle-android:
 	mkdir -p dist/bundles

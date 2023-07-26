@@ -96,11 +96,7 @@ const ShippingZonesList = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (!isFeatureEnabled(LocalFeatureFlag.addShippingZones)) {
-      return;
-    }
-
-    navigation.setOptions({
+    let options: any = {
       headerLeft: () => (
         <HeaderBackButton
           tintColor={Platform.OS === "ios" ? "rgb(103, 67, 153)" : undefined}
@@ -112,13 +108,18 @@ const ShippingZonesList = () => {
           }}
         />
       ),
-      headerRight: () => (
+    };
+
+    if (isFeatureEnabled(LocalFeatureFlag.addShippingZones)) {
+      options.headerRight = () => (
         <ToolbarActionButton
           label={"Add"}
           onPress={() => navigation.navigate(NavigationRoutes.AddShippingZone)}
         />
-      ),
-    });
+      );
+    }
+
+    navigation.setOptions(options);
   }, [navigation]);
 
   return (

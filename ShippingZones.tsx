@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Alert,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
@@ -13,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from "react-native";
+import { HeaderBackButton } from "@react-navigation/elements";
 import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
 
 const sendAnalyticsEvent = (event) => {
@@ -94,18 +96,30 @@ const ShippingZonesList = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (!isFeatureEnabled(LocalFeatureFlag.addShippingZones)) {
-      return;
-    }
+    let options: any = {
+      headerLeft: () => (
+        <HeaderBackButton
+          tintColor={Platform.OS === "ios" ? "rgb(103, 67, 153)" : undefined}
+          style={{ marginLeft: Platform.OS === "ios" ? -15 : -5 }}
+          label="Settings"
+          labelVisible={false}
+          onPress={() => {
+            NativeModules.ExitModule.exit();
+          }}
+        />
+      ),
+    };
 
-    navigation.setOptions({
-      headerRight: () => (
+    if (isFeatureEnabled(LocalFeatureFlag.addShippingZones)) {
+      options.headerRight = () => (
         <ToolbarActionButton
           label={"Add"}
           onPress={() => navigation.navigate(NavigationRoutes.AddShippingZone)}
         />
-      ),
-    });
+      );
+    }
+
+    navigation.setOptions(options);
   }, [navigation]);
 
   return (

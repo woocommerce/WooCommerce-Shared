@@ -29,7 +29,7 @@ class ReactActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         reactRootView = ReactRootView(this)
 
         val analyticsBridge = (application as LibraryDependencyProvider).provideAnalyticsBridge()
-        val analyticsPackage = WooReactNativePackage(analyticsBridge)
+        val analyticsPackage = WooReactNativePackage(analyticsBridge, this)
 
         val packages: List<ReactPackage> = PackageList(application).packages + analyticsPackage
 

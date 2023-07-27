@@ -1,5 +1,9 @@
 # React Native
-node_modules/
+
+# Only ignore the node_modules folder that is in the root of the project (via the leading /)
+# We have other node_modules(in assets) folders that we do not wish to ignore.
+/node_modules/
+
 .expo/
 dist/
 npm-debug.*

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AppRegistry } from "react-native";
+import { AppRegistry, Appearance } from "react-native";
 import ShippingZonesList from "./ShippingZones";
 import AddShippingZone from "./AddShippingZone";
 import { NavigationContainer } from "@react-navigation/native";
@@ -13,6 +13,7 @@ import {
 } from "./Storage/InMemoryDependencies";
 
 import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
+import { SemanticColor } from "./Utils/Colors/SemanticColors";
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +59,14 @@ const NavigationStack = (props) => {
         <Stack.Navigator
           screenOptions={{
             animation: "slide_from_right",
+            headerStyle: {
+              backgroundColor: SemanticColor.secondaryBackground(),
+            },
+            headerTintColor: SemanticColor.primary(),
+            headerTitleStyle: {
+              color: SemanticColor.primaryText(),
+            },
+            headerBackTitleVisible: false,
           }}
         >
           <Stack.Screen

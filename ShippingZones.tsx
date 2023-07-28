@@ -16,6 +16,7 @@ import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
+import { SemanticColor } from "./Utils/Colors/SemanticColors";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);
@@ -99,7 +100,7 @@ const ShippingZonesList = () => {
     let options: any = {
       headerLeft: () => (
         <HeaderBackButton
-          tintColor={Platform.OS === "ios" ? "rgb(103, 67, 153)" : undefined}
+          tintColor={SemanticColor.backButton().toString()}
           style={{ marginLeft: Platform.OS === "ios" ? -15 : -5 }}
           label="Settings"
           labelVisible={false}
@@ -150,22 +151,23 @@ const ShippingZonesList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: SemanticColor.primaryBackground(),
   },
   list: {
-    backgroundColor: "white",
+    backgroundColor: SemanticColor.primaryBackground(),
     loadingIndicator: {
       marginTop: 32,
     },
   },
   row: {
     flex: 1,
+    backgroundColor: SemanticColor.secondaryBackground(),
     content: {
       flexDirection: "row",
       alignItems: "center",
       padding: 0,
       fontSize: 23,
       borderRadius: 0,
-      backgroundColor: "white",
       margin: 16,
     },
     textContainer: {
@@ -175,25 +177,25 @@ const styles = StyleSheet.create({
       fontFamily: "System",
       fontSize: 17,
       marginBottom: 6,
-      color: "rgb(0, 0, 0)",
+      color: SemanticColor.primaryText(),
     },
     body: {
       fontFamily: "System",
       fontSize: 15,
       marginBottom: 6,
-      color: "rgba(0, 0, 0, 0.6)",
+      color: SemanticColor.secondaryText(),
     },
     caption: {
       fontFamily: "System",
       fontSize: 15,
-      color: "rgba(0, 0, 0, 0.6)",
+      color: SemanticColor.secondaryText(),
     },
     disclosureIndicator: {
       fontSize: 32,
-      color: "rgb(103, 67, 153)",
+      color: SemanticColor.primary(),
     },
     separator: {
-      backgroundColor: "rgba(60, 60, 67, 0.29)",
+      backgroundColor: SemanticColor.separator(),
       height: 0.5,
       marginLeft: 16,
     },

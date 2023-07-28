@@ -16,7 +16,7 @@ import ToolbarActionButton from "./ToolbarActionButton";
 import { NativeModules } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
-import { SemanticColor } from "./Utils/SemanticColors";
+import { SemanticColor } from "./Utils/Colors/SemanticColors";
 
 const sendAnalyticsEvent = (event) => {
   NativeModules.AnalyticsModule.sendEvent(event);

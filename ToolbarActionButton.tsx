@@ -1,6 +1,6 @@
 import { Platform, Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
-import { SemanticColor } from "./Utils/SemanticColors";
+import { SemanticColor } from "./Utils/Colors/SemanticColors";
 
 export const ToolbarActionButton = ({
   label,

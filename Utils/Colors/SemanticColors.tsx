@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Appearance, ColorValue } from "react-native";
 
 export namespace SemanticColor {

@@ -54,7 +54,6 @@ steps:
             - "AWS_SECRET_KEY"
     agents:
       queue: "android"
-    if: "build.tag != null || build.pull_request.id != null || build.branch == 'trunk'"
 
   #################
   # Lint

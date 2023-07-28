@@ -12,7 +12,7 @@ echo '--- :react: Generate JS bundles'
 make bundle-ci
 
 echo '--- :git: Ensure git repo is clean'
-[ -z "$(git status --porcelain)" ]
+[ -z "$(git status)" ]
 
 echo '--- :yarn: Upload yarn cache'
 save_cache node_modules "$CACHEKEY"

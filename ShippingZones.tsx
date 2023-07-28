@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
-import { useNavigation } from "@react-navigation/native";
+import {useFocusEffect, useNavigation} from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
 import { HeaderBackButton } from "@react-navigation/elements";

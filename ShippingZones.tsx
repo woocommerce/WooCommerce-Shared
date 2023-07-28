@@ -48,7 +48,6 @@ function Row(props: RowProps): JSX.Element {
 }
 
 const ShippingZonesList = () => {
-  sendAnalyticsEvent("shipping_zones_view_shown");
 
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
@@ -91,6 +90,7 @@ const ShippingZonesList = () => {
   };
 
   useEffect(() => {
+    sendAnalyticsEvent("shipping_zones_view_shown");
     fetchData();
   }, []);
 

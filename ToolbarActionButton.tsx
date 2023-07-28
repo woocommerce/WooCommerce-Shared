@@ -1,11 +1,13 @@
 import { Platform, Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
+import { SemanticColor } from "./Utils/SemanticColors";
 
 export const ToolbarActionButton = ({
   label,
   onPress,
 }: ToolbarActionButtonProps) => {
-  const formattedLabel = Platform.OS === "android" ? label.toUpperCase() : label;
+  const formattedLabel =
+    Platform.OS === "android" ? label.toUpperCase() : label;
 
   return (
     <Pressable android_ripple={{ borderless: true }} onPress={onPress}>
@@ -15,7 +17,7 @@ export const ToolbarActionButton = ({
 };
 const styles = StyleSheet.create({
   textStyle: {
-    color: "#896bb8",
+    color: SemanticColor.primary(),
     fontSize: 16,
     fontWeight: "600",
   },

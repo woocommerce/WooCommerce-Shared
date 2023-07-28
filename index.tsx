@@ -13,6 +13,7 @@ import {
 } from "./Storage/InMemoryDependencies";
 
 import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
+import { SemanticColor } from "./Utils/SemanticColors";
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +59,14 @@ const NavigationStack = (props) => {
         <Stack.Navigator
           screenOptions={{
             animation: "slide_from_right",
+            headerStyle: {
+              backgroundColor: SemanticColor.secondaryBackground(),
+            },
+            headerTintColor: SemanticColor.primary(),
+            headerTitleStyle: {
+              color: SemanticColor.primaryText(),
+            },
+            headerBackTitleVisible: false,
           }}
         >
           <Stack.Screen

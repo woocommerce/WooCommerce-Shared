@@ -100,11 +100,7 @@ const ShippingZonesList = () => {
     let options: any = {
       headerLeft: () => (
         <HeaderBackButton
-          tintColor={
-            Platform.OS === "ios"
-              ? SemanticColor.primary().toString()
-              : undefined
-          }
+          tintColor={SemanticColor.backButton().toString()}
           style={{ marginLeft: Platform.OS === "ios" ? -15 : -5 }}
           label="Settings"
           labelVisible={false}

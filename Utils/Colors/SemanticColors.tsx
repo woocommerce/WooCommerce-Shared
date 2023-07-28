@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { Appearance, ColorValue } from "react-native";
+import { Appearance, ColorValue, Platform } from "react-native";
 
 export namespace SemanticColor {
   export const primaryBackground = (): ColorValue => {
@@ -24,6 +23,14 @@ export namespace SemanticColor {
 
   export const separator = (): ColorValue => {
     return isInLightMode() ? "rgba(60, 60, 67, 0.29)" : "rgba(84, 84, 88, 0.6)";
+  };
+
+  export const backButton = (): ColorValue => {
+    if (Platform.OS === "ios") {
+      return primary();
+    } else {
+      return primaryText();
+    }
   };
 
   function isInDarkMode(): boolean {

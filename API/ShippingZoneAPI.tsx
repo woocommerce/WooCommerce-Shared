@@ -47,7 +47,7 @@ export async function fetchShippingZones() {
     const zones: ShippingZone[] = await Promise.all(
       normalizeJSON(json)
         .filter((obj) => {
-          return obj.id != locationsNotCoveredId;
+          return obj.id !== locationsNotCoveredId;
         })
         .map(async (obj) => {
           return {

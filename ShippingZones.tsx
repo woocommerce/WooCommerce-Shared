@@ -1,26 +1,23 @@
 import {
   ActivityIndicator,
+  Alert,
   FlatList,
+  NativeModules,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
-  Alert,
-  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
-import { useNavigation } from "@react-navigation/native";
+import {useFocusEffect, useNavigation} from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
-import { NativeModules } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
-import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
+import { isFeatureEnabled, LocalFeatureFlag } from "./Utils/FeatureFlag";
 import { SemanticColor } from "./Utils/Colors/SemanticColors";
-
-const sendAnalyticsEvent = (event) => {
-  NativeModules.AnalyticsModule.sendEvent(event);
-};
+import { sendAnalyticsEvent } from "./Analytics/SendAnalyticsEvent";
 
 type RowProps = {
   title: string;
@@ -51,6 +48,7 @@ function Row(props: RowProps): JSX.Element {
 }
 
 const ShippingZonesList = () => {
+
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 
@@ -79,11 +77,12 @@ const ShippingZonesList = () => {
     setLoading(true);
 
     try {
+      sendAnalyticsEvent("shipping_zones_list_loaded");
       const zones = await fetchShippingZones();
       setData(zones);
-      sendAnalyticsEvent("shipping_zones_shown");
     } catch (error) {
       console.log(error);
+      sendAnalyticsEvent("shipping_zones_fetch_failed");
       showRetryAlert();
     }
 
@@ -91,6 +90,7 @@ const ShippingZonesList = () => {
   };
 
   useEffect(() => {
+    sendAnalyticsEvent("shipping_zones_view_shown");
     fetchData();
   }, []);
 

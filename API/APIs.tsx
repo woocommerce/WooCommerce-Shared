@@ -6,6 +6,7 @@ import {
 } from "../Storage/InMemoryDependencies";
 import { jetpackFetch } from "./JetpackAPI";
 import { restFetch } from "./RestAPI";
+import { Method } from "./Method";
 
 /*
  * WPCom API versions definitions
@@ -39,19 +40,24 @@ export class APIError extends Error {
  * Utility function to create a an API request.
  * It can use the `JetpackAPI` or the `RestAPI` depending on what credentials are available.
  */
-export async function apiFetch(apiVersion: WPComAPIVersion, path: string) {
+export async function apiFetch(
+  method: Method,
+  apiVersion: WPComAPIVersion,
+  path: string,
+  body: string = ""
+) {
   const blogId = getBlogId() ?? "";
   const apiToken = getApiToken() ?? "";
 
   if (blogId.length > 0 && apiToken.length > 0) {
-    return jetpackFetch(apiVersion, path, blogId, apiToken);
+    return jetpackFetch(method, apiVersion, path, blogId, apiToken, body);
   }
 
   const siteUrl = getSiteUrl() ?? "";
   const appPassword = getAppPassword() ?? "";
 
   if (siteUrl.length > 0 && appPassword.length > 0) {
-    return restFetch(apiVersion, path, siteUrl, appPassword);
+    return restFetch(method, apiVersion, path, siteUrl, appPassword, body);
   }
 
   throw Error("API credentials not found");

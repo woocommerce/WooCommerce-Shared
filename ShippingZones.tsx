@@ -77,8 +77,8 @@ const ShippingZonesList = () => {
     setLoading(true);
 
     try {
-      sendAnalyticsEvent("shipping_zones_list_loaded");
       const zones = await fetchShippingZones();
+      sendAnalyticsEvent("shipping_zones_list_loaded");
       setData(zones);
     } catch (error) {
       console.log(error);

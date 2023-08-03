@@ -1,5 +1,6 @@
 import { getZoneName } from "../Utils/Country";
-import { APIError, WPComAPIVersion, apiFetch, normalizeJSON } from "./APIs";
+import { APIError, apiFetch, normalizeJSON, WPComAPIVersion } from "./APIs";
+import { Method } from "./Method";
 
 /*
  * ShippingZone API defition
@@ -29,16 +30,35 @@ export type ShippingZoneMethod = {
   description: string;
 };
 
+export async function addShippingZone(name: string): Promise<void> {
+  try {
+    const path = "shipping/zones";
+    const response = await apiFetch(
+      Method.POST,
+      WPComAPIVersion.wcV3,
+      path,
+      JSON.stringify({
+        name: name,
+      })
+    );
+    if (!response.ok) {
+      throw new APIError(path, response.status, await response.json());
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 /*
  * Fetches shipping zones using the WPCom API.
  * Internally fetches the necessary locations and methods too as they live in a separate API.
  */
-export async function fetchShippingZones() {
+export async function fetchShippingZones(): Promise<ShippingZone[]> {
   try {
     const path = "shipping/zones";
-    const response = await apiFetch(WPComAPIVersion.wcV3, path);
+    const response = await apiFetch(Method.GET, WPComAPIVersion.wcV3, path);
     const json = await response.json();
-    const locationsNotCoveredId = 0
+    const locationsNotCoveredId = 0;
 
     if (!response.ok) {
       throw new APIError(path, response.status, json);
@@ -71,7 +91,7 @@ export async function fetchShippingZones() {
 export async function fetchShippingZoneLocations(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/locations`;
-    const response = await apiFetch(WPComAPIVersion.wcV3, path);
+    const response = await apiFetch(Method.GET, WPComAPIVersion.wcV3, path);
     const json = await response.json();
 
     if (!response.ok) {
@@ -98,7 +118,7 @@ export async function fetchShippingZoneLocations(zoneID: number) {
 export async function fetchShippingZoneMethods(zoneID: number) {
   try {
     let path = `shipping/zones/${zoneID}/methods`;
-    const response = await apiFetch(WPComAPIVersion.wcV3, path);
+    const response = await apiFetch(Method.GET, WPComAPIVersion.wcV3, path);
     const json = await response.json();
 
     if (!response.ok) {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  BackHandler,
   Linking,
   Pressable,
   SafeAreaView,
@@ -25,7 +26,19 @@ const AddShippingZone = () => {
           onPress: () => console.log("Toolbar action button pressed"),
         }),
     });
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener(
+        "hardwareBackPress",
+        handleBackButtonClick
+      );
+    };
   }, [navigation]);
+
+  function handleBackButtonClick() {
+    navigation.goBack();
+    return true;
+  }
 
   const _renderPostCodes = function () {
     if (isLimitEnabled) {
@@ -62,11 +75,13 @@ const AddShippingZone = () => {
         </View>
       );
     } else {
-      return <Pressable onPress={() => setLimitEnabled(true)}>
-        <Text style={styles.clickableText}>
-          Limit to specific ZIP/postcodes
-        </Text>
-      </Pressable>
+      return (
+        <Pressable onPress={() => setLimitEnabled(true)}>
+          <Text style={styles.clickableText}>
+            Limit to specific ZIP/postcodes
+          </Text>
+        </Pressable>
+      );
     }
   };
 

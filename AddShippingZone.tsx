@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  BackHandler,
   Linking,
   Pressable,
   SafeAreaView,
@@ -27,11 +28,23 @@ const AddShippingZone = () => {
           onPress: () => onAddShippingZonePressed(name),
         }),
     });
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener(
+        "hardwareBackPress",
+        handleBackButtonClick
+      );
+    };
   }, [navigation, name]);
 
   async function onAddShippingZonePressed(name) {
     await addShippingZone(name);
     navigation.goBack();
+  }
+
+  function handleBackButtonClick() {
+    navigation.goBack();
+    return true;
   }
 
   const _renderPostCodes = function () {

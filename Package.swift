@@ -18,8 +18,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "WooCommerceShared",
-            url: "https://cdn.a8c-ci.services/woocommerce-shared/c35472d/WooCommerceShared.xcframework.zip",
-            checksum: "bf1a8b640c79cc8655f0219b13901cfa9032838f6fb9b3265e53dc21bac7d679"
+            url: "https://cdn.a8c-ci.services/woocommerce-shared/d6930c5/WooCommerceShared.xcframework.zip",
+            checksum: "11744518e157521a3a95ee5302302a68ab4b2f95c3cedec132831f7cada4b88e"
         )
     ]
 )

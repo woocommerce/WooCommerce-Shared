@@ -44,5 +44,14 @@ target 'WooCommerceShared' do
       mac_catalyst_enabled: false
     )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+    # Ensure that all projects use the same deployment target
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']) < Gem::Version.new(min_ios_version_supported)
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = min_ios_version_supported
+        end
+      end
+    end
   end
 end

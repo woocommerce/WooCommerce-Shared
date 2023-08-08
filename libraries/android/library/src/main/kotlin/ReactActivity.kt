@@ -85,6 +85,5 @@ class ReactActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
     override fun onBackPressed() {
         reactInstanceManager.onBackPressed()
-        super.onBackPressed()
     }
 }

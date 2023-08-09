@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchShippingZones, ShippingZone } from "./API/ShippingZoneAPI";
-import {useFocusEffect, useNavigation} from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 import ToolbarActionButton from "./ToolbarActionButton";
 import { HeaderBackButton } from "@react-navigation/elements";
@@ -48,7 +48,6 @@ function Row(props: RowProps): JSX.Element {
 }
 
 const ShippingZonesList = () => {
-
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<ShippingZone[]>([]);
 
@@ -77,8 +76,8 @@ const ShippingZonesList = () => {
     setLoading(true);
 
     try {
-      sendAnalyticsEvent("shipping_zones_list_loaded");
       const zones = await fetchShippingZones();
+      sendAnalyticsEvent("shipping_zones_list_loaded");
       setData(zones);
     } catch (error) {
       console.log(error);
@@ -89,10 +88,12 @@ const ShippingZonesList = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    sendAnalyticsEvent("shipping_zones_view_shown");
-    fetchData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      sendAnalyticsEvent("shipping_zones_view_shown");
+      fetchData();
+    }, [])
+  );
 
   const navigation = useNavigation();
 

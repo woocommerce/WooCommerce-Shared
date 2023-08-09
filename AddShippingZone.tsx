@@ -12,10 +12,12 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
+import { addShippingZone } from "./API/ShippingZoneAPI";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
 
+  const [name, setName] = React.useState("");
   const [isLimitEnabled, setLimitEnabled] = useState(false);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const AddShippingZone = () => {
       headerRight: () =>
         ToolbarActionButton({
           label: "Save",
-          onPress: () => console.log("Toolbar action button pressed"),
+          onPress: () => onAddShippingZonePressed(name),
         }),
     });
     BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
@@ -33,7 +35,12 @@ const AddShippingZone = () => {
         handleBackButtonClick
       );
     };
-  }, [navigation]);
+  }, [navigation, name]);
+
+  async function onAddShippingZonePressed(name) {
+    await addShippingZone(name);
+    navigation.goBack();
+  }
 
   function handleBackButtonClick() {
     navigation.goBack();
@@ -94,6 +101,10 @@ const AddShippingZone = () => {
             selectionColor={"black"}
             style={[styles.textInput, { marginTop: 10 }]}
             placeholder="Enter name"
+            onChangeText={(text) => {
+              setName(text);
+            }}
+            value={name}
           />
           <View style={{ margin: 10 }} />
           <Text style={styles.labelText}>Zone region</Text>
@@ -109,7 +120,6 @@ const AddShippingZone = () => {
     </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   labelText: {
     fontWeight: "500",

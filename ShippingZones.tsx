@@ -78,7 +78,7 @@ const ShippingZonesList = () => {
     try {
       const zones = await fetchShippingZones();
       sendAnalyticsEvent("shipping_zones_list_loaded");
-      setData(zones);
+      setData(decorateZones(zones));
     } catch (error) {
       console.log(error);
       sendAnalyticsEvent("shipping_zones_fetch_failed");
@@ -86,6 +86,23 @@ const ShippingZonesList = () => {
     }
 
     setLoading(false);
+  };
+
+  /*
+   * Updates the given array to move the "Location Not Covered" zone to the bottom of the array.
+   */
+  const decorateZones = (zones: ShippingZone[]) => {
+    const locationsNotCoveredId = 0;
+    const locationsNotCoveredIndex = zones.findIndex(
+      (element) => element.id === locationsNotCoveredId
+    );
+
+    if (locationsNotCoveredIndex >= 0) {
+      let locationNotCoveredZone = zones.splice(locationsNotCoveredIndex, 1)[0];
+      zones.push(locationNotCoveredZone);
+    }
+
+    return zones;
   };
 
   useFocusEffect(

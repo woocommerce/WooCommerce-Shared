@@ -102,14 +102,6 @@ const ShippingZonesList = () => {
       "This zone is optionally used for regions that are not included in any other shipping zone.";
     row.icon = require("./Assets/Icons/world.png");
     return row;
-
-    // return {
-    //   title: zone.title,
-    //   body: "This zone is optionally used for regions that are not included in any other shipping zone.",
-    //   caption: caption(),
-    //   icon: require("./Assets/Icons/world.png"),
-    //   showNavigationIndicator: true,
-    // };
   };
 
   /*

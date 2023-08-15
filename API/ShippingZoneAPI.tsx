@@ -58,25 +58,20 @@ export async function fetchShippingZones(): Promise<ShippingZone[]> {
     const path = "shipping/zones";
     const response = await apiFetch(Method.GET, WPComAPIVersion.wcV3, path);
     const json = await response.json();
-    const locationsNotCoveredId = 0;
 
     if (!response.ok) {
       throw new APIError(path, response.status, json);
     }
 
     const zones: ShippingZone[] = await Promise.all(
-      normalizeJSON(json)
-        .filter((obj) => {
-          return obj.id !== locationsNotCoveredId;
-        })
-        .map(async (obj) => {
-          return {
-            id: obj.id,
-            title: obj.name,
-            locations: await fetchShippingZoneLocations(obj.id),
-            methods: await fetchShippingZoneMethods(obj.id),
-          };
-        })
+      normalizeJSON(json).map(async (obj) => {
+        return {
+          id: obj.id,
+          title: obj.name,
+          locations: await fetchShippingZoneLocations(obj.id),
+          methods: await fetchShippingZoneMethods(obj.id),
+        };
+      })
     );
 
     return zones;

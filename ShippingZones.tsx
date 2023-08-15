@@ -97,15 +97,19 @@ const ShippingZonesList = () => {
   /*
    * "Locations Not Covered" Row properties for the shipping zones list.
    */
-  const LocationNotCoveredRowProps = (): RowProps => {
-    return {
-      title: "Locations not covered by your other zones",
-      body: "This zone is optionally used for regions that are not included in any other shipping zone.",
-      caption: "No shipping methods offered to this zone",
-      icon: require("./Assets/Icons/world.png"),
-      iconColor: SemanticColor.primaryText(),
-      showNavigationIndicator: true,
-    };
+  const LocationNotCoveredRowProps = (row: RowProps): RowProps => {
+    row.body =
+      "This zone is optionally used for regions that are not included in any other shipping zone.";
+    row.icon = require("./Assets/Icons/world.png");
+    return row;
+
+    // return {
+    //   title: zone.title,
+    //   body: "This zone is optionally used for regions that are not included in any other shipping zone.",
+    //   caption: caption(),
+    //   icon: require("./Assets/Icons/world.png"),
+    //   showNavigationIndicator: true,
+    // };
   };
 
   /*
@@ -141,10 +145,24 @@ const ShippingZonesList = () => {
 
     // Transform all zones
     const rows = zones.map((zone) => {
+      const body = () => {
+        if (zone.locations.length === 0) {
+          return "Everywhere";
+        }
+        return zone.locations.map((location) => location.name).join(", ");
+      };
+
+      const caption = () => {
+        if (zone.methods.length === 0) {
+          return "No shipping methods offered to this zone";
+        }
+        return zone.methods.map((method) => method.title).join(", ");
+      };
+
       return {
         title: zone.title,
-        body: zone.locations.map((location) => location.name).join(", "),
-        caption: zone.methods.map((method) => method.title).join(", "),
+        body: body(),
+        caption: caption(),
         icon: require("./Assets/Icons/location.png"),
         iconColor: SemanticColor.primaryText(),
         showNavigationIndicator: true,
@@ -153,8 +171,8 @@ const ShippingZonesList = () => {
 
     // Move down the "Location Not Covered" zone
     if (locationsNotCoveredIndex >= 0) {
-      rows.splice(locationsNotCoveredIndex, 1);
-      rows.push(LocationNotCoveredRowProps());
+      const notCoveredRow = rows.splice(locationsNotCoveredIndex, 1)[0];
+      rows.push(LocationNotCoveredRowProps(notCoveredRow));
     }
 
     // Insert the info row

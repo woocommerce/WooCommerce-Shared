@@ -2,11 +2,11 @@ import { APIError, apiFetch, normalizeJSON, WPComAPIVersion } from "./APIs";
 import { Method } from "./Method";
 import { getCountryByCode } from "../Utils/Country";
 
-class Region {
+abstract class Region {
   name: string;
   code: string;
 
-  constructor(name: string, code: string) {
+  protected constructor(name: string, code: string) {
     this.name = name;
     this.code = code;
   }

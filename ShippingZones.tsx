@@ -24,6 +24,7 @@ type RowProps = {
   title: string;
   body: string;
   caption: string;
+  icon: NodeRequire;
   showNavigationIndicator: boolean;
 };
 
@@ -32,7 +33,7 @@ function Row(props: RowProps): JSX.Element {
     <View style={styles.row}>
       <View style={styles.row.content}>
         <View style={styles.row.icon}>
-          <Image source={require("./Assets/Icons/info.png")} />
+          <Image source={props.icon} />
         </View>
         <View style={styles.row.textContainer}>
           <Text style={styles.row.title}>{props.title}</Text>
@@ -83,6 +84,7 @@ const ShippingZonesList = () => {
         "Shipping zones determine the available shipping methods based on a customer's shipping address.",
       body: "During checkout, customers can choose from available shipping methods in their zone.",
       caption: "",
+      icon: require("./Assets/Icons/info.png"),
       showNavigationIndicator: false,
     };
   };
@@ -95,6 +97,7 @@ const ShippingZonesList = () => {
       title: "Locations not covered by your other zones",
       body: "This zone is optionally used for regions that are not included in any other shipping zone.",
       caption: "No shipping methods offered to this zone",
+      icon: require("./Assets/Icons/world.png"),
       showNavigationIndicator: false,
     };
   };
@@ -136,6 +139,7 @@ const ShippingZonesList = () => {
         title: zone.title,
         body: zone.locations.map((location) => location.name).join(", "),
         caption: zone.methods.map((method) => method.title).join(", "),
+        icon: require("./Assets/Icons/location.png"),
         showNavigationIndicator: true,
       };
     });
@@ -202,6 +206,7 @@ const ShippingZonesList = () => {
               title={item.title}
               body={item.body}
               caption={item.caption}
+              icon={item.icon}
               showNavigationIndicator={item.showNavigationIndicator}
             />
           )}

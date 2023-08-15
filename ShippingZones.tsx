@@ -98,7 +98,7 @@ const ShippingZonesList = () => {
       body: "This zone is optionally used for regions that are not included in any other shipping zone.",
       caption: "No shipping methods offered to this zone",
       icon: require("./Assets/Icons/world.png"),
-      showNavigationIndicator: false,
+      showNavigationIndicator: true,
     };
   };
 
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     },
     icon: {
       flexDirection: "column",
-      alignSelf: "baseline",
+      alignSelf: "flex-start",
       paddingRight: 12,
       paddingTop: 2,
     },

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BackHandler,
+  FlatList,
   Linking,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,12 +13,33 @@ import { useNavigation } from "@react-navigation/native";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
 import { addShippingZone } from "./API/ShippingZoneAPI";
+import { Continent, Country, getRegions, Region, State } from "./API/DataApi";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { SemanticColor } from "./Utils/Colors/SemanticColors";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
 
   const [name, setName] = React.useState("");
   const [isLimitEnabled, setLimitEnabled] = useState(false);
+  const [regions, setRegions] = useState([]);
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    fetchRegions().then((regions: Region[]) => {
+      setRegions(regions);
+    });
+  }, []);
+
+  useEffect(() => {
+    let filteredRegions = regions
+      .filter((region: Region) => {
+        return region.name.includes(query);
+      })
+      .slice(0, 50);
+    setSuggestions(query === "" ? [] : filteredRegions);
+  }, [query]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -36,6 +57,20 @@ const AddShippingZone = () => {
       );
     };
   }, [navigation, name]);
+
+  async function fetchRegions() {
+    return await getRegions().then((continents) => {
+      return continents.flatMap((continent) => {
+        return [
+          continent,
+          ...continent.countries.flatMap((country) => [
+            country,
+            ...country.states,
+          ]),
+        ];
+      });
+    });
+  }
 
   async function onAddShippingZonePressed(name) {
     await addShippingZone(name);
@@ -93,34 +128,76 @@ const AddShippingZone = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
-        <View style={{ padding: 16, backgroundColor: "white" }}>
-          <Text style={styles.labelText}>Zone name</Text>
-          <FocusableTextInput
-            selectionColor={"black"}
-            style={[styles.textInput, { marginTop: 10 }]}
-            placeholder="Enter name"
-            onChangeText={(text) => {
-              setName(text);
-            }}
-            value={name}
-          />
-          <View style={{ margin: 10 }} />
-          <Text style={styles.labelText}>Zone region</Text>
-          <FocusableTextInput
-            selectionColor={"black"}
-            style={[styles.textInput, { marginTop: 10 }]}
-            placeholder="Type to search"
-          />
-          <View style={{ margin: 5 }} />
-          {_renderPostCodes()}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView contentContainerStyle={{ flex: 1 }} style={styles.container} nestedScrollEnabled={true}>
+      <Text style={styles.labelText}>Zone name</Text>
+      <FocusableTextInput
+        selectionColor={"black"}
+        style={[styles.textInput, { marginTop: 10 }]}
+        placeholder="Enter name"
+        onChangeText={(text) => {
+          setName(text);
+        }}
+        value={name}
+      />
+      <View style={{ margin: 10 }} />
+      <Text style={styles.labelText}>Zone region</Text>
+      <View style={styles.listContainer}>
+        <FocusableTextInput
+          selectionColor={"black"}
+          style={[styles.textInput, { marginTop: 10 }]}
+          placeholder="Type to search"
+          onChangeText={(text) => {
+            setQuery(text);
+          }}
+          value={query}
+        />
+        <FlatList
+          nestedScrollEnabled={true}
+          style={styles.list}
+          data={suggestions}
+          renderItem={({ item }) => SuggestionRow(item)}
+        />
+      </View>
+      <View style={{ margin: 5 }} />
+      {_renderPostCodes()}
+    </ScrollView>
   );
 };
+
+function getRegionMargin(region: Region) {
+  if (region instanceof State) {
+    return 50;
+  } else if (region instanceof Country) {
+    return 30;
+  } else if (region instanceof Continent) {
+    return 10;
+  }
+}
+
+function SuggestionRow(region: Region): JSX.Element {
+  return (
+    <View style={styles.row}>
+      <View style={styles.row.textContainer}>
+        <Text
+          style={{
+            backgroundColor: Colors.backgroundColor,
+            marginLeft: getRegionMargin(region),
+          }}
+        >
+          {region.name}
+        </Text>
+      </View>
+      <View style={styles.separator} />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+    backgroundColor: SemanticColor.primaryBackground(),
+    flexGrow: 1,
+  },
   labelText: {
     fontWeight: "500",
     fontSize: 16.0,
@@ -135,6 +212,26 @@ const styles = StyleSheet.create({
   clickableText: {
     color: "#68a5df",
     textDecorationLine: "underline",
+  },
+  separator: {
+    backgroundColor: SemanticColor.separator(),
+    height: 0.5,
+  },
+  listContainer: {
+    zIndex: 1,
+  },
+  list: {
+    marginTop: 60,
+    position: "absolute",
+    width: "100%",
+  },
+  row: {
+    backgroundColor: SemanticColor.primaryBackground(),
+    textContainer: {
+      height: 50,
+      flexDirection: "row",
+      alignItems: "center",
+    },
   },
 });
 

@@ -2,7 +2,7 @@ import { APIError, apiFetch, normalizeJSON, WPComAPIVersion } from "./APIs";
 import { Method } from "./Method";
 import { getCountryByCode } from "../Utils/Country";
 
-abstract class Region {
+export abstract class Region {
   name: string;
   code: string;
 
@@ -21,15 +21,13 @@ export class State extends Region {
 export class Country extends Region {
   states: State[];
 
-  constructor(code: string, states: State[]) {
-    // BUG #31853: API returns names of countries' currencies instead of the names of countries
-    // https://github.com/woocommerce/woocommerce/issues/31853
-    super(getCountryByCode(code).name, code);
+  constructor(name: string, code: string, states: State[]) {
+    super(name, code);
     this.states = states;
   }
 }
 
-class Continent extends Region {
+export class Continent extends Region {
   countries: Country[];
 
   constructor(name: string, code: string, countries: Country[]) {
@@ -52,10 +50,17 @@ export async function getRegions(): Promise<Continent[]> {
       obj.name,
       obj.code,
       obj.countries.map((countryJson) => {
+        // BUG #31853: API returns names of countries' currencies instead of the names of countries
+        // https://github.com/woocommerce/woocommerce/issues/31853
+        const countryName = getCountryByCode(countryJson.code).name;
         return new Country(
+          countryName,
           countryJson.code,
           countryJson.states.map((stateJson) => {
-            return new State(stateJson.name, stateJson.code);
+            return new State(
+              `${stateJson.name}, ${countryName}`,
+              stateJson.code
+            );
           })
         );
       })

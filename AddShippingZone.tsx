@@ -4,6 +4,7 @@ import {
   FlatList,
   Linking,
   Pressable,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -128,38 +129,44 @@ const AddShippingZone = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ flex: 1 }} style={styles.container} nestedScrollEnabled={true}>
-      <Text style={styles.labelText}>Zone name</Text>
-      <FocusableTextInput
-        selectionColor={"black"}
-        style={[styles.textInput, { marginTop: 10 }]}
-        placeholder="Enter name"
-        onChangeText={(text) => {
-          setName(text);
-        }}
-        value={name}
-      />
-      <View style={{ margin: 10 }} />
-      <Text style={styles.labelText}>Zone region</Text>
-      <View style={styles.listContainer}>
+    <ScrollView
+      contentContainerStyle={{ flex: 1 }}
+      style={styles.container}
+      nestedScrollEnabled={true}
+    >
+      <SafeAreaView>
+        <Text style={styles.labelText}>Zone name</Text>
         <FocusableTextInput
           selectionColor={"black"}
           style={[styles.textInput, { marginTop: 10 }]}
-          placeholder="Type to search"
+          placeholder="Enter name"
           onChangeText={(text) => {
-            setQuery(text);
+            setName(text);
           }}
-          value={query}
+          value={name}
         />
-        <FlatList
-          nestedScrollEnabled={true}
-          style={styles.list}
-          data={suggestions}
-          renderItem={({ item }) => SuggestionRow(item)}
-        />
-      </View>
-      <View style={{ margin: 5 }} />
-      {_renderPostCodes()}
+        <View style={{ margin: 10 }} />
+        <Text style={styles.labelText}>Zone region</Text>
+        <View style={styles.listContainer}>
+          <FocusableTextInput
+            selectionColor={"black"}
+            style={[styles.textInput, { marginTop: 10 }]}
+            placeholder="Type to search"
+            onChangeText={(text) => {
+              setQuery(text);
+            }}
+            value={query}
+          />
+          <FlatList
+            nestedScrollEnabled={true}
+            style={styles.list}
+            data={suggestions}
+            renderItem={({ item }) => SuggestionRow(item)}
+          />
+        </View>
+        <View style={{ margin: 5 }} />
+        {_renderPostCodes()}
+      </SafeAreaView>
     </ScrollView>
   );
 };

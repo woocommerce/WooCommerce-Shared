@@ -37,7 +37,7 @@ export function getZoneName(countryOrRegion: string) {
 /*
  * Finds a country from the list of countries using a country code.
  */
-function getCountryByCode(countryCode: string): any {
+export function getCountryByCode(countryCode: string): any {
   return countries.find((country: any) => country.code === countryCode);
 }
 

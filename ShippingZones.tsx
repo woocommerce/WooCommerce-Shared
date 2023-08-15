@@ -23,6 +23,7 @@ type RowProps = {
   title: string;
   body: string;
   caption: string;
+  showNavigationIndicator: boolean;
 };
 
 function Row(props: RowProps): JSX.Element {
@@ -30,17 +31,18 @@ function Row(props: RowProps): JSX.Element {
     <View style={styles.row}>
       <View style={styles.row.content}>
         <View style={styles.row.textContainer}>
-          <Text style={styles.row.title}> {props.title} </Text>
+          <Text style={styles.row.title}>{props.title}</Text>
           {props.body.length > 0 && (
-            <Text style={styles.row.body}> {props.body} </Text>
+            <Text style={styles.row.body}>{props.body}</Text>
           )}
           {props.caption.length > 0 && (
-            <Text style={styles.row.caption}> {props.caption} </Text>
+            <Text style={styles.row.caption}>{props.caption}</Text>
           )}
         </View>
-        {isFeatureEnabled(LocalFeatureFlag.addShippingZones) && (
-          <Text style={styles.row.disclosureIndicator}>›</Text>
-        )}
+        {props.showNavigationIndicator &&
+          isFeatureEnabled(LocalFeatureFlag.addShippingZones) && (
+            <Text style={styles.row.disclosureIndicator}>›</Text>
+          )}
       </View>
       <View style={styles.row.separator} />
     </View>
@@ -49,7 +51,7 @@ function Row(props: RowProps): JSX.Element {
 
 const ShippingZonesList = () => {
   const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState<ShippingZone[]>([]);
+  const [data, setData] = useState<RowProps[]>([]);
 
   /*
    * Shows an alert that allows the user to retry the fetch operation.
@@ -69,6 +71,31 @@ const ShippingZonesList = () => {
   };
 
   /*
+   * Information Row properties for the shipping zones list.
+   */
+  const InfoRowProps = (): RowProps => {
+    return {
+      title:
+        "Shipping zones determine the available shipping methods based on a customer's shipping address.",
+      body: "During checkout, customers can choose from available shipping methods in their zone.",
+      caption: "",
+      showNavigationIndicator: false,
+    };
+  };
+
+  /*
+   * "Locations Not Covered" Row properties for the shipping zones list.
+   */
+  const LocationNotCoveredRowProps = (): RowProps => {
+    return {
+      title: "Locations not covered by your other zones",
+      body: "This zone is optionally used for regions that are not included in any other shipping zone.",
+      caption: "No shipping methods offered to this zone",
+      showNavigationIndicator: false,
+    };
+  };
+
+  /*
    * Fetches the neccessary data for the shipping zones list.
    * If the operation fails, a retry alert is shown.
    */
@@ -78,7 +105,7 @@ const ShippingZonesList = () => {
     try {
       const zones = await fetchShippingZones();
       sendAnalyticsEvent("shipping_zones_list_loaded");
-      setData(decorateZones(zones));
+      setData(adaptZones(zones));
     } catch (error) {
       console.log(error);
       sendAnalyticsEvent("shipping_zones_fetch_failed");
@@ -89,20 +116,34 @@ const ShippingZonesList = () => {
   };
 
   /*
-   * Updates the given array to move the "Location Not Covered" zone to the bottom of the array.
+   * Transforms the given zones array into a RowProps array and:
+   * - Move the "Location Not Covered" zone to the bottom of the array.
+   * - Adds info row to te beginning of the array.
    */
-  const decorateZones = (zones: ShippingZone[]) => {
+  const adaptZones = (zones: ShippingZone[]): RowProps[] => {
     const locationsNotCoveredId = 0;
     const locationsNotCoveredIndex = zones.findIndex(
       (element) => element.id === locationsNotCoveredId
     );
 
+    // Transform all zones
+    const rows = zones.map((zone) => {
+      return {
+        title: zone.title,
+        body: zone.locations.map((location) => location.name).join(", "),
+        caption: zone.methods.map((method) => method.title).join(", "),
+        showNavigationIndicator: true,
+      };
+    });
+
+    // Move down the "Location Not Covered" zone
     if (locationsNotCoveredIndex >= 0) {
-      let locationNotCoveredZone = zones.splice(locationsNotCoveredIndex, 1)[0];
-      zones.push(locationNotCoveredZone);
+      rows.splice(locationsNotCoveredIndex, 1);
+      rows.push(LocationNotCoveredRowProps());
     }
 
-    return zones;
+    // Insert the info row
+    return [InfoRowProps(), ...rows];
   };
 
   useFocusEffect(
@@ -155,11 +196,12 @@ const ShippingZonesList = () => {
           renderItem={({ item }) => (
             <Row
               title={item.title}
-              body={item.locations.map((location) => location.name).join(", ")}
-              caption={item.methods.map((method) => method.title).join(", ")}
+              body={item.body}
+              caption={item.caption}
+              showNavigationIndicator={item.showNavigationIndicator}
             />
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.title}
         />
       )}
     </View>

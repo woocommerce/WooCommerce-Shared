@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   Alert,
   FlatList,
+  Image,
   NativeModules,
   Platform,
   SafeAreaView,
@@ -30,6 +31,9 @@ function Row(props: RowProps): JSX.Element {
   return (
     <View style={styles.row}>
       <View style={styles.row.content}>
+        <View style={styles.row.icon}>
+          <Image source={require("./Assets/Icons/info.png")} />
+        </View>
         <View style={styles.row.textContainer}>
           <Text style={styles.row.title}>{props.title}</Text>
           {props.body.length > 0 && (
@@ -229,6 +233,12 @@ const styles = StyleSheet.create({
       fontSize: 23,
       borderRadius: 0,
       margin: 16,
+    },
+    icon: {
+      flexDirection: "column",
+      alignSelf: "baseline",
+      paddingRight: 12,
+      paddingTop: 2,
     },
     textContainer: {
       flex: 1,

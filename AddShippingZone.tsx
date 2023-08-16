@@ -127,34 +127,6 @@ const AddShippingZone = () => {
   );
 };
 
-function getRegionMargin(region: Region) {
-  if (region instanceof State) {
-    return 50;
-  } else if (region instanceof Country) {
-    return 30;
-  } else if (region instanceof Continent) {
-    return 10;
-  }
-}
-
-function SuggestionRow(region: Region): JSX.Element {
-  return (
-    <View style={styles.row}>
-      <View style={styles.row.textContainer}>
-        <Text
-          style={{
-            backgroundColor: Colors.backgroundColor,
-            marginLeft: getRegionMargin(region),
-          }}
-        >
-          {region.name}
-        </Text>
-      </View>
-      <View style={styles.separator} />
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     padding: 16,
@@ -166,12 +138,6 @@ const styles = StyleSheet.create({
     fontSize: 16.0,
     color: "black",
   },
-  textInput: {
-    paddingStart: 10,
-    minHeight: 50,
-    borderWidth: 2,
-    borderRadius: 10,
-  },
   clickableText: {
     color: "#68a5df",
     textDecorationLine: "underline",
@@ -181,25 +147,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
   },
-  separator: {
-    backgroundColor: SemanticColor.separator(),
-    height: 0.5,
-  },
   listContainer: {
     zIndex: 1,
-  },
-  list: {
-    marginTop: 60,
-    position: "absolute",
-    width: "100%",
-  },
-  row: {
-    backgroundColor: SemanticColor.primaryBackground(),
-    textContainer: {
-      height: 50,
-      flexDirection: "row",
-      alignItems: "center",
-    },
   },
 });
 

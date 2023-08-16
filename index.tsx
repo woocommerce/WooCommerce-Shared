@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AppRegistry, Appearance } from "react-native";
 import ShippingZonesList from "./ShippingZones";
 import AddShippingZone from "./AddShippingZone";
+import AddRegions from "./AddRegions";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
@@ -81,6 +82,13 @@ const NavigationStack = (props) => {
             component={AddShippingZone}
             options={{
               title: "New Zone",
+            }}
+          />
+          <Stack.Screen
+            name={NavigationRoutes.AddRegions}
+            component={AddRegions}
+            options={{
+              title: "Select Regions",
             }}
           />
         </Stack.Navigator>

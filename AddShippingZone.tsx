@@ -1,46 +1,29 @@
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
-  FlatList,
   Linking,
   Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
 import { addShippingZone } from "./API/ShippingZoneAPI";
-import { Continent, Country, getRegions, Region, State } from "./API/DataApi";
+import { Continent, Country, Region, State } from "./API/DataApi";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { SemanticColor } from "./Utils/Colors/SemanticColors";
+import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
 
   const [name, setName] = React.useState("");
   const [isLimitEnabled, setLimitEnabled] = useState(false);
-  const [regions, setRegions] = useState([]);
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-
-  useEffect(() => {
-    fetchRegions().then((regions: Region[]) => {
-      setRegions(regions);
-    });
-  }, []);
-
-  useEffect(() => {
-    let filteredRegions = regions
-      .filter((region: Region) => {
-        return region.name.includes(query);
-      })
-      .slice(0, 50);
-    setSuggestions(query === "" ? [] : filteredRegions);
-  }, [query]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -58,20 +41,6 @@ const AddShippingZone = () => {
       );
     };
   }, [navigation, name]);
-
-  async function fetchRegions() {
-    return await getRegions().then((continents) => {
-      return continents.flatMap((continent) => {
-        return [
-          continent,
-          ...continent.countries.flatMap((country) => [
-            country,
-            ...country.states,
-          ]),
-        ];
-      });
-    });
-  }
 
   async function onAddShippingZonePressed(name) {
     await addShippingZone(name);
@@ -147,22 +116,21 @@ const AddShippingZone = () => {
         />
         <View style={{ margin: 10 }} />
         <Text style={styles.labelText}>Zone region</Text>
-        <View style={styles.listContainer}>
+        <View style={{ flexDirection: "row" }}>
           <FocusableTextInput
             selectionColor={"black"}
-            style={[styles.textInput, { marginTop: 10 }]}
+            style={[styles.textInput, { marginTop: 10, width: "75%" }]}
             placeholder="Type to search"
-            onChangeText={(text) => {
-              setQuery(text);
+            onChangeText={(text) => {}}
+          />
+          <TouchableOpacity
+            style={styles.addRegionsButton}
+            onPress={() => {
+              navigation.navigate(NavigationRoutes.AddRegions);
             }}
-            value={query}
-          />
-          <FlatList
-            nestedScrollEnabled={true}
-            style={styles.list}
-            data={suggestions}
-            renderItem={({ item }) => SuggestionRow(item)}
-          />
+          >
+            <Text>Add region</Text>
+          </TouchableOpacity>
         </View>
         <View style={{ margin: 5 }} />
         {_renderPostCodes()}
@@ -219,6 +187,11 @@ const styles = StyleSheet.create({
   clickableText: {
     color: "#68a5df",
     textDecorationLine: "underline",
+  },
+  addRegionsButton: {
+    width: "25%",
+    alignSelf: "center",
+    alignItems: "center",
   },
   separator: {
     backgroundColor: SemanticColor.separator(),

@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   Alert,
+  ColorValue,
   FlatList,
   Image,
   NativeModules,
@@ -25,6 +26,7 @@ type RowProps = {
   body: string;
   caption: string;
   icon: NodeRequire;
+  iconColor: ColorValue;
   showNavigationIndicator: boolean;
 };
 
@@ -32,9 +34,11 @@ function Row(props: RowProps): JSX.Element {
   return (
     <View style={styles.row}>
       <View style={styles.row.content}>
-        <View style={styles.row.icon}>
-          <Image source={props.icon} />
-        </View>
+        <Image
+          tintColor={props.iconColor}
+          style={styles.row.icon}
+          source={props.icon}
+        />
         <View style={styles.row.textContainer}>
           <Text style={styles.row.title}>{props.title}</Text>
           {props.body.length > 0 && (
@@ -85,6 +89,7 @@ const ShippingZonesList = () => {
       body: "During checkout, customers can choose from available shipping methods in their zone.",
       caption: "",
       icon: require("./Assets/Icons/info.png"),
+      iconColor: SemanticColor.primary(),
       showNavigationIndicator: false,
     };
   };
@@ -98,6 +103,7 @@ const ShippingZonesList = () => {
       body: "This zone is optionally used for regions that are not included in any other shipping zone.",
       caption: "No shipping methods offered to this zone",
       icon: require("./Assets/Icons/world.png"),
+      iconColor: SemanticColor.primaryText(),
       showNavigationIndicator: true,
     };
   };
@@ -140,6 +146,7 @@ const ShippingZonesList = () => {
         body: zone.locations.map((location) => location.name).join(", "),
         caption: zone.methods.map((method) => method.title).join(", "),
         icon: require("./Assets/Icons/location.png"),
+        iconColor: SemanticColor.primaryText(),
         showNavigationIndicator: true,
       };
     });
@@ -207,6 +214,7 @@ const ShippingZonesList = () => {
               body={item.body}
               caption={item.caption}
               icon={item.icon}
+              iconColor={item.iconColor}
               showNavigationIndicator={item.showNavigationIndicator}
             />
           )}
@@ -242,8 +250,8 @@ const styles = StyleSheet.create({
     icon: {
       flexDirection: "column",
       alignSelf: "flex-start",
-      paddingRight: 12,
-      paddingTop: 2,
+      marginRight: 12,
+      marginTop: 2,
     },
     textContainer: {
       flex: 1,

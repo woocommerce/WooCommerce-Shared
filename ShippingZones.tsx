@@ -1,7 +1,9 @@
 import {
   ActivityIndicator,
   Alert,
+  ColorValue,
   FlatList,
+  Image,
   NativeModules,
   Platform,
   SafeAreaView,
@@ -23,6 +25,8 @@ type RowProps = {
   title: string;
   body: string;
   caption: string;
+  icon: NodeRequire;
+  iconColor: ColorValue;
   showNavigationIndicator: boolean;
 };
 
@@ -30,6 +34,11 @@ function Row(props: RowProps): JSX.Element {
   return (
     <View style={styles.row}>
       <View style={styles.row.content}>
+        <Image
+          tintColor={props.iconColor}
+          style={styles.row.icon}
+          source={props.icon}
+        />
         <View style={styles.row.textContainer}>
           <Text style={styles.row.title}>{props.title}</Text>
           {props.body.length > 0 && (
@@ -79,6 +88,8 @@ const ShippingZonesList = () => {
         "Shipping zones determine the available shipping methods based on a customer's shipping address.",
       body: "During checkout, customers can choose from available shipping methods in their zone.",
       caption: "",
+      icon: require("./Assets/Icons/info.png"),
+      iconColor: SemanticColor.primary(),
       showNavigationIndicator: false,
     };
   };
@@ -91,7 +102,9 @@ const ShippingZonesList = () => {
       title: "Locations not covered by your other zones",
       body: "This zone is optionally used for regions that are not included in any other shipping zone.",
       caption: "No shipping methods offered to this zone",
-      showNavigationIndicator: false,
+      icon: require("./Assets/Icons/world.png"),
+      iconColor: SemanticColor.primaryText(),
+      showNavigationIndicator: true,
     };
   };
 
@@ -132,6 +145,8 @@ const ShippingZonesList = () => {
         title: zone.title,
         body: zone.locations.map((location) => location.name).join(", "),
         caption: zone.methods.map((method) => method.title).join(", "),
+        icon: require("./Assets/Icons/location.png"),
+        iconColor: SemanticColor.primaryText(),
         showNavigationIndicator: true,
       };
     });
@@ -198,6 +213,8 @@ const ShippingZonesList = () => {
               title={item.title}
               body={item.body}
               caption={item.caption}
+              icon={item.icon}
+              iconColor={item.iconColor}
               showNavigationIndicator={item.showNavigationIndicator}
             />
           )}
@@ -229,6 +246,12 @@ const styles = StyleSheet.create({
       fontSize: 23,
       borderRadius: 0,
       margin: 16,
+    },
+    icon: {
+      flexDirection: "column",
+      alignSelf: "flex-start",
+      marginRight: 12,
+      marginTop: 2,
     },
     textContainer: {
       flex: 1,

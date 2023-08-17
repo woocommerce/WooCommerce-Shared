@@ -18,7 +18,7 @@ export namespace SemanticColor {
   };
 
   export const primary = (): ColorValue => {
-    return isInLightMode() ? "rgb(124, 57, 130)" : "rgb(196, 117, 189)";
+    return isInLightMode() ? "rgb(103, 67, 153)" : "rgb(196, 117, 189)";
   };
 
   export const separator = (): ColorValue => {

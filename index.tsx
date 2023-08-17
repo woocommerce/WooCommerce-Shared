@@ -14,6 +14,7 @@ import {
 
 import { BLOG_ID, TOKEN, APP_PASSWORD, SITE_URL } from "@env";
 import { SemanticColor } from "./Utils/Colors/SemanticColors";
+import { gestureHandlerRootHOC } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
 
@@ -90,4 +91,6 @@ const NavigationStack = (props) => {
   return <Router />;
 };
 
-AppRegistry.registerComponent("main", () => NavigationStack);
+AppRegistry.registerComponent("main", () =>
+  gestureHandlerRootHOC(NavigationStack)
+);

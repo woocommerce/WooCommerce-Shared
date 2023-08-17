@@ -6,11 +6,14 @@
 
 export enum LocalFeatureFlag {
   addShippingZones,
+  addShippingMethods,
 }
 
 export function isFeatureEnabled(feature: LocalFeatureFlag) {
   switch (feature) {
     case LocalFeatureFlag.addShippingZones:
+      return __DEV__ === true;
+    case LocalFeatureFlag.addShippingMethods:
       return __DEV__ === true;
     default:
       throw new Error(`No value for feature: ${feature}`);

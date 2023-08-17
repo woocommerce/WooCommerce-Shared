@@ -13,6 +13,8 @@ import { useNavigation } from "@react-navigation/native";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
 import { addShippingZone } from "./API/ShippingZoneAPI";
+import { PlusButton } from "./UI/PlusButton";
+import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
@@ -92,6 +94,11 @@ const AddShippingZone = () => {
     }
   };
 
+  const handlePlusPress = () => {
+    // Add your logic here
+    console.log("Plus button pressed");
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
@@ -115,6 +122,9 @@ const AddShippingZone = () => {
           />
           <View style={{ margin: 5 }} />
           {_renderPostCodes()}
+          {isFeatureEnabled(LocalFeatureFlag.addShippingMethods) && (
+            <PlusButton label="Add Shipping Method" onPress={handlePlusPress} />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -15,6 +15,7 @@ import { addShippingZone } from "./API/ShippingZoneAPI";
 import { PlusButton } from "./UI/PlusButton";
 import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
 import { SemanticColor } from "./Utils/Colors/SemanticColors";
+import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
@@ -103,15 +104,16 @@ const AddShippingZone = () => {
           />
           <View style={{ margin: 10 }} />
           <Text style={styles.labelText}>Zone region</Text>
-          <FocusableTextInput
-            selectionColor={"black"}
-            style={[styles.textInput, { marginTop: 10 }]}
-            placeholder="Type to search"
-          />
+          {isFeatureEnabled(LocalFeatureFlag.addShippingMethods) && (
+            <PlusButton
+              label="Add Shipping Zones"
+              onPress={() => navigation.navigate(NavigationRoutes.AddRegions)}
+            />
+          )}
           <View style={{ margin: 5 }} />
           {_renderPostCodes()}
           {isFeatureEnabled(LocalFeatureFlag.addShippingMethods) && (
-              <PlusButton label="Add Shipping Method" onPress={handlePlusPress} />
+            <PlusButton label="Add Shipping Method" onPress={handlePlusPress} />
           )}
         </View>
       </ScrollView>

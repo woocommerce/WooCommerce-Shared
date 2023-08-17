@@ -1,7 +1,9 @@
 import {
   ActivityIndicator,
   Alert,
+  ColorValue,
   FlatList,
+  Image,
   NativeModules,
   Platform,
   SafeAreaView,
@@ -23,6 +25,8 @@ type RowProps = {
   title: string;
   body: string;
   caption: string;
+  icon: NodeRequire;
+  iconColor: ColorValue;
   showNavigationIndicator: boolean;
 };
 
@@ -30,6 +34,11 @@ function Row(props: RowProps): JSX.Element {
   return (
     <View style={styles.row}>
       <View style={styles.row.content}>
+        <Image
+          tintColor={props.iconColor}
+          style={styles.row.icon}
+          source={props.icon}
+        />
         <View style={styles.row.textContainer}>
           <Text style={styles.row.title}>{props.title}</Text>
           {props.body.length > 0 && (
@@ -79,6 +88,8 @@ const ShippingZonesList = () => {
         "Shipping zones determine the available shipping methods based on a customer's shipping address.",
       body: "During checkout, customers can choose from available shipping methods in their zone.",
       caption: "",
+      icon: require("./Assets/Icons/info.png"),
+      iconColor: SemanticColor.primary(),
       showNavigationIndicator: false,
     };
   };
@@ -86,13 +97,11 @@ const ShippingZonesList = () => {
   /*
    * "Locations Not Covered" Row properties for the shipping zones list.
    */
-  const LocationNotCoveredRowProps = (): RowProps => {
-    return {
-      title: "Locations not covered by your other zones",
-      body: "This zone is optionally used for regions that are not included in any other shipping zone.",
-      caption: "No shipping methods offered to this zone",
-      showNavigationIndicator: false,
-    };
+  const LocationNotCoveredRowProps = (row: RowProps): RowProps => {
+    row.body =
+      "This zone is optionally used for regions that are not included in any other shipping zone.";
+    row.icon = require("./Assets/Icons/world.png");
+    return row;
   };
 
   /*
@@ -128,18 +137,34 @@ const ShippingZonesList = () => {
 
     // Transform all zones
     const rows = zones.map((zone) => {
+      const body = () => {
+        if (zone.locations.length === 0) {
+          return "Everywhere";
+        }
+        return zone.locations.map((location) => location.name).join(", ");
+      };
+
+      const caption = () => {
+        if (zone.methods.length === 0) {
+          return "No shipping methods offered to this zone";
+        }
+        return zone.methods.map((method) => method.title).join(", ");
+      };
+
       return {
         title: zone.title,
-        body: zone.locations.map((location) => location.name).join(", "),
-        caption: zone.methods.map((method) => method.title).join(", "),
+        body: body(),
+        caption: caption(),
+        icon: require("./Assets/Icons/location.png"),
+        iconColor: SemanticColor.primaryText(),
         showNavigationIndicator: true,
       };
     });
 
     // Move down the "Location Not Covered" zone
     if (locationsNotCoveredIndex >= 0) {
-      rows.splice(locationsNotCoveredIndex, 1);
-      rows.push(LocationNotCoveredRowProps());
+      const notCoveredRow = rows.splice(locationsNotCoveredIndex, 1)[0];
+      rows.push(LocationNotCoveredRowProps(notCoveredRow));
     }
 
     // Insert the info row
@@ -198,6 +223,8 @@ const ShippingZonesList = () => {
               title={item.title}
               body={item.body}
               caption={item.caption}
+              icon={item.icon}
+              iconColor={item.iconColor}
               showNavigationIndicator={item.showNavigationIndicator}
             />
           )}
@@ -229,6 +256,12 @@ const styles = StyleSheet.create({
       fontSize: 23,
       borderRadius: 0,
       margin: 16,
+    },
+    icon: {
+      flexDirection: "column",
+      alignSelf: "flex-start",
+      marginRight: 12,
+      marginTop: 2,
     },
     textContainer: {
       flex: 1,

@@ -6,15 +6,15 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
 import { addShippingZone } from "./API/ShippingZoneAPI";
+import { PlusButton } from "./UI/PlusButton";
+import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
 import { SemanticColor } from "./Utils/Colors/SemanticColors";
-import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
@@ -82,43 +82,40 @@ const AddShippingZone = () => {
     }
   };
 
+  const handlePlusPress = () => {
+    // Add your logic here
+    console.log("Plus button pressed");
+  };
+
   return (
-    <ScrollView
-      contentContainerStyle={{ flex: 1 }}
-      style={styles.container}
-      nestedScrollEnabled={true}
-    >
-      <SafeAreaView>
-        <Text style={styles.labelText}>Name</Text>
-        <FocusableTextInput
-          selectionColor={"black"}
-          style={[styles.textInput, { marginTop: 10 }]}
-          placeholder="Enter name"
-          onChangeText={(text) => {
-            setName(text);
-          }}
-          value={name}
-        />
-        <View style={{ margin: 10 }} />
-        <Text style={styles.labelText}>Region</Text>
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity
-            style={styles.addRegionsButton}
-            onPress={() => {
-              navigation.navigate(NavigationRoutes.AddRegions);
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
+        <View style={{ padding: 16, backgroundColor: "white" }}>
+          <Text style={styles.labelText}>Zone name</Text>
+          <FocusableTextInput
+            selectionColor={"black"}
+            style={[styles.textInput, { marginTop: 10 }]}
+            placeholder="Enter name"
+            onChangeText={(text) => {
+              setName(text);
             }}
-          >
-            <Text style={{
-              textAlign: "center",
-              fontSize: 16,
-              color: SemanticColor.primary()
-            }}>+ Add regions</Text>
-          </TouchableOpacity>
+            value={name}
+          />
+          <View style={{ margin: 10 }} />
+          <Text style={styles.labelText}>Zone region</Text>
+          <FocusableTextInput
+            selectionColor={"black"}
+            style={[styles.textInput, { marginTop: 10 }]}
+            placeholder="Type to search"
+          />
+          <View style={{ margin: 5 }} />
+          {_renderPostCodes()}
+          {isFeatureEnabled(LocalFeatureFlag.addShippingMethods) && (
+              <PlusButton label="Add Shipping Method" onPress={handlePlusPress} />
+          )}
         </View>
-        <View style={{ margin: 5 }} />
-        {_renderPostCodes()}
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -132,6 +129,12 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 16.0,
     color: "black",
+  },
+  textInput: {
+    paddingStart: 10,
+    minHeight: 50,
+    borderWidth: 2,
+    borderRadius: 10,
   },
   clickableText: {
     color: "#68a5df",

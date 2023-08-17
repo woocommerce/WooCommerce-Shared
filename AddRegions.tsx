@@ -22,21 +22,21 @@ const AddRegions = () => {
   const [regions, setRegions] = useState([]);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedRegions, setSelectedRegions] = useState([]);
 
   useEffect(() => {
     let filteredRegions = regions
       .filter((region: Region) => {
         return region.name.includes(query);
       })
-      .slice(0, 50)
       .map((region): Suggestion => {
         return {
-          checked: false,
+          checked: selectedRegions.includes(region),
           region: region,
         };
       });
     setSuggestions(query === "" ? [] : filteredRegions);
-  }, [query]);
+  }, [query, selectedRegions]);
 
   useEffect(() => {
     fetchRegions().then((regions: Region[]) => {
@@ -44,44 +44,31 @@ const AddRegions = () => {
     });
   }, []);
 
-  async function fetchRegions() {
-    return await getRegions().then((continents) => {
-      return continents.flatMap((continent) => {
-        return [
-          continent,
-          ...continent.countries.flatMap((country) => [
-            country,
-            ...country.states,
-          ]),
-        ];
-      });
-    });
-  }
-
   function SuggestionRow(suggestion: Suggestion): JSX.Element {
     return (
       <TouchableOpacity
         style={styles.row}
         onPress={() => {
-          setSuggestions(
-            suggestions.map((mapingSuggestion: Suggestion): Suggestion => {
-              if (mapingSuggestion.region == suggestion.region) {
-                return {
-                  checked: !mapingSuggestion.checked,
-                  region: mapingSuggestion.region,
-                };
-              } else {
-                return mapingSuggestion;
-              }
-            })
-          );
+          // We need to make a copy of the list to trigger dependant effect. If we just edited selectedRegions
+          // and set it via setSelectedRegions, nothing would be triggered.
+          const listCopy = () => {
+            if (selectedRegions.includes(suggestion.region)) {
+              return selectedRegions.filter(
+                (region) => region != suggestion.region
+              );
+            } else {
+              selectedRegions.push(suggestion.region);
+              return [...selectedRegions];
+            }
+          };
+          setSelectedRegions(listCopy);
         }}
       >
         <View style={styles.row.textContainer}>
           <Checkbox
-              color={suggestion.checked ? SemanticColor.primary() : undefined}
-          value={suggestion.checked}
-              style={{ marginLeft: 20 }}
+            color={suggestion.checked ? SemanticColor.primary() : undefined}
+            value={suggestion.checked}
+            style={styles.checkboxBase}
           />
           <Text
             style={{
@@ -97,36 +84,61 @@ const AddRegions = () => {
     );
   }
 
-  function getRegionMargin(region: Region) {
-    if (region instanceof State) {
-      return 50;
-    } else if (region instanceof Country) {
-      return 30;
-    } else if (region instanceof Continent) {
-      return 10;
+  const buttonText = () => {
+    const selectedRegionsSize = selectedRegions.length;
+    if (selectedRegionsSize == 0) {
+      return "Done";
+    } else if (selectedRegionsSize == 1) {
+      return `Select ${selectedRegionsSize} region`;
+    } else {
+      return `Select ${selectedRegionsSize} regions`;
     }
-  }
+  };
 
   return (
     <SafeAreaView
       style={{
+        flex: 1,
         backgroundColor: SemanticColor.primaryBackground(),
       }}
     >
-      <FocusableTextInput
-        selectionColor={"black"}
-        style={styles.textInput}
-        placeholder="Type to search"
-        onChangeText={(text) => {
-          setQuery(text);
+      <View style={{ flex: 1, flexDirection: "column" }}>
+        <FocusableTextInput
+          selectionColor={"black"}
+          style={styles.textInput}
+          placeholder="Type to search"
+          onChangeText={(text) => {
+            setQuery(text);
+          }}
+        />
+        <FlatList
+          nestedScrollEnabled={true}
+          style={styles.list}
+          data={suggestions}
+          renderItem={({ item }) => SuggestionRow(item)}
+        />
+      </View>
+
+      <View
+        style={{
+          height: 80,
+          justifyContent: "center",
         }}
-      />
-      <FlatList
-        nestedScrollEnabled={true}
-        style={styles.list}
-        data={suggestions}
-        renderItem={({ item }) => SuggestionRow(item)}
-      />
+      >
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            borderRadius: 3,
+            marginHorizontal: 20,
+            padding: 10,
+            backgroundColor: SemanticColor.primary(),
+          }}
+        >
+          <Text style={{ color: "white", fontWeight: 500 }}>
+            {buttonText()}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -152,6 +164,39 @@ const styles = StyleSheet.create({
     backgroundColor: SemanticColor.separator(),
     height: 0.5,
   },
+  checkboxBase: {
+    width: 24,
+    marginLeft: 10,
+    height: 24,
+    borderRadius: 99,
+    borderWidth: 2,
+    borderColor: "grey",
+    backgroundColor: "transparent",
+  },
 });
+
+function getRegionMargin(region: Region) {
+  if (region instanceof State) {
+    return 50;
+  } else if (region instanceof Country) {
+    return 30;
+  } else if (region instanceof Continent) {
+    return 10;
+  }
+}
+
+async function fetchRegions() {
+  return await getRegions().then((continents) => {
+    return continents.flatMap((continent) => {
+      return [
+        continent,
+        ...continent.countries.flatMap((country) => [
+          country,
+          ...country.states,
+        ]),
+      ];
+    });
+  });
+}
 
 export default AddRegions;

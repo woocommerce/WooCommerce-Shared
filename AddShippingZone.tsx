@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  BackHandler,
   Linking,
   Pressable,
   SafeAreaView,
@@ -14,8 +13,6 @@ import { useNavigation } from "@react-navigation/native";
 import { ToolbarActionButton } from "./ToolbarActionButton";
 import FocusableTextInput from "./UI/FocusableTextInput";
 import { addShippingZone } from "./API/ShippingZoneAPI";
-import { Continent, Country, Region, State } from "./API/DataApi";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { SemanticColor } from "./Utils/Colors/SemanticColors";
 import { NavigationRoutes } from "./Navigation/NavigationRoutes";
 
@@ -92,7 +89,7 @@ const AddShippingZone = () => {
       nestedScrollEnabled={true}
     >
       <SafeAreaView>
-        <Text style={styles.labelText}>Zone name</Text>
+        <Text style={styles.labelText}>Name</Text>
         <FocusableTextInput
           selectionColor={"black"}
           style={[styles.textInput, { marginTop: 10 }]}
@@ -103,21 +100,19 @@ const AddShippingZone = () => {
           value={name}
         />
         <View style={{ margin: 10 }} />
-        <Text style={styles.labelText}>Zone region</Text>
+        <Text style={styles.labelText}>Region</Text>
         <View style={{ flexDirection: "row" }}>
-          <FocusableTextInput
-            selectionColor={"black"}
-            style={[styles.textInput, { marginTop: 10, width: "75%" }]}
-            placeholder="Type to search"
-            onChangeText={(text) => {}}
-          />
           <TouchableOpacity
             style={styles.addRegionsButton}
             onPress={() => {
               navigation.navigate(NavigationRoutes.AddRegions);
             }}
           >
-            <Text>Add region</Text>
+            <Text style={{
+              textAlign: "center",
+              fontSize: 16,
+              color: SemanticColor.primary()
+            }}>+ Add regions</Text>
           </TouchableOpacity>
         </View>
         <View style={{ margin: 5 }} />
@@ -143,8 +138,9 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   addRegionsButton: {
-    width: "25%",
+    height: 40,
     alignSelf: "center",
+    alignContent: "center",
     alignItems: "center",
   },
   listContainer: {

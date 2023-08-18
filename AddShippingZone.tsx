@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   BackHandler,
   Linking,
@@ -15,12 +15,22 @@ import FocusableTextInput from "./UI/FocusableTextInput";
 import { addShippingZone } from "./API/ShippingZoneAPI";
 import { PlusButton } from "./UI/PlusButton";
 import { LocalFeatureFlag, isFeatureEnabled } from "./Utils/FeatureFlag";
+import { Modalize } from "react-native-modalize";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ShippingMethodList } from "./ShippingMethodList";
 
 const AddShippingZone = () => {
   const navigation = useNavigation();
 
   const [name, setName] = React.useState("");
   const [isLimitEnabled, setLimitEnabled] = useState(false);
+
+  // Reference to the shipping method drawer
+  const shippingMethodDrawer = useRef(null);
+
+  const openMethodDrawer = () => {
+    shippingMethodDrawer.current?.open();
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -99,6 +109,10 @@ const AddShippingZone = () => {
     console.log("Plus button pressed");
   };
 
+  const handleMethodSelected = () => {
+    console.log("method selected");
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
@@ -123,10 +137,24 @@ const AddShippingZone = () => {
           <View style={{ margin: 5 }} />
           {_renderPostCodes()}
           {isFeatureEnabled(LocalFeatureFlag.addShippingMethods) && (
-            <PlusButton label="Add Shipping Method" onPress={handlePlusPress} />
+            <PlusButton
+              label="Add Shipping Method"
+              onPress={openMethodDrawer}
+            />
           )}
         </View>
       </ScrollView>
+      <Modalize
+        ref={shippingMethodDrawer}
+        adjustToContentHeight
+        closeSnapPointStraightEnabled
+        modalStyle={styles.modal}
+        overlayStyle={styles.overlay}
+        handleStyle={styles.handle}
+        handlePosition={"inside"}
+      >
+        <ShippingMethodList onSelected={handleMethodSelected} />
+      </Modalize>
     </SafeAreaView>
   );
 };
@@ -145,6 +173,16 @@ const styles = StyleSheet.create({
   clickableText: {
     color: "#68a5df",
     textDecorationLine: "underline",
+  },
+  modal: {
+    backgroundColor: "white",
+    padding: 16,
+  },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.32)",
+  },
+  handle: {
+    backgroundColor: "rgba(218, 218, 218, 1)",
   },
 });
 
